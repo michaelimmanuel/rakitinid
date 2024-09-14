@@ -3,7 +3,7 @@
 export default function Footer() {
     return (
         <div>
-            <div className="flex flex-col bg-rakitin-bg text-white px-20 py-3 bg-black mt-20">
+            <div className="flex flex-col bg-black text-white px-20 py-3 bg-black mt-20">
                 <div className="flex flex-col md:flex-row justify-around items-center p-5">
                     <div className="flex flex-col items-left">
                         <h1 className="text-2xl font-bold">Rakitinlah.id</h1>
