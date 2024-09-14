@@ -1,4 +1,3 @@
-import Image from "next/image";
 
 import CarouselComponent from "@/components/component/banner";
 import ProductCard from "@/components/component/productCatalog";

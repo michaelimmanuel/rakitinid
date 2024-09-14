@@ -1,16 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
+  const pathname = usePathname(); // Move usePathname inside the component
+
   const handleMenuToggle = () => {
     setIsMenuOpen(prevState => !prevState);
   };
 
   const isActiveLink = (path: string) => {
-    return usePathname() == path
+    return pathname === path; // Use the pathname here
   };
 
   return (
@@ -43,7 +44,9 @@ export default function Navbar() {
             <li>
               <a
                 href="/"
-                className={`text-xl py-2 pr-4 pl-3 ${isActiveLink("/") ? "text-rakitin-orange" : "text-gray-700"} block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
+                className={`text-xl py-2 pr-4 pl-3 ${
+                  isActiveLink("/") ? "text-rakitin-orange" : "text-gray-700"
+                } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 Home
               </a>
@@ -51,7 +54,9 @@ export default function Navbar() {
             <li>
               <a
                 href="/about"
-                className={`text-xl py-2 pr-4 pl-3 ${isActiveLink("/about") ? "text-rakitin-orange" : "text-gray-700"} block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
+                className={`text-xl py-2 pr-4 pl-3 ${
+                  isActiveLink("/about") ? "text-rakitin-orange" : "text-gray-700"
+                } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 About
               </a>
@@ -59,7 +64,9 @@ export default function Navbar() {
             <li>
               <a
                 href="/services"
-                className={`text-xl py-2 pr-4 pl-3 ${isActiveLink("/services") ? "text-rakitin-orange" : "text-gray-700"} block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
+                className={`text-xl py-2 pr-4 pl-3 ${
+                  isActiveLink("/services") ? "text-rakitin-orange" : "text-gray-700"
+                } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 Services
               </a>
@@ -67,7 +74,9 @@ export default function Navbar() {
             <li>
               <a
                 href="/pricing"
-                className={`text-xl py-2 pr-4 pl-3 ${isActiveLink("/pricing") ? "text-rakitin-orange" : "text-gray-700"} block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
+                className={`text-xl py-2 pr-4 pl-3 ${
+                  isActiveLink("/pricing") ? "text-rakitin-orange" : "text-gray-700"
+                } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 Pricing
               </a>
@@ -75,7 +84,9 @@ export default function Navbar() {
             <li>
               <a
                 href="/contact"
-                className={`text-xl py-2 pr-4 pl-3 ${isActiveLink("/contact") ? "text-rakitin-orange" : "text-gray-700"} block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
+                className={`text-xl py-2 pr-4 pl-3 ${
+                  isActiveLink("/contact") ? "text-rakitin-orange" : "text-gray-700"
+                } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 Contact
               </a>
