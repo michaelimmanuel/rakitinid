@@ -73,22 +73,22 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="/pricing"
+                href="/simulation"
                 className={`text-xl py-2 pr-4 pl-3 ${
-                  isActiveLink("/pricing") ? "text-rakitin-orange" : "text-gray-700"
+                  isActiveLink("/simulation") ? "text-rakitin-orange" : "text-gray-700"
                 } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
-                Pricing
+                Simulation
               </a>
             </li>
             <li>
               <a
-                href="/contact"
+                href="/review"
                 className={`text-xl py-2 pr-4 pl-3 ${
-                  isActiveLink("/contact") ? "text-rakitin-orange" : "text-gray-700"
+                  isActiveLink("/review") ? "text-rakitin-orange" : "text-gray-700"
                 } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
-                Contact
+                Review Us!
               </a>
             </li>
           </ul>

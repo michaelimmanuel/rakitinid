@@ -23,6 +23,21 @@ const data = [
         "name" : "John Smith",
         "rating" : 3,
         "comment" : "The service provided by Rakitin Tech is good. The staff are friendly and helpful. I would recommend Rakitin Tech to my friends and family."
+    },
+    {
+        "name" : "John Smith",
+        "rating" : 3,
+        "comment" : "The service provided by Rakitin Tech is good. The staff are friendly and helpful. I would recommend Rakitin Tech to my friends and family."
+    },
+    {
+        "name" : "John Smith",
+        "rating" : 3,
+        "comment" : "The service provided by Rakitin Tech is good. The staff are friendly and helpful. I would recommend Rakitin Tech to my friends and family."
+    },
+    {
+        "name" : "John Smith",
+        "rating" : 3,
+        "comment" : "The service provided by Rakitin Tech is good. The staff are friendly and helpful. I would recommend Rakitin Tech to my friends and family."
     }
 ]
 
@@ -32,8 +47,8 @@ export default function CustomerFeedback() {
     return (
 
         <div className="">
-            <h1 className="text-4xl font-bold text-start text-rakitin-white mt-10 mx-20">
-                Thousand Of Satisfied Customers
+            <h1 className=" scroll-m-20 text-4xl font-extrabold tracking-tight text-start text-rakitin-white mt-10 mx-20">
+                Thousand Of <span className="text-rakitin-orange">Satisfied Customers</span>
             </h1>
             <Carousel
                 opts={{
