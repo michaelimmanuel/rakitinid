@@ -4,7 +4,6 @@ import "./globals.css";
 import StickyNavbar from "@/components/component/navbar";
 import FloatingButton from "@/components/component/floatingButton";
 import Footer from "@/components/component/footer";
-import LogoGrid from "@/components/component/logoGrid";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
