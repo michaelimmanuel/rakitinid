@@ -67,7 +67,7 @@ export default function CustomerFeedback() {
                             
                             
                             <div className="text-gray-700">
-                                <p className="italic">"{item.comment}"</p>
+                                <p className="italic">&#34;{item.comment}&#34;</p>
                             </div>
                         </div>
                         </CarouselItem>
