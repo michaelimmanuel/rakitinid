@@ -27,7 +27,7 @@ export default function Navbar() {
             onClick={handleMenuToggle}
             className="inline-flex items-center p-2 ml-3 bg-slate-800 text-sm text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
           >
-            <span className="sr-only">Open main menu</span>
+
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
@@ -46,7 +46,7 @@ export default function Navbar() {
                 href="/"
                 className={`text-xl py-2 pr-4 pl-3 ${
                   isActiveLink("/") ? "text-rakitin-orange" : "text-gray-700"
-                } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
+                } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 Home
               </a>
@@ -56,7 +56,7 @@ export default function Navbar() {
                 href="/about"
                 className={`text-xl py-2 pr-4 pl-3 ${
                   isActiveLink("/about") ? "text-rakitin-orange" : "text-gray-700"
-                } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
+                } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 About
               </a>
@@ -66,7 +66,7 @@ export default function Navbar() {
                 href="/services"
                 className={`text-xl py-2 pr-4 pl-3 ${
                   isActiveLink("/services") ? "text-rakitin-orange" : "text-gray-700"
-                } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
+                } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 Services
               </a>
@@ -76,7 +76,7 @@ export default function Navbar() {
                 href="/simulation"
                 className={`text-xl py-2 pr-4 pl-3 ${
                   isActiveLink("/simulation") ? "text-rakitin-orange" : "text-gray-700"
-                } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
+                } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 Simulation
               </a>
@@ -86,7 +86,7 @@ export default function Navbar() {
                 href="/review"
                 className={`text-xl py-2 pr-4 pl-3 ${
                   isActiveLink("/review") ? "text-rakitin-orange" : "text-gray-700"
-                } block border-b border-gray-100 no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
+                } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 Review Us!
               </a>

@@ -34,7 +34,7 @@ export default function ProductCard() {
                                         <img className=" bg-black opacity-100 z-10 transition-opacity duration-300 group-hover:opacity-20 group-hover:brightness-50 justify-self-center min-w-screen mx-auto rounded-md group-hover:blur-[3px]" src={item.img} alt="" />
                                     
                                         <div className="absolute bg-black/10 inset-0 opacity-0 group-hover:opacity-100 duration-300 flex items-center justify-center rounded-md ">
-                                            <span className="text-rakitin-orange text-3xl font-bold ">Learn More</span>
+                                            <p className="text-rakitin-orange text-3xl font-bold ">Learn More</p>
                                         </div>
                                     </div>
                                 </CardContent>

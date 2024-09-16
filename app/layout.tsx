@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import StickyNavbar from "@/components/component/navbar";
@@ -20,6 +21,14 @@ export const metadata: Metadata = {
   description: "Build your dream PC with Rakitinlah.id",
 };
 
+export const viewport: Viewport = {
+  initialScale: 1,
+  width: "device-width",
+  maximumScale: 1,
+  viewportFit: "cover",
+};
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-rakitin-bg`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-rakitin-bg `}
       >
         <StickyNavbar/>
         {children}
