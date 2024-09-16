@@ -6,7 +6,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel"
 
-import { Card, CardContent, CardDescription } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 
 import Autoplay from 'embla-carousel-autoplay';
 
