@@ -90,3 +90,7 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.different-color {
+  font-size: 36vh;
+  }

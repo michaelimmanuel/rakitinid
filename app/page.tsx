@@ -1,7 +1,7 @@
-
+"use client";
 import CarouselComponent from "@/components/component/banner";
 import ProductCard from "@/components/component/productCatalog";
-
+import CustomerFeedback from "@/components/component/customerFeedback";
 export default function Home() {
   return (
     <div>
@@ -21,8 +21,11 @@ export default function Home() {
       </div>
 
       <ProductCard/>
+
+      <CustomerFeedback/>
     
     </div>
+
 
     );
 }
