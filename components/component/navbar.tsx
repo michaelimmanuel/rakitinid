@@ -15,7 +15,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-slate-800 px-2 sm:px-4 py-6 rounded shadow sticky top-0 z-50">
+    <nav className="backdrop-brightness-[.50] bg-rakitin-blue bg-opacity-30	backdrop-blur-2xl px-2 sm:px-4 py-6 rounded shadow sticky top-0 z-50">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <a href="/" className="flex items-center">
           <img src="/images/rakitin3.png" alt="logo" className="w-36" />
