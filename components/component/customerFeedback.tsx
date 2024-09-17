@@ -57,12 +57,12 @@ export default function CustomerFeedback() {
                     align: "start",
                 }}
                 plugins={[Autoplay({ delay: 3000 })]}
-                className="flex justify-center content-center mx-10 my-10">                
-                <CarouselContent>
+                className="flex justify-center content-center mx-10 my-10 h-full">                
+                <CarouselContent className="flex">
                     {data.map((item, index) => (
-                        <CarouselItem key={index} className="lg:basis-1/3 md:basis-1/1 sm:basis-1/1 min-h-90">
-                            <Card className="bg-rakitin-light-blue w-full sm:w-full md:w-full lg:w-full">
-                                <CardContent className="p-5 sm:p-3 md:p-4 lg:p-5">
+                        <CarouselItem key={index} className="lg:basis-1/3 md:basis-1/1 sm:basis-1/1 min-h-90 h-full">
+                            <Card className="bg-rakitin-light-blue w-full sm:w-full md:w-full lg:w-full h-full">
+                                <CardContent className="p-5 sm:p-3 md:p-4 lg:p-5 h-full flex-grow">
                                     <h1 className="text-center text-2xl font-bold text-white">{item.name}</h1>
                                     
                                     <p className="text-justify text-white text-lg mt-5">{item.comment}</p>

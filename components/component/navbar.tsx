@@ -15,7 +15,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-slate-800 px-2 sm:px-4 py-6 rounded shadow sticky top-0 z-50">
+    <nav className="backdrop-brightness-[.50] bg-rakitin-blue bg-opacity-30	backdrop-blur-2xl px-2 sm:px-4 py-6 rounded shadow sticky top-0 z-50">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <a href="/" className="flex items-center">
           <img src="/images/rakitin3.png" alt="logo" className="w-36" />
@@ -63,7 +63,7 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="/services"
+                href="#service"
                 className={`text-xl py-2 pr-4 pl-3 ${
                   isActiveLink("/services") ? "text-rakitin-orange" : "text-gray-700"
                 } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
@@ -83,7 +83,7 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="/review"
+                href="https://g.co/kgs/gnvxjc9" target="_blank" rel="noopener noreferrer"
                 className={`text-xl py-2 pr-4 pl-3 ${
                   isActiveLink("/review") ? "text-rakitin-orange" : "text-gray-700"
                 } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
