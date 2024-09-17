@@ -10,8 +10,8 @@ export default function Home() {
         <CarouselComponent/>
       </div>
       
-      <div className="flex flex-col items-center justify-end block py-10">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl inline-block">
+      <div   className="flex flex-col items-center justify-end block py-10 mt-5">
+        <h1  id="service" className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl inline-block">
           Build Your <span className="text-rakitin-orange">Dream</span> PC
         </h1>
       </div>

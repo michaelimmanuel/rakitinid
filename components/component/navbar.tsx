@@ -63,7 +63,7 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="/services"
+                href="#service"
                 className={`text-xl py-2 pr-4 pl-3 ${
                   isActiveLink("/services") ? "text-rakitin-orange" : "text-gray-700"
                 } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
@@ -83,7 +83,7 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="/review"
+                href="https://g.co/kgs/gnvxjc9" target="_blank" rel="noopener noreferrer"
                 className={`text-xl py-2 pr-4 pl-3 ${
                   isActiveLink("/review") ? "text-rakitin-orange" : "text-gray-700"
                 } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}

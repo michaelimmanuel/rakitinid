@@ -5,17 +5,17 @@ export default function ProductCard() {
     const data = [
         {
             "title" : "GAMING", 
-            "img" : "https://placehold.co/300x300",
+            "img" : "/images/products/gaming.jpg",
             "links" : "/gaming"
         },
         {
             "title" : "WORKSTATION", 
-            "img" : "https://placehold.co/300x300",
+            "img" : "/images/products/workstation.jpg",
             "links" : "/workstation"
         },
         {
             "title" : "READY TO SHIP", 
-            "img" : "https://placehold.co/300x300",
+            "img" : "/images/products/ready-to-ship.jpg",
             "links" : "/ready-to-ship"
         },
     ]
@@ -31,7 +31,7 @@ export default function ProductCard() {
                                     
                                 <CardContent className="flex items-center justify-center p-1">
                                     <div className="relative group">
-                                        <img className=" bg-black opacity-100 z-10 transition-opacity duration-300 group-hover:opacity-20 group-hover:brightness-50 justify-self-center min-w-screen mx-auto rounded-md group-hover:blur-[3px]" src={item.img} alt="" />
+                                        <img className=" bg-black opacity-100 z-10 transition-opacity duration-300 group-hover:opacity-20 group-hover:brightness-50 justify-self-center min-w-screen mx-auto rounded-md group-hover:blur-[3px] h-[300px] w-[300px]" src={item.img} alt="" />
                                     
                                         <div className="absolute bg-black/10 inset-0 opacity-0 group-hover:opacity-100 duration-300 flex items-center justify-center rounded-md ">
                                             <p className="text-rakitin-orange text-3xl font-bold ">Learn More</p>
