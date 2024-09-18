@@ -2,11 +2,12 @@
 import CarouselComponent from "@/components/component/banner";
 import ProductCard from "@/components/component/productCatalog";
 import CustomerFeedback from "@/components/component/customerFeedback";
+import SimulatorBanner from "@/components/component/simulator-banner";
 export default function Home() {
   return (
     <div>
       
-      <div className="pt-5 justify-center content-center mx-auto">
+      <div className="pt-5 h-lvh justify-center  mx-auto bg-gradient-to-b from-70% from-black">
         <CarouselComponent/>
       </div>
       
@@ -23,6 +24,8 @@ export default function Home() {
       <ProductCard/>
 
       <CustomerFeedback/>
+
+      <SimulatorBanner />
     
     </div>
 

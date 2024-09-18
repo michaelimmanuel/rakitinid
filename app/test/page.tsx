@@ -1,18 +1,9 @@
-import ImageStack from "@/components/component/stackedImage";
-
-
-
-const imageUrls: string[] = [
-    "/images/products/gaming-1.jpg",
-    "/images/products/gaming-2.jpg",
-    "/images/products/gaming-3.jpg",
-];
+import SimulatorBanner from "@/components/component/simulator-banner";
 export default function Test() {
     return (
-     
-            <div>
-                <ImageStack images={imageUrls} />
-            </div>
+        <div>
+            <SimulatorBanner />
+        </div>
         
     );
 }

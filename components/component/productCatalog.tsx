@@ -29,13 +29,23 @@ export default function ProductCard() {
                 "/images/products/gaming-2.jpg",
                 "/images/products/gaming-3.jpg",
                 ],
-            "links" : "/ready-to-ship"
+            "links" : "/ready-to-ship",
         },
+        {
+            "title" : "CUSTOM PC", 
+            "img" : [
+                "/images/products/gaming-2.jpg",
+                "/images/products/gaming-1.jpg",
+                "/images/products/ready-to-ship.jpg",
+                "/images/products/gaming-3.jpg",
+                ],
+            "links" : "/custom-pc",
+        }
     ]
     return (
         <div>
             <div className="flex flex-col min-width-screen justify-center justify-items-center content-center bg-rakitin-bg">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-5">
+                <div className="grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-4  gap-4 p-5">
                     {data.map((item, index) => (
                         <div key={index} className="p-1">
                             <Card className="bg-rakitin-bg ">
