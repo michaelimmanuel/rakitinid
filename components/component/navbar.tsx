@@ -10,21 +10,19 @@ export default function Navbar() {
     setIsMenuOpen((prevState) => !prevState);
   };
 
-  const isActiveLink = (path : any) => {
+  const isActiveLink = (path: string) => {
     return pathname === path;
   };
 
-  const handleSmoothScroll = (e : any, targetId : any) => {
+  // Smooth scrolling handler
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
-  
+    
     if (targetElement) {
-      const yOffset = -80; // Adjust for fixed navbar height
-      const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
-  
-      window.scrollTo({
-        top: y,
+      targetElement.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       });
     }
   };
