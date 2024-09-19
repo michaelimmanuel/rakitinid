@@ -7,7 +7,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import Image from "next/image";
 
 const links = [
-  "/images/main-banner.jpeg",
+  "/images/promo-amd-sept.png",
   "/images/main-banner.jpeg",
   "/images/main-banner.jpeg",
 ];
@@ -28,7 +28,7 @@ export default function CarouselComponent() {
               <Card className="bg-transparent">
                 <CardContent className="flex items-center justify-center p-1">
                   <div className="rounded-sm overflow-hidden">
-                     <Image src={link} alt="banner" height={300} width={600} />
+                     <Image src={link} alt="banner" height={500} width={1000} />
                   </div>
                 </CardContent>
               </Card>
