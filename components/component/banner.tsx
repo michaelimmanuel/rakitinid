@@ -28,7 +28,7 @@ export default function CarouselComponent() {
               <Card className="bg-transparent">
                 <CardContent className="flex items-center justify-center p-1">
                   <div className="rounded-sm overflow-hidden">
-                     <Image src={link} alt="banner" height={500} width={1000} />
+                     <Image src={link} alt="banner" height={300} width={600} />
                   </div>
                 </CardContent>
               </Card>
