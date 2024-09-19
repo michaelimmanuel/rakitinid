@@ -7,12 +7,12 @@ export default function Home() {
   return (
     <div>
       
-      <div className="pt-5 h-lvh justify-center  mx-auto bg-gradient-to-b from-70% from-black">
+      <div className="pt-5 justify-center h-[35vh]  md:h-[60vh] lg:h-lvh mx-auto bg-gradient-to-b from-80% from-black">
         <CarouselComponent/>
       </div>
       
-      <div   className="flex flex-col items-center justify-end block py-10 mt-5">
-        <h1  id="service" className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl inline-block">
+      <div   className="flex flex-col items-center justify-center block py-10 mt-5">
+        <h1  id="service" className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-5xl inline-block">
           Build Your <span className="text-rakitin-orange">Dream</span> PC
         </h1>
       </div>
@@ -25,7 +25,9 @@ export default function Home() {
 
       <CustomerFeedback/>
 
-      <SimulatorBanner />
+      <div id="simulation">
+        <SimulatorBanner />
+      </div>
     
     </div>
 

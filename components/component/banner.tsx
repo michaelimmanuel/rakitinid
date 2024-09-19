@@ -4,11 +4,12 @@ import * as React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from 'embla-carousel-autoplay';
+import Image from "next/image";
 
 const links = [
-  "/images/banner-1.jpeg",
-  "/images/banner-3.jpeg",
-  "/images/banner-2.jpeg",
+  "/images/main-banner.jpeg",
+  "/images/main-banner.jpeg",
+  "/images/main-banner.jpeg",
 ];
 
 export default function CarouselComponent() {
@@ -23,11 +24,11 @@ export default function CarouselComponent() {
       <CarouselContent>
         {links.map((link, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
-              <Card className="bg-black">
+            <div className="p-1 bg-transparent">
+              <Card className="bg-transparent">
                 <CardContent className="flex items-center justify-center p-1">
                   <div className="rounded-sm overflow-hidden">
-                    <img src={link} alt={`Image ${index + 1}`} className=" h-[500px]" />  
+                     <Image src={link} alt="banner" height={500} width={1000} />
                   </div>
                 </CardContent>
               </Card>

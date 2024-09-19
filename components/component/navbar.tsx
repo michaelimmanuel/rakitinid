@@ -4,14 +4,29 @@ import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname(); // Move usePathname inside the component
+  const pathname = usePathname(); // Get the current path
 
   const handleMenuToggle = () => {
-    setIsMenuOpen(prevState => !prevState);
+    setIsMenuOpen((prevState) => !prevState);
   };
 
-  const isActiveLink = (path: string) => {
-    return pathname === path; // Use the pathname here
+  const isActiveLink = (path : any) => {
+    return pathname === path;
+  };
+
+  const handleSmoothScroll = (e : any, targetId : any) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId);
+  
+    if (targetElement) {
+      const yOffset = -80; // Adjust for fixed navbar height
+      const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+  
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
@@ -27,8 +42,12 @@ export default function Navbar() {
             onClick={handleMenuToggle}
             className="inline-flex items-center p-2 ml-3 bg-slate-800 text-sm text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
           >
-
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -39,7 +58,11 @@ export default function Navbar() {
           </button>
         </div>
 
-        <div className={`w-full md:block md:w-auto ${isMenuOpen ? "block" : "hidden"}`}>
+        <div
+          className={`w-full md:block md:w-auto ${
+            isMenuOpen ? "block" : "hidden"
+          }`}
+        >
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
             <li>
               <a
@@ -53,9 +76,12 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="/#service"
+                href="#service"
+                onClick={(e) => handleSmoothScroll(e, "service")}
                 className={`text-xl py-2 pr-4 pl-3 ${
-                  isActiveLink("/services") ? "text-rakitin-orange" : "text-gray-700"
+                  isActiveLink("/services")
+                    ? "text-rakitin-orange"
+                    : "text-gray-700"
                 } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 Services
@@ -63,9 +89,12 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="/simulation"
+                href="#simulation"
+                onClick={(e) => handleSmoothScroll(e, "simulation")}
                 className={`text-xl py-2 pr-4 pl-3 ${
-                  isActiveLink("/simulation") ? "text-rakitin-orange" : "text-gray-700"
+                  isActiveLink("/simulation")
+                    ? "text-rakitin-orange"
+                    : "text-gray-700"
                 } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 Simulation
@@ -73,9 +102,13 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="https://g.co/kgs/gnvxjc9" target="_blank" rel="noopener noreferrer"
+                href="https://g.co/kgs/gnvxjc9"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`text-xl py-2 pr-4 pl-3 ${
-                  isActiveLink("/review") ? "text-rakitin-orange" : "text-gray-700"
+                  isActiveLink("/review")
+                    ? "text-rakitin-orange"
+                    : "text-gray-700"
                 } block  no-underline hover:underline hover:decoration-rakitin-orange md:border-0 dark:text-gray-400`}
               >
                 Review Us!
