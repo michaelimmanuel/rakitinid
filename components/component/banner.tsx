@@ -7,7 +7,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import Image from "next/image";
 
 const links = [
-  "/images/main-banner.jpeg",
+  "/images/promo-amd-sept.png",
   "/images/main-banner.jpeg",
   "/images/main-banner.jpeg",
 ];

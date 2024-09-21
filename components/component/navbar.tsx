@@ -100,7 +100,7 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="https://g.co/kgs/gnvxjc9"
+                href="https://g.page/r/CcbQSGr4XD4BEBE/review"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`text-xl py-2 pr-4 pl-3 ${
