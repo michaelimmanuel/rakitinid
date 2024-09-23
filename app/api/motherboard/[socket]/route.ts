@@ -10,7 +10,7 @@ export async function GET(req: Request, { params }: { params: { socket: string }
         const motherboards = await prisma.motherboard.findMany({
             where: {
                 socket_type: {
-                    name: socket
+                    id: parseInt(socket)
                 }
             }
         });
