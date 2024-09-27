@@ -3,6 +3,7 @@ import ProcessorBrand from "@/components/simulasi/processor";
 import ProcessorCard from "@/components/simulasi/processorCard";
 import MotherBoard from "@/components/simulasi/motherboard";
 import Ram from "@/components/simulasi/ram";
+import Gpu from "@/components/simulasi/gpu";
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -19,6 +20,8 @@ export default function Test() {
     ram : any[];
     selectedRam : { name: string; price: number } | null;
     resetRam : boolean;
+    gpu : any[];
+    selectedGpu : { name: string; price: number } | null;
   }>({
     brand: '',
     processors: [],
@@ -28,7 +31,9 @@ export default function Test() {
     resetProcessor: false,
     ram: [],
     selectedRam: null,
-    resetRam: false
+    resetRam: false,
+    gpu: [],
+    selectedGpu: null
   });
 
   useEffect(() => {
@@ -76,6 +81,18 @@ export default function Test() {
     }
   };
 
+  const fetchGpu = async () => {
+    try {
+      const response = await axios.get(`/api/gpu`);
+      setData(prevData => ({
+        ...prevData,
+        gpu: response.data,
+      }));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const handleChildData = (brand: string) => {
     setData({
       brand,
@@ -86,7 +103,9 @@ export default function Test() {
       resetProcessor: true,
       ram: [],
       selectedRam: null,
-      resetRam: true
+      resetRam: true,
+      gpu: [],
+      selectedGpu: null,
     });
   };
 
@@ -111,6 +130,7 @@ export default function Test() {
       ...prevData,
       selectedRam: ram,
     }));
+    fetchGpu();
   }
 
   return (
@@ -142,6 +162,15 @@ export default function Test() {
           resetSelectedRam={data.resetRam}
         />
       </section>
+
+      <section className="pt-10">
+        <Gpu 
+          gpus={data.gpu}
+          sendGpuInfo={(data) => setData(prevData => ({ ...prevData, selectedGpu: data }))}
+          resetSelectedGpu={false} 
+        />
+      </section>
+
     </div>
   );
 }
