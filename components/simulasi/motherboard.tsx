@@ -13,24 +13,31 @@ interface MotherBoardType {
 }
 
 interface MotherBoardProps {
-    sendMotherBoard: (data: string) => void;
-    motherboards: MotherBoardType[];
+    sendMotherBoard: (data: { formFactor: string; name: string; price: number, memory_type : string }) => void;
+    motherboards: MotherBoardType[],
+    resetSelectedProcessor: boolean;
 }
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function MotherBoard({ motherboards, sendMotherBoard }: MotherBoardProps) {
+export default function MotherBoard({ motherboards, sendMotherBoard, resetSelectedProcessor }: MotherBoardProps) {
     const [selectedMotherboardId, setSelectedMotherboardId] = useState<number | null>(null);
+
+useEffect(() => {
+    if (resetSelectedProcessor) {
+        setSelectedMotherboardId(null);
+    }
+}, [resetSelectedProcessor]);
 
     if (!motherboards || motherboards.length === 0) return null;
 
-    const handleClick = (motherboardId: number, motherboardName: string) => {
+    const handleClick = (motherboardId: number, formFactor: string, name: string, price: number, memory_type : string) => {
         if (selectedMotherboardId === motherboardId) {
-            setSelectedMotherboardId(null); // Deselect if the same div is clicked again
+            setSelectedMotherboardId(null); 
         } else {
             setSelectedMotherboardId(motherboardId);
         }
-        sendMotherBoard(motherboardName);
+        sendMotherBoard({ formFactor, name, price, memory_type });
     };
 
     return (
@@ -42,7 +49,7 @@ export default function MotherBoard({ motherboards, sendMotherBoard }: MotherBoa
                         <div
                             key={motherboard.id}
                             className="bg-rakitin-bg rounded-lg shadow-lg p-4 w-80 cursor-pointer"
-                            onClick={() => handleClick(motherboard.id, motherboard.name)}
+                            onClick={() => handleClick(motherboard.id, motherboard.form_factor, motherboard.name, motherboard.price, motherboard.supported_memory_type)}
                         >
                             <h1 className="text-rakitin-orange text-xl font-bold">{motherboard.name}</h1>
                             <p className="text-white">${motherboard.price}</p>

@@ -2,27 +2,49 @@
 import ProcessorBrand from "@/components/simulasi/processor";
 import ProcessorCard from "@/components/simulasi/processorCard";
 import MotherBoard from "@/components/simulasi/motherboard";
+import Ram from "@/components/simulasi/ram";
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function Test() {
-  const [childData, setChildData] = useState<string>('');
-  const [processors, setProcessors] = useState<any[]>([]);
-  const [selectedSocketType, setSelectedSocketType] = useState<number | null>(null);
-  const [motherboards, setMotherBoards] = useState<any[]>([]);
 
+  const [data, setData] = useState<{
+    brand: string;
+    processors: any[];
+    selectedProcessor: { socket_type_id: number; name: string; price: number } | null;
+    motherboards: any[];
+    selectedMotherboard: { formFactor: string; name: string; price: number, memory_type : string } | null;
+    resetProcessor: boolean;
+    ram : any[];
+    selectedRam : { name: string; price: number } | null;
+    resetRam : boolean;
+  }>({
+    brand: '',
+    processors: [],
+    selectedProcessor: null,
+    motherboards: [],
+    selectedMotherboard: null,
+    resetProcessor: false,
+    ram: [],
+    selectedRam: null,
+    resetRam: false
+  });
 
   useEffect(() => {
-    if (childData) {
-      fetchProcessors(childData);
+    if (data.brand) {
+      fetchProcessors(data.brand);
     }
-  }, [childData]);
+  }, [data.brand]);
 
   const fetchProcessors = async (brand: string) => {
     try {
       const response = await axios.get(`/api/processor/${brand.toLowerCase()}`);
-      setProcessors(response.data);
+      setData(prevData => ({
+        ...prevData,
+        processors: response.data,
+        resetProcessor: false,
+      }));
     } catch (error) {
       console.error(error);
     }
@@ -31,44 +53,97 @@ export default function Test() {
   const fetchMotherBoards = async (socketTypeId: number) => {
     try {
       const response = await axios.get(`/api/motherboard/${socketTypeId}`);
-      setMotherBoards(response.data);
+      setData(prevData => ({
+        ...prevData,
+        motherboards: response.data,
+        resetProcessor: false,
+      }));
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const fetchRam = async (memory_type : string) => {
+    try {
+      const response = await axios.get(`/api/ram/${memory_type}`);
+      setData(prevData => ({
+        ...prevData,
+        ram: response.data,
+        resetRam: false,
+      }));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleChildData = (brand: string) => {
+    setData({
+      brand,
+      processors: [],
+      selectedProcessor: null,
+      motherboards: [],
+      selectedMotherboard: null,
+      resetProcessor: true,
+      ram: [],
+      selectedRam: null,
+      resetRam: true
+    });
+  };
+
+  const handleProcessorData = (processor: { socket_type_id: number; name: string; price: number }) => {
+    fetchMotherBoards(processor.socket_type_id);
+    setData(prevData => ({
+      ...prevData,
+      selectedProcessor: processor,
+    }));
+  };
+
+  const handleMotherBoardData = (motherboard: { formFactor: string; name: string; price: number, memory_type : string }) => {
+    fetchRam(motherboard.memory_type);
+    setData(prevData => ({
+      ...prevData,
+      selectedMotherboard: motherboard,
+    }));
+  };
+
+  const handleRamData = (ram: { name: string; price: number }) => {
+    setData(prevData => ({
+      ...prevData,
+      selectedRam: ram,
+    }));
   }
 
-  const handleChildData = (data: string) => {
-    setChildData(data);
-  };
-
-  const handleSocketTypeSelect = (socketTypeId: number) => {
-    setSelectedSocketType(socketTypeId);
-    fetchMotherBoards(socketTypeId);
-  };
-
-
   return (
-    <div className="bg-black h-lvh">
+    <div className="bg-black">
       <section className="flex justify-center w-lvh pt-10">
-        
-          <ProcessorBrand sendBrand={handleChildData} />
-        
-      </section>
-      
-
-      <section className="pt-10">
-        <ProcessorCard processors={processors} onSocketTypeSelect={handleSocketTypeSelect} />
+        <ProcessorBrand sendBrand={handleChildData} />
       </section>
 
       <section className="pt-10">
-        <MotherBoard motherboards={motherboards} sendMotherBoard={console.log} />
+        <ProcessorCard 
+          processors={data.processors} 
+          sendProcessorInfo={handleProcessorData} 
+          resetSelectedProcessor={data.resetProcessor} 
+        />
       </section>
-      
-    
 
-      
+      <section className="pt-10">
+        <MotherBoard 
+          motherboards={data.motherboards} 
+          sendMotherBoard={handleMotherBoardData} 
+          resetSelectedProcessor={data.resetProcessor} 
+        />
+      </section>
+
+      <section className="pt-10">
+        <Ram 
+          rams={data.ram} 
+          sendRamInfo={handleRamData} 
+          resetSelectedRam={data.resetRam}
+        />
+      </section>
     </div>
-
-
   );
 }
+
+

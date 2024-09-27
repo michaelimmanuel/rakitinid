@@ -51,3 +51,61 @@ model socket_type {
   motherboards motherboard[]
   processors   processor[]
 }
+
+model ram{
+  id            Int      @id @default(autoincrement())
+  name          String
+  brand         String
+  memory_type   String
+  memory_speed  String
+  price         Float
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model gpu{
+  id            Int      @id @default(autoincrement())
+  name          String
+  brand         String
+  memory        String
+  memory_type   String
+  price         Float
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model storage{
+  id            Int      @id @default(autoincrement())
+  name          String
+  brand         String
+  storage_type  String
+  capacity      String
+  price         Float
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model psu{
+  id            Int      @id @default(autoincrement())
+  name          String
+  brand         String
+  wattage       String
+  price         Float
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model casing{
+  id            Int      @id @default(autoincrement())
+  name          String
+  brand         String
+  form_factor   String
+  price         Float
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
