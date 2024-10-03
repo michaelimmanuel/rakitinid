@@ -4,6 +4,9 @@ import ProcessorCard from "@/components/simulasi/processorCard";
 import MotherBoard from "@/components/simulasi/motherboard";
 import Ram from "@/components/simulasi/ram";
 import Gpu from "@/components/simulasi/gpu";
+import Storage from "@/components/simulasi/storage";
+import Psu from "@/components/simulasi/psu";
+import Casing from "@/components/simulasi/casing";
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -22,6 +25,16 @@ export default function Test() {
     resetRam : boolean;
     gpu : any[];
     selectedGpu : { name: string; price: number } | null;
+    storage : any[];
+    selectedStorage : { name: string; price: number } | null;
+    resetStorage : boolean;
+    psu : any[];
+    selectedPsu : { name: string; price: number } | null;
+    resetPsu : boolean;
+    casing : any[];
+    selectedCasing : { name: string; price: number } | null;
+    resetCasing : boolean;
+
   }>({
     brand: '',
     processors: [],
@@ -33,7 +46,16 @@ export default function Test() {
     selectedRam: null,
     resetRam: false,
     gpu: [],
-    selectedGpu: null
+    selectedGpu: null,
+    storage: [],
+    selectedStorage: null,
+    resetStorage: false,
+    psu: [],
+    selectedPsu: null,
+    resetPsu: false,
+    casing: [],
+    selectedCasing: null,
+    resetCasing: false,
   });
 
   useEffect(() => {
@@ -41,6 +63,18 @@ export default function Test() {
       fetchProcessors(data.brand);
     }
   }, [data.brand]);
+
+  const fetchStorage = async () => {
+    try {
+      const response = await axios.get(`/api/storage`);
+      setData(prevData => ({
+        ...prevData,
+        storage: response.data,
+      }));
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const fetchProcessors = async (brand: string) => {
     try {
@@ -93,6 +127,30 @@ export default function Test() {
     }
   }
 
+  const fetchPsu = async () => {
+    try {
+      const response = await axios.get(`/api/psu`);
+      setData(prevData => ({
+        ...prevData,
+        psu: response.data,
+      }));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const fetchCasing = async () => {
+    try {
+      const response = await axios.get(`/api/casing`);
+      setData(prevData => ({
+        ...prevData,
+        casing: response.data,
+      }));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const handleChildData = (brand: string) => {
     setData({
       brand,
@@ -106,6 +164,15 @@ export default function Test() {
       resetRam: true,
       gpu: [],
       selectedGpu: null,
+      storage: [],
+      selectedStorage: null,
+      resetStorage: true,
+      psu: [],
+      selectedPsu: null,
+      resetPsu: true,
+      casing: [],
+      selectedCasing: null,
+      resetCasing: true,
     });
   };
 
@@ -115,6 +182,7 @@ export default function Test() {
       ...prevData,
       selectedProcessor: processor,
     }));
+    
   };
 
   const handleMotherBoardData = (motherboard: { formFactor: string; name: string; price: number, memory_type : string }) => {
@@ -123,6 +191,10 @@ export default function Test() {
       ...prevData,
       selectedMotherboard: motherboard,
     }));
+    fetchGpu();
+    fetchStorage();
+    fetchPsu();
+    fetchCasing();
   };
 
   const handleRamData = (ram: { name: string; price: number }) => {
@@ -130,7 +202,20 @@ export default function Test() {
       ...prevData,
       selectedRam: ram,
     }));
-    fetchGpu();
+    
+  }
+
+  const getTotals = () => {
+    const total = [
+      data.selectedProcessor?.price || 0,
+      data.selectedMotherboard?.price || 0,
+      data.selectedRam?.price || 0,
+      data.selectedGpu?.price || 0,
+      data.selectedStorage?.price || 0,
+      data.selectedPsu?.price || 0,
+      data.selectedCasing?.price || 0,
+    ].reduce((acc, curr) => acc + curr, 0);
+    return total;
   }
 
   return (
@@ -164,6 +249,34 @@ export default function Test() {
       </section>
 
       <section className="pt-10">
+        <Storage
+          storage={data.storage}
+          sendStorageInfo={(data) => setData(prevData => ({ ...prevData, selectedStorage: data }))}
+          resetSelectedStorage={data.resetStorage} 
+        />
+      </section>
+
+      <section className="pt-10">
+        <Psu 
+          psus={data.psu}
+          sendPsuInfo={(data) => setData(prevData => ({ ...prevData, selectedPsu: data }))}
+          resetSelectedPsu={false} 
+        />
+      </section>
+
+      <section className="pt-10">
+        <Casing 
+          casings={data.casing}
+          sendCasingInfo={(data) => setData(prevData => ({ ...prevData, selectedCasing: data }))}
+          resetSelectedCasing={false} 
+        />
+      </section>
+
+
+
+
+
+      <section className="pt-10">
         <Gpu 
           gpus={data.gpu}
           sendGpuInfo={(data) => setData(prevData => ({ ...prevData, selectedGpu: data }))}
@@ -171,6 +284,14 @@ export default function Test() {
         />
       </section>
 
+      <section className="pt-10">
+        <div className="flex justify-center">
+          <h1 className="text-rakitin-orange text-4xl font-extrabold text-center">Total</h1>
+        </div>
+        <div className="flex justify-center pt-5">
+          <h1 className="text-white text-4xl font-extrabold text-center">Rp {getTotals().toLocaleString()}</h1>
+        </div>
+      </section>
     </div>
   );
 }
