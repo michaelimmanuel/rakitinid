@@ -13,7 +13,7 @@ interface CardProps {
         onClick={onClick}
       >
         <h1 className="text-rakitin-orange text-xl font-bold">{name}</h1>
-        <p className="text-white">${price}</p>
+        <p className="text-white">Rp {price.toLocaleString()}</p>
         {image && <img src={image} alt={name} className="w-full h-auto" />}
       </div>
     );
