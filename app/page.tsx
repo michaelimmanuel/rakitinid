@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       
-      <div className="pt-5 justify-center h-[35vh]  md:h-[60vh] mx-auto bg-gradient-to-b from-80% from-black">
+      <div className="pt-5 justify-center h-96  lg:h-[80vh] mx-auto bg-gradient-to-b from-80% from-black">
         <CarouselComponent/>
       </div>
       

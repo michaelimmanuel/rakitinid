@@ -426,10 +426,122 @@ const motherboards = [
 
   // Seed Casings
   const casings = [
-    { name: 'NZXT H510', brand: 'NZXT', form_factor: 'ATX', price: 69.99 },
-    { name: 'Fractal Design Meshify C', brand: 'Fractal Design', form_factor: 'MATX', price: 89.99 },
-    { name: 'Corsair iCUE 4000X RGB', brand: 'Corsair', form_factor: 'MIATX', price: 119.99 },
+    {
+      "brand": "Armaggeddon",
+      "name": "Nimitz N5 Black",
+      "form_factor": "ATX",
+      "price": 325000
+    },
+    {
+      "brand": "Enlight",
+      "name": "EN200 With PSU (Office Case)",
+      "form_factor": "Micro-ATX",
+      "price": 300000
+    },
+    {
+      "brand": "PCCooler",
+      "name": "C3-B310 Black",
+      "form_factor": "ATX",
+      "price": 475000
+    },
+    {
+      "brand": "PCCooler",
+      "name": "C3-B310 White",
+      "form_factor": "ATX",
+      "price": 500000
+    },
+    {
+      "brand": "VenomRX",
+      "name": "Prava Black",
+      "form_factor": "ATX",
+      "price": 450000
+    },
+    {
+      "brand": "VenomRX",
+      "name": "Prava White",
+      "form_factor": "ATX",
+      "price": 500000
+    },
+    {
+      "brand": "VenomRX",
+      "name": "URRA / Aerocool Trinity Black",
+      "form_factor": "ATX",
+      "price": 450000
+    },
+    {
+      "brand": "VenomRX",
+      "name": "URRA / Aerocool Trinity White",
+      "form_factor": "ATX",
+      "price": 475000
+    },
+    {
+      "brand": "VenomRX",
+      "name": "Mephisto Office With PSU",
+      "form_factor": "Micro-ATX",
+      "price": 300000
+    },
+    {
+      "brand": "Enlight",
+      "name": "Z8 White",
+      "form_factor": "ATX",
+      "price": 550000
+    },
+    {
+      "brand": "Enlight",
+      "name": "Z8 Black",
+      "form_factor": "ATX",
+      "price": 500000
+    },
+    {
+      "brand": "Infinity",
+      "name": "Horus V2 Black",
+      "form_factor": "ATX",
+      "price": 400000
+    },
+    {
+      "brand": "Infinity",
+      "name": "Twins V2",
+      "form_factor": "ATX",
+      "price": 375000
+    },
+    {
+      "brand": "Infinity",
+      "name": "Prime Aquarium Black",
+      "form_factor": "ATX",
+      "price": 400000
+    },
+    {
+      "brand": "Infinity",
+      "name": "Prime Aquarium White",
+      "form_factor": "ATX",
+      "price": 425000
+    },
+    {
+      "brand": "Digital Alliance",
+      "name": "N30S Black",
+      "form_factor": "ATX",
+      "price": 500000
+    },
+    {
+      "brand": "Digital Alliance",
+      "name": "N30S White",
+      "form_factor": "ATX",
+      "price": 550000
+    },
+    {
+      "brand": "Segotep",
+      "name": "Prime H",
+      "form_factor": "ATX",
+      "price": 400000
+    },
+    {
+      "brand": "CubeGaming",
+      "name": "Cielo Mini (LianLi o11)",
+      "form_factor": "Mini-ITX",
+      "price": 550000
+    }
   ];
+  
 
   for (const casing of casings) {
     await prisma.casing.create({
