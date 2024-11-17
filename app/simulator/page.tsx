@@ -10,8 +10,15 @@ import Casing from "@/components/simulasi/casing";
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Button } from "@/components/ui/button";
 
 export default function Test() {
+
+  const number = 6281381024919;
+ 
+
+
+    
 
   const [data, setData] = useState<{
     brand: string;
@@ -57,6 +64,8 @@ export default function Test() {
     selectedCasing: null,
     resetCasing: false,
   });
+
+ 
 
   useEffect(() => {
     if (data.brand) {
@@ -218,10 +227,26 @@ export default function Test() {
     return total;
   }
 
+
+ 
+  
+  const sendToWa = () => {
+    const message = `Hello, Saya ingin konsultasi untuk pembuatan pc. Ini adalah spek yang akan saya gunakan:
+    Processor: ${data.selectedProcessor?.name}
+    Motherboard: ${data.selectedMotherboard?.name}
+    RAM: ${data.selectedRam?.name}
+    GPU: ${data.selectedGpu?.name}
+    Storage: ${data.selectedStorage?.name}
+    PSU: ${data.selectedPsu?.name}
+    Casing: ${data.selectedCasing?.name}
+    Total: Rp ${getTotals().toLocaleString()}`;
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+  
   return (
     <div className="bg-black">
-      <section className="flex justify-center w-lvh pt-10">
-        <ProcessorBrand sendBrand={handleChildData} />
+      <section className="flex justify-center pt-10 w-full">
+          <ProcessorBrand sendBrand={handleChildData} />
       </section>
 
       <section className="pt-10">
@@ -292,6 +317,16 @@ export default function Test() {
           <h1 className="text-white text-4xl font-extrabold text-center">Rp {getTotals().toLocaleString()}</h1>
         </div>
       </section>
+
+    {/* button to consult to whatsapp */}
+    <section className="pt-10">
+      <div className="flex justify-center">
+        <Button className="bg-rakitin-orange text-white font-bold py-2 px-4 rounded-full" onClick={sendToWa}>
+          Consult to Whatsapp
+        </Button>
+      </div>
+    </section>
+
     </div>
   );
 }

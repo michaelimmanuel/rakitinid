@@ -12,6 +12,7 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
 model motherboard {
   id                    Int      @id @default(autoincrement())
   name                  String
@@ -44,7 +45,7 @@ model processor {
 
 model socket_type {
   id        Int      @id @default(autoincrement())
-  name      String    @unique
+  name      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -52,7 +53,7 @@ model socket_type {
   processors   processor[]
 }
 
-model ram{
+model ram {
   id            Int      @id @default(autoincrement())
   name          String
   brand         String
@@ -64,7 +65,7 @@ model ram{
   updatedAt     DateTime @updatedAt
 }
 
-model gpu{
+model gpu {
   id            Int      @id @default(autoincrement())
   name          String
   brand         String
@@ -76,7 +77,7 @@ model gpu{
   updatedAt     DateTime @updatedAt
 }
 
-model storage{
+model storage {
   id            Int      @id @default(autoincrement())
   name          String
   brand         String
@@ -88,7 +89,7 @@ model storage{
   updatedAt     DateTime @updatedAt
 }
 
-model psu{
+model psu {
   id            Int      @id @default(autoincrement())
   name          String
   brand         String
@@ -99,7 +100,7 @@ model psu{
   updatedAt     DateTime @updatedAt
 }
 
-model casing{
+model casing {
   id            Int      @id @default(autoincrement())
   name          String
   brand         String

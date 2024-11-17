@@ -384,11 +384,16 @@ const motherboards = [
 
   // Seed Storage
   const storages = [
-    { name: 'Samsung 970 EVO Plus 1TB', brand: 'Samsung', storage_type: 'SSD', capacity: '1TB', price: 169.99 },
-    { name: 'Seagate Barracuda 4TB', brand: 'Seagate', storage_type: 'HDD', capacity: '4TB', price: 89.99 },
-    { name: 'Western Digital Blue 500GB', brand: 'Western Digital', storage_type: 'SSD', capacity: '500GB', price: 49.99 },
+    { name: 'ADATA Legend 710 Gen3 256Gb', brand: 'ADATA', storage_type: 'SSD', capacity: '256GB', price: 450000 },
+    { name: 'ADATA Legend 710 Gen3 512Gb', brand: 'ADATA', storage_type: 'SSD', capacity: '512GB', price: 600000 },
+    { name: 'ADATA Legend 850 Gen4x4 1000GB', brand: 'ADATA', storage_type: 'SSD', capacity: '1000GB', price: 1150000 },
+    { name: 'Klevv Cras C910 Gen4x4 1TB', brand: 'Klevv', storage_type: 'SSD', capacity: '1TB', price: 1150000 },
+    { name: 'Klevv Cras C710 Gen3 1TB', brand: 'Klevv', storage_type: 'SSD', capacity: '1TB', price: 1050000 },
+    { name: 'Team T-Create 256 SSD SATA', brand: 'Team', storage_type: 'SSD', capacity: '256GB', price: 425000 },
+    { name: 'Team T-Create 512 SSD SATA', brand: 'Team', storage_type: 'SSD', capacity: '512GB', price: 450000 },
+    { name: 'Team T-Create 512 SSD SATA', brand: 'Team', storage_type: 'SSD', capacity: '512GB', price: 1100000 }
   ];
-
+  
   for (const storage of storages) {
     await prisma.storage.create({
       data: storage,

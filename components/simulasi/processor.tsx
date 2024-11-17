@@ -14,20 +14,29 @@ export default function ProcessorBrand({ sendBrand }: BrandProps) {
     };
 
     return (
-        <div className="width-screen">
-            <h1 className="text-rakitin-orange pb-10 text-4xl font-extrabold text-center">Processor brand</h1>
-            <div className='flex justify-center gap-96'>
-                <div 
-                    className={`aspect-square rounded-lg bg-white h-36 overflow-hidden flex items-center justify-center text-center ${selectedBrand === 'intel' ? 'border-4 border-rakitin-orange' : ''}`}
+        <div className="w-full px-4">
+            <h1 className="text-rakitin-orange pb-10 text-4xl font-extrabold text-center">
+                Processor Brand
+            </h1>
+            <div className="flex flex-wrap justify-center gap-6 md:gap-12">
+                {/* Intel Button */}
+                <div
+                    className={`aspect-square rounded-lg bg-white w-28 md:w-36 overflow-hidden flex items-center justify-center text-center cursor-pointer ${
+                        selectedBrand === 'intel' ? 'border-4 border-rakitin-orange' : ''
+                    }`}
                     onClick={() => handleClick('intel')}
                 >
-                    <Image src='/images/simulasi/intel.png' alt='intel' height={100} width={100}/> 
+                    <Image src="/images/simulasi/intel.png" alt="intel" height={100} width={100} />
                 </div>
-                <div 
-                    className={`aspect-square rounded-lg bg-white h-36 overflow-hidden flex items-center justify-center text-center ${selectedBrand === 'amd' ? 'border-4 border-rakitin-orange' : ''}`}
+
+                {/* AMD Button */}
+                <div
+                    className={`aspect-square rounded-lg bg-white w-28 md:w-36 overflow-hidden flex items-center justify-center text-center cursor-pointer ${
+                        selectedBrand === 'amd' ? 'border-4 border-rakitin-orange' : ''
+                    }`}
                     onClick={() => handleClick('amd')}
                 >
-                    <Image src='/images/simulasi/amd.png' alt='amd' height={100} width={100}/> 
+                    <Image src="/images/simulasi/amd.png" alt="amd" height={100} width={100} />
                 </div>
             </div>
         </div>
