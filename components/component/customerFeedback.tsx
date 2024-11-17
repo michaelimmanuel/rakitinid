@@ -12,34 +12,34 @@ import Autoplay from 'embla-carousel-autoplay';
 
 const data = [
     {
-        "name" : "John Doe",
+        "name" : "Charles Widjaja",
         "rating" : 5,
-        "comment" : "I am very satisfied with the service provided by Rakitin Tech. The staff are very friendly and helpful. I would definitely recommend Rakitin Tech to my friends and family."
+        "comment" : "If you are looking to build / maintain / deep clean / consult, this is the place to go. I live all the way at South Jakarta, my trip to this establishment is TOTALLY WORTH IT"
     },
     {
-        "name" : "Jane Doe", 
-        "rating" : 4,
-        "comment" : "The service provided by Rakitin Tech is excellent. The staff are friendly and helpful. I would recommend Rakitin Tech to my friends and family."
+        "name" : "Gabriel Alexander", 
+        "rating" : 5,
+        "comment" : "Great for cleaning and troubleshooting your PC, recommended and prices are affordable. The owner is also very honest and great to communicate with 👌"
     },
     {
-        "name" : "John Smith",
-        "rating" : 3,
-        "comment" : "The service provided by Rakitin Tech is good. The staff are friendly and helpful. I would recommend Rakitin Tech to my friends and family."
+        "name" : "Vincent Putrandi",
+        "rating" : 5,
+        "comment" : "Buat yang mau rakit PC,  jangan ragu-ragu buat kesini, hasil rapih, cepat juga, kurang dari 3 jam uda bisa bawa pulang PC yang kita pesan, lalu yg mau build PC tapi ga paham sama spek PCnya, di sini juga bisa konsultasi dan di jelasin rinci sama penjual."
     },
     {
-        "name" : "John Smith",
-        "rating" : 3,
-        "comment" : "The service provided by Rakitin Tech is good. The staff are friendly and helpful. I would recommend Rakitin Tech to my friends and family."
+        "name" : "Josephine",
+        "rating" : 5,
+        "comment" : "mantappp banget! koko nya sangat ramah dan membantu, sabar banget jelasin ke aku yang gatau apa2 ttg pc, terus pas power cable nya ketinggalan di toko, sm kokonya di gosend walaupun rmhnya jauhh hahahaa pokoknya mantap banget dehh recommended banget beli disini!"
     },
     {
-        "name" : "John Smith",
-        "rating" : 3,
-        "comment" : "The service provided by Rakitin Tech is good. The staff are friendly and helpful. I would recommend Rakitin Tech to my friends and family."
+        "name" : "Grey Grevorious",
+        "rating" : 5,
+        "comment" : "Ownernya one man show di rakitinlah, mulai dari selling, consult mengenai PC, brainstorm part yang mau dipake dengan budget yang ada, perakitan PC, dan sampai support / maintenance bisa selalu bantu. Ownernya ramah, dan experience serta knowledgenya juga expert. Overall, experiencenya satisfied bgt mulai dari butuh rekomendasi spec PC di dalem budget sampai PC-nya bisa dipake di rumah. Thank you"
     },
     {
-        "name" : "John Smith",
-        "rating" : 3,
-        "comment" : "The service provided by Rakitin Tech is good. The staff are friendly and helpful. I would recommend Rakitin Tech to my friends and family."
+        "name" : "Luhur Prakoso",
+        "rating" : 5,
+        "comment" : "Menurut saya, di sini pemilik toko berusaha untuk merakitkan pc gaming sesuai budget, item-item yang dibutuhkan supaya masih bisa ada ruang untuk diupgrade nantinya, bergaransi, dan kalau ada pertanyaan - akan dijelaskan dengan baik, ramah, dan tidak tergesa-gesa. Sukses selalu koh Kevin dan tim 👍"
     }
 ]
 

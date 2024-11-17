@@ -1,0 +1,112 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model motherboard {
+  id                    Int      @id @default(autoincrement())
+  name                  String
+  brand                 String
+  socket_type_id        Int
+  socket_type           socket_type @relation(fields: [socket_type_id], references: [id])
+  form_factor           String
+  supported_memory_type String
+  price                 Float
+  image                 String? 
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  processors            processor[] 
+}
+
+model processor {
+  id            Int      @id @default(autoincrement())
+  name          String
+  brand         String
+  socket_type_id Int
+  socket_type   socket_type @relation(fields: [socket_type_id], references: [id])
+  price         Float
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  motherboards  motherboard[] 
+}
+
+model socket_type {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  motherboards motherboard[]
+  processors   processor[]
+}
+
+model ram {
+  id            Int      @id @default(autoincrement())
+  name          String
+  brand         String
+  memory_type   String
+  memory_speed  String
+  price         Float
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model gpu {
+  id            Int      @id @default(autoincrement())
+  name          String
+  brand         String
+  memory        String
+  memory_type   String
+  price         Float
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model storage {
+  id            Int      @id @default(autoincrement())
+  name          String
+  brand         String
+  storage_type  String
+  capacity      String
+  price         Float
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model psu {
+  id            Int      @id @default(autoincrement())
+  name          String
+  brand         String
+  wattage       String
+  price         Float
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model casing {
+  id            Int      @id @default(autoincrement())
+  name          String
+  brand         String
+  form_factor   String
+  price         Float
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
