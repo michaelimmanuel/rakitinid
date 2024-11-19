@@ -44,12 +44,12 @@ export default function ProductCard() {
     ]
     return (
         <div>
-            <div className="flex flex-col min-width-screen justify-center justify-items-center content-center bg-rakitin-bg">
+            <div className="flex flex-col min-width-screen justify-center justify-items-center content-center  bg-rakitin-blue pb-10">
                 <div className="grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-4  gap-4 p-5">
                     {data.map((item, index) => (
                         <div key={index} className="p-1">
-                            <Card className="bg-rakitin-bg ">
-                                <h1 className="text-center text-2xl font-bold text-white mb-5">{item.title}</h1>
+                            <Card className=" bg-rakitin-blue ">
+                                <h1 className="text-center text-2xl font-bold text-rakitin-orange mb-5 font-extrabold">{item.title}</h1>
                                 <a href={item.links}>
                                     
                                 <CardContent className="flex items-center justify-center p-1">

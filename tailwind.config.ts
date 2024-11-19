@@ -27,7 +27,9 @@ const config: Config = {
 			"end" : "##FCB045"
 		},
 		"purple" : "#a46ede",
-		"pink" : "#E91E63"
+		"pink" : "#E91E63",
+		"red" : "#960200",
+		"gray" : "#111111",
 		
 
 	},
