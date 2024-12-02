@@ -1,3 +1,4 @@
+
 import HeroPage from "@/components/component/test/hero";
 import PcBuilder from "@/components/component/test/pcBuilder";
 import Prebuild from "@/components/component/test/prebuilt";
@@ -12,5 +13,4 @@ export default function Page() {
             <WhatSetsUsApart />
             <PcBuilder />
         </div>
-    );
-}
+  );

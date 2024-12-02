@@ -8,28 +8,31 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-  	colors: {
-  		'rakitin': {
-  			'bg': '#05182a',
-  			'light-blue': '#2c5a73',
-  			'blue': '#0f435a',
-  			'orange': '#f47133'
-  		},
-  		'orange': '#F47133',
-  		'white': '#ffffff',
-  		'black': '#000000',
-  		'slate': {
-  			'800': '#1f2937'
-  		},
-  		'green': '#25d366',
-  		'instagram': {
-  			'start': '#833AB4',
-  			'middle': '#FD1D1D',
-  			'end': '##FCB045'
-  		},
-  		'purple': '#a46ede',
-  		'pink': '#E91E63'
-  	},
+	colors : {
+		"rakitin" : {
+			"bg" : "#05182a",
+			"light-blue" : "#2c5a73",
+			"blue" : "#0f435a",
+			"orange" : "#f47133"
+		},
+		"white" : "#ffffff",
+		"black" : "#000000",
+		"slate" : {
+			"800" : "#1f2937"
+		},
+		"green" : "#25d366",
+		"instagram" : {
+			"start" : "#833AB4",
+			"middle" : "#FD1D1D",
+			"end" : "##FCB045"
+		},
+		"purple" : "#a46ede",
+		"pink" : "#E91E63",
+		"red" : "#960200",
+		"gray" : "#111111",
+		
+
+	},
   	extend: {
   		colors: {
   			background: 'hsl(var(--background))',

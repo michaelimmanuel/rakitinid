@@ -48,7 +48,7 @@ const data = [
 export default function CustomerFeedback() {
     return (
 
-        <div className="">
+        <div className="py-10 bg-gray">
             <h1 className=" scroll-m-20 text-4xl font-extrabold tracking-tight text-start text-rakitin-white mt-10 mx-20">
                 Thousand Of <span className="text-rakitin-orange">Satisfied Customers</span>
             </h1>
