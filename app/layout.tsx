@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
 import type { Viewport } from "next";
-import localFont from "next/font/local";
+import { Inter } from 'next/font/google'
 import "./globals.css";
 import StickyNavbar from "@/components/component/navbar";
 import FloatingButton from "@/components/component/floatingButton";
 import Footer from "@/components/component/footer";
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: "Rakitinlah.id",
@@ -35,20 +26,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scrollbar-hide">
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-rakitin-bg `}
+        className={`${inter.className} antialiased bg-rakitin-bg `}
       >
-        <StickyNavbar/>
+        {/* <StickyNavbar/> */}
         {children}
 
 
-        <FloatingButton/>
+        {/* <FloatingButton/> */}
 
 
 
-        <Footer/>
+        {/* <Footer/> */}
         
       </body>
     </html>
