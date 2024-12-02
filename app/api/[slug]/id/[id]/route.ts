@@ -134,12 +134,18 @@ export async function DELETE(req: Request,{ params }: { params: { slug:Slug, id:
       },
     });
 
-    const imagePath = path.join(process.cwd(), 'public', casing.image);
-    if (fs.existsSync(imagePath)) {
-      fs.unlinkSync(imagePath);
+    if (!casing) {
+      return NextResponse.json({ error: 'Casing not found' }, { status: 404 });
     }
 
-    
+    if (casing.image) {
+        const imagePath = path.join(process.cwd(), 'public', casing.image);
+        if (fs.existsSync(imagePath)) {
+        fs.unlinkSync(imagePath);
+        }
+    }
+
+
 
 
     const deletedCasing = await db.delete({
