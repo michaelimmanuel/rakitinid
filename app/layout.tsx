@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import type { Viewport } from "next";
 import { Inter } from 'next/font/google'
 import "./globals.css";
-import StickyNavbar from "@/components/component/navbar";
-import FloatingButton from "@/components/component/floatingButton";
-import Footer from "@/components/component/footer";
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -26,10 +24,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scrollbar-hide">
-      <link rel="icon" href="/favicon.ico" sizes="any" />
+    <html lang="en" className="scrollbar-hide dark">
+      <link rel="icon" href="/favicon.png" sizes="any" />
       <body
-        className={`${inter.className} antialiased bg-rakitin-bg `}
+        className={`${inter.className} antialiased`}
       >
         {/* <StickyNavbar/> */}
         {children}

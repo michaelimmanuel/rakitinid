@@ -107,7 +107,7 @@ export default function Page({ params }: PageProps) {
   };
 
   return (
-    <div>
+    <div className="w-dvh">
       <h1>Data for {slug}</h1>
       <div className="flex justify-end mb-4">
         <Button className="bg-rakitin-orange text-white" onClick={handleCreate}>

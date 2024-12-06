@@ -23,7 +23,7 @@ export default function HeroPage() {
                     </p>
                     <div className="lg:flex justify-between sm:h-3xl lg:h-full mt-5 lg:mt-10">
                         <a href="/build">
-                            <Button className="bg-orange h-lg text-lg lg:h-12">
+                            <Button className="bg-rakitin-orange text-white h-lg text-lg lg:h-12">
                                 Start Building Now
                             </Button>
                         </a>

@@ -7,10 +7,11 @@ interface ItemDialogProps {
   isOpen: boolean;
   onClose: () => void;
   itemName: string; // Used to fetch data dynamically
-  sendDataToParent: (data: { name: string; price: number }) => void; // Callback to send selected item
+  sendDataToParent: (data: { name: string; price: number, socketId?:string }) => void; // Callback to send selected item
+  socketId?: string | null;
 }
 
-export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent }: ItemDialogProps) {
+export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent, socketId }: ItemDialogProps) {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -23,8 +24,15 @@ export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent }: Item
   const fetchData = async (name: string) => {
     setLoading(true);
     try {
-      const response = await axios.get(`/api/${name.toLowerCase()}`); // Assuming endpoint matches item name
-      setItems(response.data);
+
+      if(name === "Motherboard"){
+        const response = await axios.get(`/api/motherboard/${socketId}`); // Assuming endpoint matches item name
+        setItems(response.data);
+      }  else {
+         const response = await axios.get(`/api/${name.toLowerCase()}`); // Assuming endpoint matches item name
+         setItems(response.data);
+      }
+      
     } catch (error) {
       console.error(`Failed to fetch data for ${name}:`, error);
     } finally {

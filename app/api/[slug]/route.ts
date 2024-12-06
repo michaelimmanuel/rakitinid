@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import path from 'path';
-import fs from 'fs/promises';
+import { put } from '@vercel/blob';
 
 const prisma = new PrismaClient();
 
@@ -17,11 +16,11 @@ const modelMap: Record<Slug, any> = {
 
 type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage';
 
+
 export async function POST(req: Request, { params }: { params: { slug: Slug } }) {
   const { slug } = params;
 
   const db = modelMap[slug];
-
   if (!db) {
     return NextResponse.json({ error: 'Invalid slug' }, { status: 400 });
   }
@@ -32,14 +31,16 @@ export async function POST(req: Request, { params }: { params: { slug: Slug } })
 
     for (const [key, value] of formData.entries()) {
       if (key === 'image' && value instanceof File) {
-        const ext = path.extname(value.name);
-        const fileName = `${slug}-${Date.now()}${ext}`;
-        const filePath = path.join(process.cwd(), 'public/images', slug, fileName);
+        const ext = value.name.split('.').pop();
+        const fileName = `${slug}-${Date.now()}.${ext}`;
 
-        await fs.mkdir(path.dirname(filePath), { recursive: true });
-        await fs.writeFile(filePath, new Uint8Array(await value.arrayBuffer()));
+        // Upload file to Vercel Blob
+        const blobResult = await put(fileName, await value.arrayBuffer(), {
+          contentType: value.type,
+          access: 'public',
+        });
 
-        fields.image = `/images/${slug}/${fileName}`;
+        fields.image = blobResult.url; // Save Blob URL in database
       } else {
         fields[key] = value;
       }

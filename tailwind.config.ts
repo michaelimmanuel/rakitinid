@@ -8,31 +8,29 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-	colors : {
-		"rakitin" : {
-			"bg" : "#05182a",
-			"light-blue" : "#2c5a73",
-			"blue" : "#0f435a",
-			"orange" : "#f47133"
-		},
-		"white" : "#ffffff",
-		"black" : "#000000",
-		"slate" : {
-			"800" : "#1f2937"
-		},
-		"green" : "#25d366",
-		"instagram" : {
-			"start" : "#833AB4",
-			"middle" : "#FD1D1D",
-			"end" : "##FCB045"
-		},
-		"purple" : "#a46ede",
-		"pink" : "#E91E63",
-		"red" : "#960200",
-		"gray" : "#111111",
-		
-
-	},
+  	colors: {
+  		'rakitin': {
+  			'bg': '#05182a',
+  			'light-blue': '#2c5a73',
+  			'blue': '#0f435a',
+  			'orange': '#f47133'
+  		},
+  		'white': '#ffffff',
+  		'black': '#000000',
+  		'slate': {
+  			'800': '#1f2937'
+  		},
+  		'green': '#25d366',
+  		'instagram': {
+  			'start': '#833AB4',
+  			'middle': '#FD1D1D',
+  			'end': '##FCB045'
+  		},
+  		'purple': '#a46ede',
+  		'pink': '#E91E63',
+  		'red': '#960200',
+  		'gray': '#111111'
+  	},
   	extend: {
   		colors: {
   			background: 'hsl(var(--background))',
@@ -74,6 +72,16 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
+  			},
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
   			}
   		},
   		borderRadius: {
