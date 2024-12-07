@@ -2,17 +2,18 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 export default function HeroPage() {
     return (
-        <div className="relative">
+        <div className="relative z-0">
             <div className="h-dvh max-h-dvh sm:max-h-1/3 p-10 lg:p-40 flex items-center">
                 {/* Hero Image */}
                 <Image 
                     src="/images/hero-img.png" 
                     alt="Hero Image" 
-                    layout="fill" 
-                    objectFit="cover" 
+                    fill
+                    style={{ objectFit: 'cover' }}
                     priority 
                     quality={100}
-                />
+                    z-10
+                    />
                 {/* Text Container */}
                 <div className="mb-10 sm:m-auto p-5 lg:p-20 max-w-3xl text-center lg:text-left bg-[#4E5F7E] rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-[8%] lg:ml-0">
                     <h1 className="text-3xl lg:text-5xl font-semibold"> 

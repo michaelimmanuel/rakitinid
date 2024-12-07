@@ -14,7 +14,6 @@ interface ItemDialogProps {
 
 export function ConfirmationDialog({ isOpen, onClose, items }: ItemDialogProps) {
 
-    console.log()
 
     const getTotalPrice = () => {
         let total = 0;

@@ -42,7 +42,7 @@ export default function CasingDialog({ isOpen, onClose, sendDataToParent, itemNa
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white text-black max-h-[90%] max-w-[90%] h-full w-full">
+      <DialogContent className="bg-white text-black max-h-[80%] max-w-[90%] h-full w-full">
         <DialogHeader className="space-y-0 h-fit max-h-fit pb-5">
             <DialogTitle>Pick Your Casing</DialogTitle>
         </DialogHeader>
@@ -57,7 +57,7 @@ export default function CasingDialog({ isOpen, onClose, sendDataToParent, itemNa
                     src={item.image || "/images/fallback-img.png"} // Use fallback image if item.image is invalid
                     alt={item.name || "Casing Image"}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 1000px) 100vw, (max-width: 1000px) 50vw, 33vw"
                     className="object-cover"
                   />
                 </div>

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
-const user = "test";
-const pw = "test";
+const user = "bombomganteng";
+const pw = "bombomgantengbanget";
 
 export async function POST(req : any) {
   // Parse the request body

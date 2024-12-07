@@ -1,6 +1,6 @@
 "use client";
 
-import { Cpu, HardDrive, Monitor, Box } from "lucide-react"; // Example icons
+import { Cpu, HardDrive, Monitor, Box, Edit } from "lucide-react"; // Example icons
 import {
   Sidebar,
   SidebarContent,
@@ -33,6 +33,9 @@ const sidebarData = {
   Builds: [
     { title: "View Builds", url: "/admin/builds", icon: Box },
   ],
+  Content : [
+    { title: "Edit Prebuilt Section", url: "/admin/prebuilt", icon: Edit },
+  ]
 };
 
 export function AppSidebar() {
