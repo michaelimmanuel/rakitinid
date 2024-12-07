@@ -2,14 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
-import formidable from "formidable";
-import { promises as fs } from "fs";
 
-export const config = {
-    api: {
-      bodyParser: false, // Disables default body parsing
-    },
-  };
 
 const prisma = new PrismaClient();
 

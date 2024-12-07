@@ -7,11 +7,6 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-export const config = {
-  api: {
-    bodyParser: false, // Disables default body parsing
-  },
-};
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
     
