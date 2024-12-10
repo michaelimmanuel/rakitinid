@@ -37,7 +37,7 @@ export default function PcBuilder() {
   };
 
   return (
-    <div className="bg-white h-screen">
+    <div className="bg-white h-auto mb-0">
       <div className="bg-rakitin-bg w-full p-10 lg:p-20">
         <h1 className="text-4xl text-white">Build Your Perfect PC</h1>
         <p className="text-white font-light mt-2">

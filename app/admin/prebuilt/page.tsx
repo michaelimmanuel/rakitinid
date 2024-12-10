@@ -109,7 +109,7 @@ export default function PrebuiltPage() {
                 >
                   <div className="p-1 mx-2">
                     <PrebuildCard
-                      src={prebuilt.image}
+                      src={prebuilt.coverImage}
                       alt={prebuilt.name}
                       title={prebuilt.name}
                       price={prebuilt.price}

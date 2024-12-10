@@ -6,14 +6,14 @@ const nextConfig = {
     },
 
     images: {
-        remotePatterns: [
-            {
-                protocol: "https",
-                hostname: "booodo6cys6xvh0z.public.blob.vercel-storage.com",
-                port: '',
-
-            }],
+        remotePatterns: [{
+            protocol: 'https',
+            hostname: "booodo6cys6xvh0z.public.blob.vercel-storage.com",
+            port: '',
         }
+
+        ],
+    }
 
     
 }

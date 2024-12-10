@@ -23,12 +23,12 @@ export default function HeroPage() {
                         From gaming rigs to high-performance workstations, Rakitinlah.id offers custom PC solutions tailored to your needs. Experience power, precision, and personalized design.
                     </p>
                     <div className="lg:flex justify-between sm:h-3xl lg:h-full mt-5 lg:mt-10">
-                        <a href="/build">
+                        <a href="#pcBuilder">
                             <Button className="bg-rakitin-orange text-white h-lg text-lg lg:h-12">
                                 Start Building Now
                             </Button>
                         </a>
-                        <a href="/build" className="self-center lg:mt-0">
+                        <a href="#prebuild" className="self-center lg:mt-0">
                             <h1 className="self-center mt-5 mb-5 text-sm tracking-tight lg:text-lg underline underline-offset-8 decoration-orange">
                                 Explore Ready-to-Ship PCs
                             </h1>

@@ -16,10 +16,10 @@ export default function AdminLoginPage() {
       password,
     }).then((response) => {
       if (response.status === 200) {
-        router.push("/admin");
+        router.push("/admin/prebuilt");
       }
-    }).catch((error) => {
-      alert(`username : ${username} password : ${password}`);
+    }).catch((error) => { 
+      alert("Invalid username or password");
       console.error(error);
     });
   };
