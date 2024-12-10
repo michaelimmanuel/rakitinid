@@ -1,6 +1,5 @@
 import { put, del } from '@vercel/blob';
 import { PrismaClient } from '@prisma/client';
-import { NextApiRequest, NextApiResponse } from 'next';
 
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -74,16 +73,12 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   
 }
 
-export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
-  const url = new URL(req.url!, `http://${req.headers.host}`); // Parse the URL from the request
-  const id = parseInt(url.pathname.split('/').pop()!); // Extract `id` from the URL
-
-  if (isNaN(id)) {
-    return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
-  }
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+  const { id } = params;
+    
 
   const prebuilt = await prisma.prebuilt.findUnique({
-    where: { id },
+    where: { id: parseInt(id) },
   });
 
   if (!prebuilt) {
@@ -100,7 +95,7 @@ export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
     await del(coverImage!);
   }
   await prisma.prebuilt.delete({
-    where: { id },
+    where: { id: parseInt(id) },
   });
 
   return NextResponse.json({ success: true }, { status: 200 });

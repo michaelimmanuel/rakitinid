@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { put } from "@vercel/blob";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 
 const prisma = new PrismaClient();
 
-export async function POST(req: Request, res: NextApiResponse) {
+export async function POST(req: Request, res: NextResponse) {
    
         
 
@@ -67,7 +67,7 @@ export async function POST(req: Request, res: NextApiResponse) {
   }
 }
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest, res: NextResponse) {
   try {
     const prebuilts = await prisma.prebuilt.findMany();
     return NextResponse.json(prebuilts, { status: 200 });
