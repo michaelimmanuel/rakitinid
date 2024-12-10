@@ -41,7 +41,7 @@ import {
             </div>
             
             {/* Right Column */}
-            <div className="flex-1 mt-0 sm:pt-8">
+            <div className="flex-1 ">
               <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="discover" className="border-white/20">
                   <AccordionTrigger className="text-xl font-semibold [&[data-state=open]>svg]:rotate-180 [&>svg]:text-white">

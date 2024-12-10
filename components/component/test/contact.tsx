@@ -17,7 +17,7 @@ export default function Contact() {
             </div>
 
             {/* Social Media and Contact Information Section */}
-            <div className="bg-[#282B30] p-5 w-full md:w-1/3">
+            <div className="bg-[#31363F] p-5 w-full md:w-1/3">
                 <h1 className="text-white font-bold text-xl md:text-2xl mb-5 md:mb-10">Connect with us and get in touch!</h1>
                 <div className="text-white space-y-4">
                     <div className="flex items-center">
@@ -50,7 +50,7 @@ export default function Contact() {
             </div>
 
             {/* E-commerce Links Section */}
-            <div className="bg-[#36135a] p-5 w-full md:w-1/3">
+            <div className="bg-[#282B30] p-5 w-full md:w-1/3">
                 <h1 className="text-white font-bold text-xl md:text-2xl mb-5 md:mb-10">Shop our PC builds and accessories online!</h1>
                 <div className="flex flex-row md:flex-col justify-around md:justify-start items-center md:items-start space-y-0 md:space-y-5">
                     {/* Tokopedia Link */}
