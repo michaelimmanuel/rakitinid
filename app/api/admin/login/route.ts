@@ -9,7 +9,7 @@ export async function POST(req : any) {
 
   // Check credentials
   if (username === user && password === pw) {
-    const response = NextResponse.redirect(new URL('/admin', req.url));
+    const response = NextResponse.redirect(new URL('/admin/prebuilt', req.url));
     
     // Set a cookie using NextResponse's cookies API
     response.cookies.set('token', 'admin', { maxAge: 60 * 60 * 24 * 7, path: '/' });
