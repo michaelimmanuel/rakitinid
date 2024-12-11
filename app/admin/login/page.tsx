@@ -16,6 +16,7 @@ export default function AdminLoginPage() {
       password,
     }).then((response) => {
       if (response.status === 200) {
+        alert("Login successful");
         router.push("/admin/prebuilt");
       }
     }).catch((error) => { 

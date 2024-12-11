@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-
+import { redirect } from 'next/navigation'
 const user = "rakitinlah21";
 const pw = "rakitinlah99s";
 
