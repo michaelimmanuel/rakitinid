@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { Viewport } from "next";
 import { Inter } from 'next/font/google'
 import "./globals.css";
+import AuthenticWhatsAppButton from "@/components/whatsappButton";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,7 +36,7 @@ export default function RootLayout({
 
         {/* <FloatingButton/> */}
 
-
+        <AuthenticWhatsAppButton phoneNumber="+6281381024919" message="" />
 
         {/* <Footer/> */}
         

@@ -55,7 +55,7 @@ export default function Contact() {
                 <div className="flex flex-row md:flex-col justify-around md:justify-start items-center md:items-start space-y-0 md:space-y-5">
                     {/* Tokopedia Link */}
                     <a
-                        href="https://www.tokopedia.com/rakitinlah"
+                        href="https://www.tokopedia.com/rakitinlahid"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center space-x-2 hover:underline"
@@ -68,20 +68,7 @@ export default function Contact() {
                         <span className="text-white text-sm md:text-base">Tokopedia</span>
                     </a>
 
-                    {/* Shopee Link */}
-                    <a
-                        href="https://shopee.co.id/rakitinlah"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center space-x-2 hover:underline"
-                    >
-                        <img
-                            src="/images/shopee-logo.png"
-                            alt="Shopee"
-                            className="w-10 h-10 md:w-12 md:h-12"
-                        />
-                        <span className="text-white text-sm md:text-base">Shopee</span>
-                    </a>
+                    
                 </div>
             </div>
         </div>

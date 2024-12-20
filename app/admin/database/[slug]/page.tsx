@@ -4,6 +4,8 @@ import axios from "axios";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { DynamicModal } from "./dynamicModal"; // Import dynamic modal component
+import EditPurchaseDialog from "./editPurchase";
+
 
 interface PageProps {
   params: {
@@ -18,7 +20,7 @@ export default function Page({ params }: PageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentItem, setCurrentItem] = useState<DataType | null>(null);
   const [modalHeader, setModalHeader] = useState(""); // State for modal header
-
+  const [openModal, setOpenModal] = useState(0); // state for edit purchase price
   const slug = params.slug;
 
   const getData = (slug: string) => {
@@ -106,6 +108,11 @@ export default function Page({ params }: PageProps) {
       .catch((error) => console.error("Error deleting data:", error));
   };
 
+  const handlePurchasePrice = (id: number) => {
+    setOpenModal(id);
+
+  };
+
   return (
     <div className="w-dvh">
       <h1>Data for {slug}</h1>
@@ -141,14 +148,19 @@ export default function Page({ params }: PageProps) {
                 <Button variant="outline" className="mr-2" onClick={() => handleEdit(item.id)}>
                   Edit
                 </Button>
-                <Button variant="destructive" onClick={() => handleDelete(item.id)}>
+                <Button variant="destructive" className="mr-2" onClick={() => handleDelete(item.id)}>
                   Delete
+                </Button>
+                <Button variant={"success"} className="" onClick={() => handlePurchasePrice(item.id)}>
+                  Edit Purchase Price
                 </Button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+
+     
 
       <DynamicModal
         isOpen={isModalOpen}
@@ -158,6 +170,14 @@ export default function Page({ params }: PageProps) {
         initialData={currentItem || {}} // Pass an empty object for creation
         title={modalHeader}
       />
+
+      <EditPurchaseDialog
+        isOpen={openModal !== 0}
+        onClose={() => setOpenModal(0)}
+        id = {openModal}  
+        slug = {slug}
+      />
+
     </div>
   );
 }

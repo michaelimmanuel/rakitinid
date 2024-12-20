@@ -29,7 +29,10 @@ export async function POST(req: Request) {
                 storagePrice: body.storagePrice,
                 psuPrice: body.psuPrice,
                 casingPrice: body.casingPrice,
-                totalPrice: body.totalPrice
+                totalPrice: body.totalPrice,
+                fans: {
+                    connect: body.fans.map((fanId: number) => ({ id: fanId }))
+                }
             }
         });
 

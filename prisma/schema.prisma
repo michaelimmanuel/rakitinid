@@ -23,10 +23,12 @@ model motherboard {
   supported_memory_type String
   price                 Float
   image                 String? 
+  quantity              Int      @default(0)
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
 
   processors            processor[] 
+  motherboard_purchase_price motherboard_purchase_price[]
 }
 
 model processor {
@@ -37,17 +39,20 @@ model processor {
   socket_type   socket_type @relation(fields: [socket_type_id], references: [id])
   price         Float
   image         String?
+  quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime @default(now())
 
   motherboards  motherboard[] 
+  processor_purchase_price processor_purchase_price[]
 }
 
 model socket_type {
   id        Int      @id @default(autoincrement())
   name      String   @unique
+  quantity  Int      @default(0)
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
 
   motherboards motherboard[]
   processors   processor[]
@@ -61,8 +66,11 @@ model ram {
   memory_speed  String
   price         Float
   image         String?
+  quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime @default(now())
+
+  ram_purchase_price ram_purchase_price[]
 }
 
 model gpu {
@@ -73,8 +81,11 @@ model gpu {
   memory_type   String
   price         Float
   image         String?
+  quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime @default(now())
+
+  gpu_purchase_price gpu_purchase_price[]
 }
 
 model storage {
@@ -85,8 +96,12 @@ model storage {
   capacity      String
   price         Float
   image         String?
+  quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime @default(now())
+
+  storage_purchase_price storage_purchase_price[]
+
 }
 
 model psu {
@@ -96,8 +111,11 @@ model psu {
   wattage       String
   price         Float
   image         String?
+  quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime @default(now())
+
+  psu_purchase_price psu_purchase_price[]
 }
 
 model casing {
@@ -107,8 +125,11 @@ model casing {
   form_factor   String
   price         Float
   image         String?
+  quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime @default(now())
+
+  casing_purchase_price casing_purchase_price[]
 }
 
 model build {
@@ -129,16 +150,21 @@ model build {
   psuPrice       Float
   casingPrice    Float
   totalPrice     Float
+  quantity       Int      @default(0)
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime @default(now())
+
+  fans          fan[] @relation("BuildFans")
+  accessories   accessories[] @relation("BuildAccessories")
 }
 
 model admin {
   id            Int      @id @default(autoincrement())
   username      String   @unique
   password      String
+  quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  updatedAt     DateTime @default(now())
 }
 
 model prebuilt {
@@ -148,6 +174,116 @@ model prebuilt {
   price        Float
   coverImage   String?
   image        String?
+  quantity     Int      @default(0)
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  updatedAt    DateTime @default(now())
+}
+
+model fan {
+  id           Int      @id @default(autoincrement())
+  name         String
+  brand        String
+  price        Float
+  image        String?
+  quantity     Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+
+  builds       build[] @relation("BuildFans")
+  fans_purchase_price fan_purchase_price[]
+}
+
+model accessories {
+  id           Int      @id @default(autoincrement())
+  name         String
+  brand        String
+  price        Float
+  image        String?
+  quantity     Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+
+  builds       build[] @relation("BuildAccessories")
+  accessories_purchase_price accessories_purchase_price[]
+}
+
+model motherboard_purchase_price {
+  id            Int      @id @default(autoincrement())
+  motherboard_id Int
+  price         Float
+  quantity      Int      @default(0)
+  createdAt     DateTime @default(now())
+  motherboard    motherboard @relation(fields: [motherboard_id], references: [id])
+}
+
+model processor_purchase_price {
+  id            Int      @id @default(autoincrement())
+  processor_id  Int
+  price         Float
+  quantity      Int      @default(0)
+  createdAt     DateTime @default(now())
+  processor     processor @relation(fields: [processor_id], references: [id])
+}
+
+model ram_purchase_price {
+  id            Int      @id @default(autoincrement())
+  ram_id        Int
+  price         Float
+  quantity      Int      @default(0)
+  createdAt     DateTime @default(now())
+  ram           ram @relation(fields: [ram_id], references: [id])
+}
+
+model gpu_purchase_price {
+  id            Int      @id @default(autoincrement())
+  gpu_id        Int
+  price         Float
+  quantity      Int      @default(0)
+  createdAt     DateTime @default(now())
+  gpu           gpu @relation(fields: [gpu_id], references: [id])
+}
+
+model psu_purchase_price {
+  id            Int      @id @default(autoincrement())
+  psu_id        Int
+  price         Float
+  quantity      Int      @default(0)
+  createdAt     DateTime @default(now())
+  psu           psu @relation(fields: [psu_id], references: [id])
+}
+
+model storage_purchase_price {
+  id            Int      @id @default(autoincrement())
+  storage_id    Int
+  price         Float
+  quantity      Int      @default(0)
+  createdAt     DateTime @default(now())
+  storage       storage @relation(fields: [storage_id], references: [id])
+}
+
+model casing_purchase_price {
+  id            Int      @id @default(autoincrement())
+  casing_id     Int
+  price         Float
+  quantity      Int      @default(0)
+  createdAt     DateTime @default(now())
+  casing        casing @relation(fields: [casing_id], references: [id])
+}
+
+model fan_purchase_price {
+  id            Int      @id @default(autoincrement())
+  fan_id        Int
+  price         Float
+  quantity      Int      @default(0)
+  createdAt     DateTime @default(now())
+  fan           fan @relation(fields: [fan_id], references: [id])
+}
+
+model accessories_purchase_price {
+  id            Int      @id @default(autoincrement())
+  accessories_id Int
+  price         Float
+  quantity      Int      @default(0)
+  createdAt     DateTime @default(now())
+  accessories   accessories @relation(fields: [accessories_id], references: [id])
 }

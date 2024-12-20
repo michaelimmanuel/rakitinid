@@ -115,7 +115,10 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
             payload[key.toLowerCase()] = selectedData[key].name;
             payload[`${key.toLowerCase()}Price`] = selectedData[key].price;
         })
-        console.log(payload);
+        axios.put(`/api/builds/${id}`, payload).then((response) => {
+            console.log("PUT Response:", response.data); // Check what the API returns
+            fetchData(id); // Refresh the data
+        }).catch((error) => console.error("Error updating data:", error));
     }
     
 
@@ -128,7 +131,12 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                     <DialogTitle>Build Details</DialogTitle>
                 </DialogHeader>
                     {!initialData ? ( <p>Loading build...</p> ) :
-                    (<div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-10 mt-5">
+                    
+                    (
+                        <div>
+                    <Button variant={"success"} className="" onClick={handleSubmit}>Create Invoice</Button>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-10 mt-5">
+                       
                         {data.map((item, index) => (
                             <div key={index} onClick={() => handleItemClick(item)}>
                                 <h1 className="text-xl font-bold mb-3">{item}</h1>
@@ -156,6 +164,7 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                         </div>
                         
                     
+                    </div>
                     </div>)}
             </DialogContent>
             <ItemDialog

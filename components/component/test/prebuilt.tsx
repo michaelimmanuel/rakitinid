@@ -147,7 +147,7 @@ export default function PeekCarousel() {
       <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] overflow-auto bg-[#1e2124]">
             {selectedData && (
             <div className="grid gap-6 sm:grid-cols-2 mt-5">
-              <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
+              <div className="relative aspect-square overflow-hidden bg-muted">
                 <Image
                   src={selectedData.image}
                   alt={selectedData.name}

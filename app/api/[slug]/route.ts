@@ -12,9 +12,11 @@ const modelMap: Record<Slug, any> = {
   psu: prisma.psu,
   ram: prisma.ram,
   storage: prisma.storage,
+  fan : prisma.fan,
+  accessories: prisma.accessories,
 };
 
-type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage';
+type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage' | 'fan' | 'accessories';
 
 
 export async function POST(req: Request, { params }: { params: { slug: Slug } }) {

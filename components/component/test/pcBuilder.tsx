@@ -4,13 +4,15 @@ import { useState } from "react";
 import { ItemDialog } from "./item-dialog";
 import { ConfirmationDialog } from "./confirmation-dialog";
 import CasingDialog from "./casing-dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function PcBuilder() {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [selectedData, setSelectedData] = useState<{ [key: string]: { name: string; price: number; socket_type_id?: string } }>({});
   const [openDialog, setOpenDialog] = useState(false);
   const [openCasingDialog, setOpenCasingDialog] = useState(false); // State to handle CasingDialog
-  const data = ["Processor", "Motherboard", "GPU", "RAM", "Storage", "PSU", "Casing"];
+  const data = ["Processor", "Motherboard", "GPU", "RAM", "Storage", "PSU", "Casing", "Fan"];
 
   const handleItemClick = (item: string) => {
     if (item === "Casing") {
@@ -45,17 +47,25 @@ export default function PcBuilder() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-10 mt-10">
           {data.map((item, index) => (
-            <div key={index} onClick={() => handleItemClick(item)}>
+            <div key={index}>
               <h1 className="text-xl font-bold mb-3">{item}</h1>
-              <div className="bg-white flex flex-col h-auto rounded-lg text-black items-start p-3">
-                <p className="text-gray w-full font-semibold">
-                  {selectedData[item]?.name || `Select ${item}`}
-                </p>
-                {selectedData[item]?.price && (
-                  <p className="text-gray w-full text-sm">
-                    Price: Rp {selectedData[item].price.toLocaleString()}
+              <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
+                <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
+                  <p className="text-gray w-full font-semibold">
+                    {selectedData[item]?.name || `Select ${item}`}
                   </p>
+                  {selectedData[item]?.price && (
+                    <p className="text-gray w-full text-sm">
+                      Price: Rp {selectedData[item].price.toLocaleString()}
+                    </p>
+                  )}
+                </div>
+                {item === "Fan" && (
+                    <div>
+                      <Input type="number" placeholder="Quantity" className="h-12 rounded-lg "  min="0"/>
+                    </div>
                 )}
+              
               </div>
             </div>
           ))}

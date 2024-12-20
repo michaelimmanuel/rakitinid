@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card';
 export default function PrebuildCard(image : {src: string, alt: string, title:string, price:number}, ) {
     return (
         <div className="p-1 mx-2">
-            <Card className="overflow-hidden bg-[#36343A]">
+            <Card className="bg-[#36343A]">
                 <Image
                     src={image.src}
                     alt={image.alt}

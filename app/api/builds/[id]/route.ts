@@ -38,3 +38,23 @@ export async function POST(req: Request, { params }: { params: { id: string } })
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
+
+export async function PUT(req: Request, { params }: { params: { id: string } }) {
+    const { id } = params;
+    const data = await req.json();
+
+    try{
+        const updatedBuild = await prisma.build.update({
+            where: {
+                id: parseInt(id)
+            },
+            data: {
+                ...data
+            }
+        });
+
+        return NextResponse.json(updatedBuild, { status: 200 });
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+}

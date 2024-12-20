@@ -9,8 +9,7 @@ export async function POST(req : any) {
 
   // Check credentials
   if (username === user && password === pw) {
-    const response = NextResponse.redirect(new URL('/admin/prebuilt', req.url));
-    
+    const response = NextResponse.json({ message: 'Login successful' }, { status: 200 });
     // Set a cookie using NextResponse's cookies API
     response.cookies.set('token', 'admin', { maxAge: 60 * 60 * 24 * 7, path: '/' });
     

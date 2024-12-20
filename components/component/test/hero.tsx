@@ -15,7 +15,7 @@ export default function HeroPage() {
                     z-10
                     />
                 {/* Text Container */}
-                <div className="mb-10 sm:m-auto p-5 lg:p-20 max-w-3xl text-center lg:text-left bg-[#4E5F7E] rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-[8%] lg:ml-0">
+                <div className="mb-10 text-white sm:m-auto p-5 lg:p-20 max-w-3xl text-center lg:text-left bg-[#4E5F7E] rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-[8%] lg:ml-0">
                     <h1 className="text-3xl lg:text-5xl font-semibold"> 
                         BUILD YOUR DREAM <br/> PC TODAY.
                     </h1>
