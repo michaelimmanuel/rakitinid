@@ -1,6 +1,10 @@
+"use client";
+
 import { FaInstagram, FaTiktok, FaPhone } from 'react-icons/fa'; // Import social media icons from react-icons
 
 export default function Contact() {
+
+    
     return (
         <div className="flex flex-col md:flex-row bg-[#141218]">
             {/* Map Location Section */}
@@ -19,10 +23,13 @@ export default function Contact() {
             {/* Social Media and Contact Information Section */}
             <div className="bg-[#31363F] p-5 w-full md:w-1/3">
                 <h1 className="text-white font-bold text-xl md:text-2xl mb-5 md:mb-10">Connect with us and get in touch!</h1>
-                <div className="text-white space-y-4">
+                <div className="text-white space-y-4" >
                     <div className="flex items-center">
                         <FaPhone className="text-xl mr-3" />
-                        <span className="text-sm md:text-base">0813-8102-4919</span>
+                        <a href="https://wa.me/6281381024919" className="hover:underline text-sm md:text-base">
+                            <span className="text-sm md:text-base"  >0813-8102-4919</span>
+                        </a>
+                        
                     </div>
                     <div className="flex items-center">
                         <FaInstagram className="text-xl mr-3" />

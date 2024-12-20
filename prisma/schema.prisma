@@ -142,6 +142,14 @@ model build {
   storage       String
   psu           String
   casing        String
+  fan1          String
+  fan2          String
+  fan3          String
+  fan4          String
+  acceccories1  String
+  acceccories2  String
+  acceccories3  String
+  acceccories4  String
   motherboardPrice Float
   processorPrice Float
   ramPrice       Float
@@ -149,13 +157,21 @@ model build {
   storagePrice   Float
   psuPrice       Float
   casingPrice    Float
+  fan1Price      Float
+  fan2Price      Float
+  fan3Price      Float
+  fan4Price      Float
+  acceccories1Price Float   
+  acceccories2Price Float 
+  acceccories3Price Float 
+  acceccories4Price Float 
+
   totalPrice     Float
   quantity       Int      @default(0)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
 
-  fans          fan[] @relation("BuildFans")
-  accessories   accessories[] @relation("BuildAccessories")
+  
 }
 
 model admin {

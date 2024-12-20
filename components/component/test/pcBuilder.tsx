@@ -12,7 +12,7 @@ export default function PcBuilder() {
   const [selectedData, setSelectedData] = useState<{ [key: string]: { name: string; price: number; socket_type_id?: string } }>({});
   const [openDialog, setOpenDialog] = useState(false);
   const [openCasingDialog, setOpenCasingDialog] = useState(false); // State to handle CasingDialog
-  const data = ["Processor", "Motherboard", "GPU", "RAM", "Storage", "PSU", "Casing", "Fan"];
+  const data = ["Processor", "Motherboard", "GPU", "RAM", "Storage", "PSU", "Casing", "CPU Cooler"];
 
   const handleItemClick = (item: string) => {
     if (item === "Casing") {
@@ -60,15 +60,12 @@ export default function PcBuilder() {
                     </p>
                   )}
                 </div>
-                {item === "Fan" && (
-                    <div>
-                      <Input type="number" placeholder="Quantity" className="h-12 rounded-lg "  min="0"/>
-                    </div>
-                )}
-              
               </div>
             </div>
           ))}
+
+          
+
         </div>
 
         <div className="flex flex-col items-center mt-10">
