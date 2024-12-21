@@ -10,7 +10,7 @@ interface AuthenticWhatsAppButtonProps {
 
 export default function AuthenticWhatsAppButton({ phoneNumber, message = 'Hello!' }: AuthenticWhatsAppButtonProps) {
   const handleClick = () => {
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+    const url = `https://wa.me/message/MOVNUD7ZDN2IF1`
     window.open(url, '_blank')
   }
 
