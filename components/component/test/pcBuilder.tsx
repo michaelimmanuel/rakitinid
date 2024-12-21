@@ -13,10 +13,20 @@ export default function PcBuilder() {
   const [openDialog, setOpenDialog] = useState(false);
   const [openCasingDialog, setOpenCasingDialog] = useState(false); // State to handle CasingDialog
   const data = ["Processor", "Motherboard", "GPU", "RAM", "Storage", "PSU", "Casing", "CPU Cooler"];
-
+  const fans = ['Fan 1', 'Fan 2', 'Fan 3', 'Fan 4']
   const handleItemClick = (item: string) => {
     if (item === "Casing") {
       setSelectedItem(item);
+      setOpenCasingDialog(true); // Open CasingDialog when Casing is clicked
+    } else {
+      setSelectedItem(item); // Open ItemDialog for other items
+    }
+  };
+
+
+  const handleFanClick = (item: string) => {
+    if (item === "Casing") {
+      setSelectedItem("fan");
       setOpenCasingDialog(true); // Open CasingDialog when Casing is clicked
     } else {
       setSelectedItem(item); // Open ItemDialog for other items
@@ -45,7 +55,7 @@ export default function PcBuilder() {
         <p className="text-white font-light mt-2">
           Customize your PC with top-quality components and watch your build come to life.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-10 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-10 mt-10">
           {data.map((item, index) => (
             <div key={index}>
               <h1 className="text-xl font-bold mb-3">{item}</h1>
@@ -64,6 +74,24 @@ export default function PcBuilder() {
             </div>
           ))}
 
+        {fans.map((item, index) => (
+            <div key={index}>
+              <h1 className="text-xl font-bold mb-3">{item}</h1>
+              <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
+                <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleFanClick(item)}>
+                  <p className="text-gray w-full font-semibold">
+                    {selectedData[item]?.name || `Select ${item}`}
+                  </p>
+                  {selectedData[item]?.price && (
+                    <p className="text-gray w-full text-sm">
+                      Price: Rp {selectedData[item].price.toLocaleString()}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+  
           
 
         </div>

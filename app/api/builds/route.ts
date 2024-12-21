@@ -30,9 +30,10 @@ export async function POST(req: Request) {
                 psuPrice: body.psuPrice,
                 casingPrice: body.casingPrice,
                 totalPrice: body.totalPrice,
-                fans: {
-                    connect: body.fans.map((fanId: number) => ({ id: fanId }))
-                }
+                fan1: body.fan1,
+                fan2: body.fan2,
+                fan3: body.fan3,
+                fan4: body.fan4
             }
         });
 

@@ -95,7 +95,7 @@ export default function PeekCarousel() {
               {prebuilts.map((prebuilt, index) => (
                 <CarouselItem 
                   key={index} 
-                  className="pl-4 basis-full md:basis-[45%] lg:basis-[30%]"
+                  className="pl-4 basis-full md:basis-[50%] lg:basis-[25%]"
                 >
                   <div className="p-1 mx-2" onClick={() => handleClick(prebuilt)}>
                     <PrebuildCard

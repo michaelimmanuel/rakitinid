@@ -10,7 +10,7 @@ export default function PrebuildCard(image : {src: string, alt: string, title:st
                     alt={image.alt}
                     width={300}
                     height={300}
-                    className="aspect-[3/3] w-full max-w-[300px] object-cover transition-all"
+                    className="aspect-[4/4] w-full max-w-[400px] object-cover transition-all mx-auto"
                     quality={100}
                 />
                 <div className="p-4 mt-4">

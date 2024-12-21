@@ -15,6 +15,8 @@ export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent, socket
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
 
+  
+
   useEffect(() => {
     if (isOpen) {
       fetchData(itemName);
@@ -28,7 +30,10 @@ export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent, socket
       if(name === "Motherboard"){
         const response = await axios.get(`/api/motherboard/${socketId}`); // Assuming endpoint matches item name
         setItems(response.data);
-      }  else {
+      }else if(/^fan/i.test(name)){
+        const response = await axios.get(`/api/fan`);
+        setItems(response.data);
+      } else {
          const response = await axios.get(`/api/${name.toLowerCase()}`); // Assuming endpoint matches item name
          setItems(response.data);
       }

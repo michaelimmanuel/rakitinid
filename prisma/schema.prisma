@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -18,16 +15,16 @@ model motherboard {
   name                  String
   brand                 String
   socket_type_id        Int
-  socket_type           socket_type @relation(fields: [socket_type_id], references: [id])
+  socket_type           socket_type @relation(fields: [socket_type_id], references: [id], onDelete: Cascade)
   form_factor           String
   supported_memory_type String
   price                 Float
-  image                 String? 
+  image                 String?
   quantity              Int      @default(0)
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
 
-  processors            processor[] 
+  processors            processor[]
   motherboard_purchase_price motherboard_purchase_price[]
 }
 
@@ -36,14 +33,14 @@ model processor {
   name          String
   brand         String
   socket_type_id Int
-  socket_type   socket_type @relation(fields: [socket_type_id], references: [id])
+  socket_type   socket_type @relation(fields: [socket_type_id], references: [id], onDelete: Cascade)
   price         Float
   image         String?
   quantity      Int      @default(0)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
 
-  motherboards  motherboard[] 
+  motherboards  motherboard[]
   processor_purchase_price processor_purchase_price[]
 }
 
@@ -101,7 +98,6 @@ model storage {
   updatedAt     DateTime @default(now())
 
   storage_purchase_price storage_purchase_price[]
-
 }
 
 model psu {
@@ -135,7 +131,7 @@ model casing {
 model build {
   id            Int      @id @default(autoincrement())
   status        String   @default("Not Approved")
-  motherboard   String 
+  motherboard   String
   processor     String
   ram           String
   gpu           String
@@ -157,21 +153,19 @@ model build {
   storagePrice   Float
   psuPrice       Float
   casingPrice    Float
-  fan1Price      Float
-  fan2Price      Float
-  fan3Price      Float
-  fan4Price      Float
-  acceccories1Price Float   
-  acceccories2Price Float 
-  acceccories3Price Float 
-  acceccories4Price Float 
+  fan1Price      Float        @default(0)
+  fan2Price      Float        @default(0)
+  fan3Price      Float        @default(0)
+  fan4Price      Float        @default(0)
+  acceccories1Price Float     @default(0)
+  acceccories2Price Float     @default(0)
+  acceccories3Price Float     @default(0)
+  acceccories4Price Float     @default(0)
 
   totalPrice     Float
   quantity       Int      @default(0)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
-
-  
 }
 
 model admin {
@@ -205,7 +199,6 @@ model fan {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
 
-  builds       build[] @relation("BuildFans")
   fans_purchase_price fan_purchase_price[]
 }
 
@@ -219,8 +212,20 @@ model accessories {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
 
-  builds       build[] @relation("BuildAccessories")
   accessories_purchase_price accessories_purchase_price[]
+}
+
+model cooler {
+  id           Int      @id @default(autoincrement())
+  name         String
+  brand        String
+  price        Float
+  image        String?
+  quantity     Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+
+  cooler_purchase_price cooler_purchase_price[]
 }
 
 model motherboard_purchase_price {
@@ -229,7 +234,7 @@ model motherboard_purchase_price {
   price         Float
   quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  motherboard    motherboard @relation(fields: [motherboard_id], references: [id])
+  motherboard    motherboard @relation(fields: [motherboard_id], references: [id], onDelete: Cascade)
 }
 
 model processor_purchase_price {
@@ -238,7 +243,7 @@ model processor_purchase_price {
   price         Float
   quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  processor     processor @relation(fields: [processor_id], references: [id])
+  processor     processor @relation(fields: [processor_id], references: [id], onDelete: Cascade)
 }
 
 model ram_purchase_price {
@@ -247,7 +252,7 @@ model ram_purchase_price {
   price         Float
   quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  ram           ram @relation(fields: [ram_id], references: [id])
+  ram           ram @relation(fields: [ram_id], references: [id], onDelete: Cascade)
 }
 
 model gpu_purchase_price {
@@ -256,7 +261,7 @@ model gpu_purchase_price {
   price         Float
   quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  gpu           gpu @relation(fields: [gpu_id], references: [id])
+  gpu           gpu @relation(fields: [gpu_id], references: [id], onDelete: Cascade)
 }
 
 model psu_purchase_price {
@@ -265,7 +270,7 @@ model psu_purchase_price {
   price         Float
   quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  psu           psu @relation(fields: [psu_id], references: [id])
+  psu           psu @relation(fields: [psu_id], references: [id], onDelete: Cascade)
 }
 
 model storage_purchase_price {
@@ -274,7 +279,7 @@ model storage_purchase_price {
   price         Float
   quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  storage       storage @relation(fields: [storage_id], references: [id])
+  storage       storage @relation(fields: [storage_id], references: [id], onDelete: Cascade)
 }
 
 model casing_purchase_price {
@@ -283,7 +288,7 @@ model casing_purchase_price {
   price         Float
   quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  casing        casing @relation(fields: [casing_id], references: [id])
+  casing        casing @relation(fields: [casing_id], references: [id], onDelete: Cascade)
 }
 
 model fan_purchase_price {
@@ -292,7 +297,7 @@ model fan_purchase_price {
   price         Float
   quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  fan           fan @relation(fields: [fan_id], references: [id])
+  fan           fan @relation(fields: [fan_id], references: [id], onDelete: Cascade)
 }
 
 model accessories_purchase_price {
@@ -301,5 +306,14 @@ model accessories_purchase_price {
   price         Float
   quantity      Int      @default(0)
   createdAt     DateTime @default(now())
-  accessories   accessories @relation(fields: [accessories_id], references: [id])
+  accessories   accessories @relation(fields: [accessories_id], references: [id], onDelete: Cascade)
+}
+
+model cooler_purchase_price {
+  id            Int      @id @default(autoincrement())
+  cooler_id     Int
+  price         Float
+  quantity      Int      @default(0)
+  createdAt     DateTime @default(now())
+  cooler        cooler @relation(fields: [cooler_id], references: [id], onDelete: Cascade)
 }
