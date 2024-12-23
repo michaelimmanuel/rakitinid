@@ -58,3 +58,19 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
 }
+
+export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+    const { id } = params;
+
+    try{
+        const deletedBuild = await prisma.build.delete({
+            where: {
+                id: parseInt(id)
+            }
+        });
+
+        return NextResponse.json(deletedBuild, { status: 200 });
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+}

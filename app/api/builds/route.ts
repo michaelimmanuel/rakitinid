@@ -33,7 +33,21 @@ export async function POST(req: Request) {
                 fan1: body.fan1,
                 fan2: body.fan2,
                 fan3: body.fan3,
-                fan4: body.fan4
+                fan4: body.fan4,
+                fan1Price: body.fan1Price || 0,
+                fan2Price: body.fan2Price || 0,
+                fan3Price: body.fan3Price || 0,
+                fan4Price: body.fan4Price || 0,
+                accessories1: body.accessories1,
+                accessories2: body.accessories2,
+                accessories3: body.accessories3,
+                accessories4: body.accessories4,
+                accessories1Price: body.accessories1Price || 0,
+                accessories2Price: body.accessories2Price || 0,
+                accessories3Price: body.accessories3Price || 0,
+                accessories4Price: body.accessories4Price || 0,
+                cooler: body.cooler,
+                coolerPrice: body.coolerPrice || 0,
             }
         });
 

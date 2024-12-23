@@ -31,6 +31,7 @@ const sidebarData = {
     { title: "Casing", url: "/admin/database/casing", icon: Monitor },
     { title: "Fan", url: "/admin/database/fan", icon: Fan },
     { title: "Accessories", url: "/admin/database/accessories", icon: Mouse },
+    { title: "Cooler", url: "/admin/database/cooler", icon: Fan },
   ],
   Builds: [
     { title: "View Builds", url: "/admin/builds", icon: Box },

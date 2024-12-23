@@ -32,6 +32,14 @@ export function ConfirmationDialog({ isOpen, onClose, items }: ItemDialogProps) 
           storage: items.Storage?.name || "",
           psu: items.PSU?.name || "",
           casing: items.Casing?.name || "",
+          fan1 : items["Fan 1"]?.name || "",
+          fan2 : items["Fan 2"]?.name || "",
+          fan3 : items["Fan 3"]?.name || "",
+          fan4 : items["Fan 4"]?.name || "",
+          accessories1 : items["Accessories 1"]?.name || "",
+          accessories2 : items["Accessories 2"]?.name || "",
+          accessories3 : items["Accessories 3"]?.name || "",
+          accessories4 : items["Accessories 4"]?.name || "",
           motherboardPrice: items.Motherboard?.price || 0,
           processorPrice: items.Processor?.price || 0,
           ramPrice: items.RAM?.price || 0,
@@ -39,11 +47,23 @@ export function ConfirmationDialog({ isOpen, onClose, items }: ItemDialogProps) 
           storagePrice: items.Storage?.price || 0,
           psuPrice: items.PSU?.price || 0,
           casingPrice: items.Casing?.price || 0,
+          fan1Price : items["Fan 1"]?.price || 0,
+          fan2Price : items["Fan 2"]?.price || 0,
+          fan3Price : items["Fan 3"]?.price || 0,
+          fan4Price : items["Fan 4"]?.price || 0,
+          accessories1Price : items["Accessories 1"]?.price || 0,
+          accessories2Price : items["Accessories 2"]?.price || 0,
+          accessories3Price : items["Accessories 3"]?.price || 0,
+          accessories4Price : items["Accessories 4"]?.price || 0,
+          cooler : items.Cooler?.name || "",
+          coolerPrice : items.Cooler?.price || 0,
           totalPrice: getTotalPrice(),
         };
 
          
         try {
+          // console.log(payload);
+          // return
           await axios.post("/api/builds", payload).then((res) => {
             // get id from data
             const id = res.data.id;

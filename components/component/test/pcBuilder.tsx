@@ -12,8 +12,10 @@ export default function PcBuilder() {
   const [selectedData, setSelectedData] = useState<{ [key: string]: { name: string; price: number; socket_type_id?: string } }>({});
   const [openDialog, setOpenDialog] = useState(false);
   const [openCasingDialog, setOpenCasingDialog] = useState(false); // State to handle CasingDialog
-  const data = ["Processor", "Motherboard", "GPU", "RAM", "Storage", "PSU", "Casing", "CPU Cooler"];
+  const data = ["Processor", "Motherboard", "GPU", "RAM", "Storage", "PSU", "Casing", "Cooler"];
   const fans = ['Fan 1', 'Fan 2', 'Fan 3', 'Fan 4']
+  const accessories = ["Accessories 1", "Accessories 2", "Accessories 3", "Accessories 4"];
+
   const handleItemClick = (item: string) => {
     if (item === "Casing") {
       setSelectedItem(item);
@@ -45,6 +47,7 @@ export default function PcBuilder() {
   };
 
   const handleBuildNow = () => {
+    console.log(selectedData);
     setOpenDialog(true);
   };
 
@@ -79,6 +82,24 @@ export default function PcBuilder() {
               <h1 className="text-xl font-bold mb-3">{item}</h1>
               <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
                 <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleFanClick(item)}>
+                  <p className="text-gray w-full font-semibold">
+                    {selectedData[item]?.name || `Select ${item}`}
+                  </p>
+                  {selectedData[item]?.price && (
+                    <p className="text-gray w-full text-sm">
+                      Price: Rp {selectedData[item].price.toLocaleString()}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {accessories.map((item, index) => (
+            <div key={index}>
+              <h1 className="text-xl font-bold mb-3">{item}</h1>
+              <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
+                <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
                   <p className="text-gray w-full font-semibold">
                     {selectedData[item]?.name || `Select ${item}`}
                   </p>

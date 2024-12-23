@@ -138,14 +138,15 @@ model build {
   storage       String
   psu           String
   casing        String
-  fan1          String
-  fan2          String
-  fan3          String
-  fan4          String
-  acceccories1  String
-  acceccories2  String
-  acceccories3  String
-  acceccories4  String
+  fan1          String?
+  fan2          String?
+  fan3          String?
+  fan4          String?
+  accessories1  String?
+  accessories2  String?
+  accessories3  String?
+  accessories4  String?
+  cooler        String
   motherboardPrice Float
   processorPrice Float
   ramPrice       Float
@@ -153,15 +154,15 @@ model build {
   storagePrice   Float
   psuPrice       Float
   casingPrice    Float
-  fan1Price      Float        @default(0)
-  fan2Price      Float        @default(0)
-  fan3Price      Float        @default(0)
-  fan4Price      Float        @default(0)
-  acceccories1Price Float     @default(0)
-  acceccories2Price Float     @default(0)
-  acceccories3Price Float     @default(0)
-  acceccories4Price Float     @default(0)
-
+  fan1Price      Float        
+  fan2Price      Float        
+  fan3Price      Float        
+  fan4Price      Float        
+  accessories1Price Float     
+  accessories2Price Float     
+  accessories3Price Float     
+  accessories4Price Float     
+  coolerPrice    Float
   totalPrice     Float
   quantity       Int      @default(0)
   createdAt     DateTime @default(now())

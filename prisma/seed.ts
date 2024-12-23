@@ -577,6 +577,19 @@ async function main() {
     });
   }
 
+  const accessories = [{
+    name : "RGB LED Strip",
+    brand : "Generic",
+    price : 100000,
+    image : null
+  }]
+
+  for (const accessory of accessories) {
+    await prisma.accessories.create({
+      data: accessory,
+    });
+  }
+
 }
 
 main()

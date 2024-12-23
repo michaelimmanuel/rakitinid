@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { put } from '@vercel/blob';
 
-type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage';
+type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage' | 'fan' | 'accessories'| 'cooler';
 
 const prisma = new PrismaClient();
 
@@ -14,6 +14,9 @@ const modelMap: Record<Slug, any> = {
   psu: prisma.psu,
   ram: prisma.ram,
   storage: prisma.storage,
+  fan: prisma.fan,
+  accessories: prisma.accessories,
+  cooler: prisma.cooler,
 };
 
 // GET handler: Fetch data by slug and ID

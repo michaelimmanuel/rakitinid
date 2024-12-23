@@ -14,30 +14,38 @@ interface ItemDialogProps {
 export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent, socketId }: ItemDialogProps) {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-
-  
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen) {
-      fetchData(itemName);
+      if (itemName.toLowerCase() === "motherboard" && !socketId) {
+        setErrorMessage("Please select a processor first.");
+        setItems([]);
+        setLoading(false);
+      } else {
+        setErrorMessage(null);
+        fetchData(itemName);
+      }
     }
-  }, [isOpen, itemName]);
+  }, [isOpen, itemName, socketId]);
 
   const fetchData = async (name: string) => {
     setLoading(true);
     try {
-
-      if(name === "Motherboard"){
+      if (name.toLowerCase() === "motherboard") {
         const response = await axios.get(`/api/motherboard/${socketId}`); // Assuming endpoint matches item name
         setItems(response.data);
-      }else if(/^fan/i.test(name)){
+      } else if (/^fan/i.test(name)) {
         const response = await axios.get(`/api/fan`);
         setItems(response.data);
-      } else {
-         const response = await axios.get(`/api/${name.toLowerCase()}`); // Assuming endpoint matches item name
-         setItems(response.data);
+      } else if(/^accessories/i.test(name)){
+        const response = await axios.get(`/api/accessories`);
+        setItems(response.data);
+        
+      }else {
+        const response = await axios.get(`/api/${name.toLowerCase()}`); // Assuming endpoint matches item name
+        setItems(response.data);
       }
-      
     } catch (error) {
       console.error(`Failed to fetch data for ${name}:`, error);
     } finally {
@@ -56,7 +64,9 @@ export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent, socket
         <DialogHeader>
           <DialogTitle>Pick Your {itemName}</DialogTitle>
         </DialogHeader>
-        {loading ? (
+        {errorMessage ? (
+          <p>{errorMessage}</p>
+        ) : loading ? (
           <p>Loading {itemName}...</p>
         ) : items.length > 0 ? (
           <ul className="space-y-4 overflow-y-auto max-h-96">
