@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { title } from "process";
 
 // Sidebar data with groups and items
 const sidebarData = {
@@ -38,6 +39,7 @@ const sidebarData = {
   ],
   Content : [
     { title: "Edit Prebuilt Section", url: "/admin/prebuilt", icon: Edit },
+    {title: "Edit Banner Section", url: "/admin/banner", icon: Edit},
   ],
   Finance : [
     { title: "View Invoices", url: "/admin/invoices", icon: Box },

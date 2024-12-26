@@ -13,9 +13,10 @@ const nextConfig = {
         }
 
         ],
-    }
+    },
 
-    
+    reactStrictMode: false,  // turn to false
+
 }
 
 

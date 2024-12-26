@@ -53,8 +53,8 @@ export default function PcBuilder() {
 
   return (
     <div className="bg-white h-auto mb-0">
-      <div className="bg-rakitin-bg w-full p-10 lg:p-20">
-        <h1 className="text-4xl text-white">Build Your Perfect PC</h1>
+      <div className="bg-rakitin-bg w-full p-10 lg:p-20 ">
+        <h1 className="text-4xl text-white mt-28">Build Your Perfect PC</h1>
         <p className="text-white font-light mt-2">
           Customize your PC with top-quality components and watch your build come to life.
         </p>
@@ -112,12 +112,9 @@ export default function PcBuilder() {
               </div>
             </div>
           ))}
-  
-          
-
         </div>
 
-        <div className="flex flex-col items-center mt-10">
+        <div className="flex flex-col items-center mt-10 mb-28  ">
           <h1 className="text-xl font-bold mb-3">
             Total : Rp {Object.values(selectedData).reduce((acc, curr) => acc + curr.price, 0).toLocaleString()}
           </h1>

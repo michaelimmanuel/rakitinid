@@ -8,7 +8,7 @@ import {
   export default function WhatSetsUsApart() {
     return (
       <section className="w-full bg-[#8E8E93] py-12 text-white lg:px-20">
-        <div className="container px-4 md:px-6 mb-10">
+        <div className="container px-4 md:px-6 mb-10 mt-28 mb-28">
             <div className="flex-row lg:flex justify-between">
                 <h2 className="mb-8 text-3xl font-bold leading-tight tracking-tighter md:text-4xl">
                     What Sets Us Apart

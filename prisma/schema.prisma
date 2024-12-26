@@ -181,7 +181,7 @@ model admin {
 model prebuilt {
   id           Int      @id @default(autoincrement())
   name         String
-  description  String
+  description  String   @db.Text
   price        Float
   coverImage   String?
   image        String?
@@ -317,4 +317,13 @@ model cooler_purchase_price {
   quantity      Int      @default(0)
   createdAt     DateTime @default(now())
   cooler        cooler @relation(fields: [cooler_id], references: [id], onDelete: Cascade)
+}
+
+model banner {
+  id           Int      @id @default(autoincrement())
+  src          String
+  alt          String
+  order        Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
 }

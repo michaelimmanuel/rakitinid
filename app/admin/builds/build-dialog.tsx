@@ -147,6 +147,11 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
         }).catch((error) => console.error("Error deleting data:", error));
     }
 
+    const openInvoice = () => {
+        // open /admin/invoice/approval?id=${id}
+        window.open(`/admin/invoice/approval?id=${id}`, '_blank');
+    }
+
     return (
         <Dialog open={isOpen} onOpenChange={handleClose}>
             <DialogContent className="bg-[#0B192C] text-white h-[80vh] max-w-[70%] overflow-y-auto">
@@ -158,7 +163,7 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                     <p>Loading build...</p>
                 ) : (
                     <div>
-                        <Button variant={"success"} className="" onClick={handleSubmit}>Create Invoice</Button>
+                        <Button variant={"success"} className="" onClick={openInvoice}>Create Invoice</Button>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-10 mt-5">
                             {data.map((item, index) => (
                                 <div key={index} onClick={() => handleItemClick(item)}>

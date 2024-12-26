@@ -78,18 +78,18 @@ export default function PeekCarousel() {
   return (
     <div>
       <div className="bg-[#36343A] pt-10">
-        <div className="ml-10">
+        <div className="ml-10 mt-28">
           <h1 className="text-3xl font-semibold text-left text-white">Explore Our Prebuilt PC Collection</h1>
           <p className="text-lg text-white text-left font-light">High-performance, expertly crafted PCs</p>
         </div>
 
-        <div className="w-full mx-auto dark text-foreground py-8 rounded-xl">
+        <div className="w-full mx-auto dark text-foreground py-8 rounded-xl ">
           <Carousel
             opts={{
               align: "center",
             }}
             setApi={setApi}
-            className="relative overflow-x-visible"
+            className="relative overflow-x-visible  mb-28"
           >
             <CarouselContent className="">
               {prebuilts.map((prebuilt, index) => (
