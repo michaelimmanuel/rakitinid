@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { redirect } from 'next/navigation'
 const user = "rakitinlah21";
-const pw = "rakitinlah99s";
+const pw = "rakitinlah99S";
 
 export async function POST(req : any) {
   // Parse the request body
