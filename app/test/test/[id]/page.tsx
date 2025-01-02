@@ -11,7 +11,7 @@ const InvoicePage = () => {
   useEffect(() => {
     const fetchBuildData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/builds/" + id);
+        const response = await fetch("/api/builds/" + id);
         const data = await response.json();
 
         // Format the data for InvoicePDF component

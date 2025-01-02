@@ -76,7 +76,7 @@ export default function Banner() {
         formData.append("alt", newBanner.alt);
 
         axios
-            .post("http://localhost:3000/api/banner", formData)
+            .post("/api/banner", formData)
             .then((response) => {
                 setBanners([...banners, response.data]);
             })
@@ -87,7 +87,7 @@ export default function Banner() {
 
     const handleDelete = (id: string) => {
         axios
-            .delete(`http://localhost:3000/api/banner/${id}`)
+            .delete(`/api/banner/${id}`)
             .then(() => {
                 setBanners(banners.filter((banner) => banner.id !== id));
             })
@@ -108,7 +108,7 @@ export default function Banner() {
         // get only id and order
         const newOrder = banners.map(({ id, order }) => ({ id, order }));
         axios
-            .put("http://localhost:3000/api/banner", newOrder)
+            .put("/api/banner", newOrder)
             .then((response) => {
                 console.log("Response data:", response.data);
             })
