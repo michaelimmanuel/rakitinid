@@ -167,6 +167,8 @@ model build {
   quantity       Int      @default(0)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
+  totalCost     Float?   @default(0)
+  service       Json?
 }
 
 model admin {
@@ -200,7 +202,7 @@ model fan {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
 
-  fans_purchase_price fan_purchase_price[]
+  fan_purchase_price fan_purchase_price[]
 }
 
 model accessories {
@@ -324,6 +326,14 @@ model banner {
   src          String
   alt          String
   order        Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
+}
+
+model service{
+  id           Int      @id @default(autoincrement())
+  name         Json
+  price        Float
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
 }

@@ -54,7 +54,7 @@ export default function Banner() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3000/api/banner")
+            .get("/api/banner")
             .then((response) => {
                 console.log("Response data:", response.data);
                 setBanners(response.data);

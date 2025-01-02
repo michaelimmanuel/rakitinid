@@ -36,6 +36,8 @@ const sidebarData = {
   ],
   Builds: [
     { title: "View Builds", url: "/admin/builds", icon: Box },
+    { title: "Create Build", url: "/admin/builds/create", icon: Edit },
+    { title: "Create Service", url: "/admin/service", icon: Edit }, 
   ],
   Content : [
     { title: "Edit Prebuilt Section", url: "/admin/prebuilt", icon: Edit },

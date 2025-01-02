@@ -18,6 +18,7 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
     const [selectedData, setSelectedData] = useState<{ [key: string]: { name: string; price: number; socket_type_id?: string } }>({});
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
+    const [fields, setFields] = useState<{ name: string; price: string }[]>([]);
 
     const handleClose = () => {
         setSelectedData({}); // Clear the selected data
@@ -46,13 +47,18 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
 
     const calculateTotalPrice = () => {
         const allItems = [...data, ...fans, ...accessories]; // Combine all items, fans, and accessories
-        for (let i in allItems) {
-            console.log(allItems[i].toLowerCase().replace(/\s/g, '') + "Price: " + initialData[`${allItems[i].toLowerCase().replace(/\s/g, '')}Price`]);
-        }
-
-        return allItems.reduce((total, item) => {
-            return total + (initialData[`${item.toLowerCase().replace(/\s/g, '')}Price`] || 0); 
+        const itemsTotal = allItems.reduce((total, item) => {
+            return total + (initialData[`${item.toLowerCase().replace(/\s/g, '')}Price`] || 0);
         }, 0);
+    
+        // Calculate services total
+        const servicesTotal = fields.reduce((total, field) => {
+            const price = parseFloat(field.price) || 0; // Ensure the price is a number
+            return total + price;
+        }, 0);
+    
+        // Add items total and services total
+        return itemsTotal + servicesTotal;
     };
 
     const data = ["Processor", "Motherboard", "GPU", "RAM", "Storage", "PSU", "Casing", "Cooler"];
@@ -134,6 +140,14 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
             payload[key.toLowerCase()] = selectedData[key].name;
             payload[`${key.toLowerCase()}Price`] = selectedData[key].price;
         })
+
+        if(fields.length > 0) {
+            payload["service"] = fields;
+        }
+
+        payload["totalPrice"] = calculateTotalPrice();
+
+        console.log("Payload:", payload); // Check the payload before sending it to the API
         axios.put(`/api/builds/${id}`, payload).then((response) => {
             console.log("PUT Response:", response.data); // Check what the API returns
             fetchData(id); // Refresh the data
@@ -151,6 +165,34 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
         // open /admin/invoice/approval?id=${id}
         window.open(`/admin/invoice/approval?id=${id}`, '_blank');
     }
+
+
+        // Add a new field
+    const handleAddField = () => {
+        setFields([...fields, { name: '', price: '' }]);
+    };
+
+    // Update a field
+    const handleFieldChange = (index: number, key: 'name' | 'price', value: string) => {
+        const updatedFields = [...fields];
+        updatedFields[index][key] = value;
+        setFields(updatedFields);
+    };
+
+    // Remove a field
+    const handleRemoveField = (index: number) => {
+        const updatedFields = fields.filter((_, i) => i !== index);
+        setFields(updatedFields);
+    };
+
+    const updateService = () => {
+        console.log(fields);
+        // update the total price
+        const total = calculateTotalPrice();
+        // update the database
+
+
+    };
 
     return (
         <Dialog open={isOpen} onOpenChange={handleClose}>
@@ -214,6 +256,39 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                                     </div>
                                 </div>
                             ))}
+                            
+                            <div className="flex flex-col items-center mt-10 mb-28">
+                                <Button variant={"default"} className="w-full"  onClick={handleAddField} >Add Service</Button>
+                                {fields.length > 0 && (
+                                    <Button variant={"default"} className="w-full mt-5" onClick={updateService}>Save Service Data</Button>
+                                )}
+                                    <div className="mt-4 ">
+                                    {fields.map((field, index) => (
+                                    <div key={index} className="flex space-x-2 text-black">
+                                        <input
+                                        type="text"
+                                        placeholder="Name"
+                                        value={field.name}
+                                        onChange={(e) => handleFieldChange(index, 'name', e.target.value)}
+                                        className="p-2 border rounded"
+                                        />
+                                        <input
+                                        type="text"
+                                        placeholder="Value"
+                                        value={field.price}
+                                        onChange={(e) => handleFieldChange(index, 'price', e.target.value)}
+                                        className="p-2 border rounded"
+                                        />
+                                        <button
+                                        className="p-2 bg-red-500 text-white rounded"
+                                        onClick={() => handleRemoveField(index)}
+                                        >
+                                        Remove
+                                        </button>
+                                    </div>
+                                    ))}
+                                </div>
+                            </div>
 
                             <div className="w-full">
                                 <div className="mt-5">
@@ -226,6 +301,8 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                                 <Button variant={"success"} className="w-full" onClick={handleSubmit}>Edit</Button>
                             </div>
                         </div>
+
+                        
                     </div>
                 )}
             </DialogContent>

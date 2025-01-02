@@ -54,6 +54,9 @@ export async function POST(req: Request, { params }: { params: { slug: Slug } })
     if (fields.socket_type_id && typeof fields.socket_type_id === 'string') {
       fields.socket_type_id = parseInt(fields.socket_type_id, 10);
     }
+    if (fields.quantity && typeof fields.quantity === 'string') {
+      fields.quantity = parseInt(fields.quantity, 10);
+    }
 
     // Create a new entry in the database
     const newEntry = await db.create({

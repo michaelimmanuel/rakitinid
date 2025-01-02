@@ -20,7 +20,7 @@ export default function HeroPage() {
     const [images, setImages] = useState<any[]>([]);
     useEffect(() => {
         axios
-            .get("http://localhost:3000/api/banner")
+            .get("/api/banner")
             .then((response) => {
                 console.log("Response data:", response.data);
                 setImages(response.data);
