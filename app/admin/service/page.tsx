@@ -34,6 +34,11 @@ export default function Page(){
         const name = fields
         console.log('Service Name:', name);
         console.log('Service Total:', total);
+
+        if(!name || !total){
+            throw new Error('Please fill in all fields');
+         
+        }
         axios.post('/api/service', {
             name: name,
             price: total
@@ -48,9 +53,13 @@ export default function Page(){
 
     return (
         <div className="flex flex-col items-center mt-10 mb-28">
-            <Button variant={"default"} className="w-full"  onClick={handleAddField} >Add Service</Button>
+            
            
             <div className="mt-4 ">
+            <Button variant={"default"} className="w-full"  onClick={handleAddField} >Add Service</Button>
+            {fields.length > 0 && (
+                <Button variant={"default"} className="w-full mt-5 mb-5" onClick={updateService}>Save Service Data</Button>
+            )}
                 {fields.map((field, index) => (
                 <div key={index} className="flex space-x-2 text-black">
                     <input
@@ -77,9 +86,7 @@ export default function Page(){
                 ))}
             </div>
 
-            {fields.length > 0 && (
-                <Button variant={"default"} className="w-full mt-5" onClick={updateService}>Save Service Data</Button>
-            )}
+           
         </div>
     );
 }

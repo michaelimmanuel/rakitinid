@@ -1,4 +1,11 @@
 
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+  } from "@/components/ui/accordion"
+
 
 export default function Service(){
     return (
@@ -30,6 +37,79 @@ export default function Service(){
                     </svg>
                     <h1 className="text-sm lg:text-3xl text-center font-light mt-2 text-center">Maintenance</h1>
                 </div>
+            </div>
+
+            <div className="mt-28">
+                <div className="text-center text-white">
+                    <h1 className="text-white text-xl lg:text-3xl text-center font-bold mt-10">PC Maintenance Package</h1>
+                </div>
+                <div className="text-white text-left mt-10">
+                    <Accordion type="single" collapsible className="w-full">
+                        <AccordionItem value="accordion1" className="border-white/20">
+                            <AccordionTrigger className="text-xl font-semibold [&[data-state=open]>svg]:rotate-180 [&>svg]:text-white">
+                                <div className="flex justify-between w-full">
+                                    <div className=" pr-4 ">
+                                        Ultimate Package Cleaning ATX - MATX
+                                    </div>
+                                    <div className=" pl-4 mr-4 font-extralight">
+                                        400K
+                                    </div>
+                                </div>
+                            </AccordionTrigger>
+                            <AccordionContent className="text-white/90 capitalize">
+                                cuci detailing casing, bongkar total, detailing component, thermal paste premium, rakit ulang
+                            </AccordionContent>
+                        </AccordionItem>
+
+                        <AccordionItem value="accordion2" className="border-white/20">
+                            <AccordionTrigger className="text-xl font-semibold [&[data-state=open]>svg]:rotate-180 [&>svg]:text-white">
+                                <div className="flex justify-between w-full">
+                                    <div className=" pr-4">
+                                        Gold Package Cleaning ATX - MATX
+                                    </div>
+                                    <div className=" pl-4 mr-4 font-extralight">
+                                        300K
+                                    </div>
+                                </div>
+                            </AccordionTrigger>
+                            <AccordionContent className="text-white/90 capitalize">
+                                cuci casing, bongkar total, cleaning component, thermal paste premium, rakit ulang
+                            </AccordionContent>
+                        </AccordionItem>
+
+                        <AccordionItem value="accordion3" className="border-white/20">
+                            <AccordionTrigger className="text-xl font-semibold [&[data-state=open]>svg]:rotate-180 [&>svg]:text-white">
+                                <div className="flex justify-between w-full">
+                                    <div className=" pr-4">
+                                        Silver Package Cleaning ATX - MATX
+                                    </div>
+                                    <div className=" pl-4 mr-4 font-extralight">
+                                        175K
+                                    </div>
+                                </div>
+                            </AccordionTrigger>
+                            <AccordionContent className="text-white/90 capitalize">
+                                cleaning component, repasta CPU dan rakit ulang
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="accordion4" className="border-white/20">
+                            <AccordionTrigger className="text-xl font-semibold [&[data-state=open]>svg]:rotate-180 [&>svg]:text-white">
+                                <div className="flex justify-between w-full">
+                                    <div className=" pr-4">
+                                        Bronze Package Cleaning
+                                    </div>
+                                    <div className=" pl-4 mr-4 font-extralight">
+                                        125K
+                                    </div>
+                                </div>
+                            </AccordionTrigger>
+                            <AccordionContent className="text-white/90 capitalize">
+                                Repasta CPU & Cleaning component (dusting)
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                </div>
+
             </div>
         </div>
     );

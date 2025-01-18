@@ -132,7 +132,11 @@ export default function InvoiceApproval() {
       ) : (
         <p>Loading...</p>
       )}
-      <Button variant="success" onClick={() => console.log(selectedPrices)}>
+      <Button variant="success" onClick={() => {
+        // redirect to test/test/[id] page
+        window.location.href = `/test/test/${id}`
+        
+      }}>
         Approve Invoice
       </Button>
     </div>

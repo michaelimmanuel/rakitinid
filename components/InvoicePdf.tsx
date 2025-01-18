@@ -107,25 +107,31 @@ const InvoicePDF = ({ invoiceData }: any) => (
       <View style={styles.goodsSection}>
         {/* Table Header */}
         <View style={styles.tableHeader}>
-          <Text style={styles.tableCell}>GOODS/SERVICES</Text>
-          <Text style={styles.tableCell}>QTY</Text>
-          <Text style={styles.tableCell}>PRICE</Text>
-          <Text style={styles.tableCell}>TOTAL</Text>
+          {Object.keys(invoiceData.items[0]).map((key: string, index: number) => (
+            <Text style={styles.tableCell} key={index}>
+              {key.toUpperCase()}
+            </Text>
+          ))}
         </View>
 
         {/* Table Rows */}
         {invoiceData.items.map((item: any, index: number) => (
           <View style={styles.tableRow} key={index}>
-            <Text style={styles.tableCell}>{item.description}</Text>
-            <Text style={styles.tableCell}>{item.quantity}</Text>
-            <Text style={styles.tableCell}>{item.price}</Text>
-            <Text style={styles.tableCell}>{item.total}</Text>
+            {Object.keys(item).map((key: string, index: number) => (
+              <Text style={styles.tableCell} key={index}>
+                {item[key]}
+              </Text>
+            ))}
           </View>
         ))}
       </View>
 
       {/* Total */}
       <Text style={styles.totalText}>Grand Total: {invoiceData.total}</Text>
+      {/* Signature Image */}
+      <View style={{ marginTop: 20, alignItems: "flex-end" }}>
+        <Image src="/images/signature.png" style={{ width: 250, height: 100 }} />
+      </View>
     </Page>
   </Document>
 );

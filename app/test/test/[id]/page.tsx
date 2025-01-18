@@ -13,26 +13,48 @@ const InvoicePage = () => {
       try {
         const response = await fetch("/api/builds/" + id);
         const data = await response.json();
-
-        // Format the data for InvoicePDF component
+      
+        // Function to dynamically format the items
+        const formatItem = (description : any , quantity : any, price : any) => {
+          if (!description || !price) return null; // Skip if description or price is null/empty
+          return { description, quantity, price, total: quantity * price };
+        };
+      
+        // Define all potential items dynamically
+        const items = [
+          formatItem(`Motherboard: ${data.motherboard}`, 1, data.motherboardPrice),
+          formatItem(`Processor: ${data.processor}`, 1, data.processorPrice),
+          formatItem(`RAM: ${data.ram}`, 1, data.ramPrice),
+          formatItem(`GPU: ${data.gpu}`, 1, data.gpuPrice),
+          formatItem(`Storage: ${data.storage}`, 1, data.storagePrice),
+          formatItem(`PSU: ${data.psu}`, 1, data.psuPrice),
+          formatItem(`Casing: ${data.casing}`, 1, data.casingPrice),
+          formatItem(`Fan 1: ${data.fan1}`, 1, data.fan1Price),
+          formatItem(`Fan 2: ${data.fan2}`, 1, data.fan2Price),
+          formatItem(`Fan 3: ${data.fan3}`, 1, data.fan3Price),
+          formatItem(`Fan 4: ${data.fan4}`, 1, data.fan4Price),
+          formatItem(`Accessories 1: ${data.accessories1}`, 1, data.accessories1Price),
+          formatItem(`Accessories 2: ${data.accessories2}`, 1, data.accessories2Price),
+          formatItem(`Accessories 3: ${data.accessories3}`, 1, data.accessories3Price),
+          formatItem(`Accessories 4: ${data.accessories4}`, 1, data.accessories4Price),
+          formatItem(`Cooler: ${data.cooler}`, 1, data.coolerPrice),
+          ...(data.service || []).map((service: { name: string; price: string }) => 
+            formatItem(`Service: ${service.name}`, 1, parseInt(service.price))
+          ), // Add services dynamically
+        ].filter(Boolean); // Remove any null items
+      
+        // Format the data for the InvoicePDF component
         const formattedData = {
           date: new Date(data.createdAt).toLocaleDateString(),
-          items: [
-            { description: `Motherboard: ${data.motherboard}`, quantity: 1, price: data.motherboardPrice, total: data.motherboardPrice },
-            { description: `Processor: ${data.processor}`, quantity: 1, price: data.processorPrice, total: data.processorPrice },
-            { description: `RAM: ${data.ram}`, quantity: 1, price: data.ramPrice, total: data.ramPrice },
-            { description: `GPU: ${data.gpu}`, quantity: 1, price: data.gpuPrice, total: data.gpuPrice },
-            { description: `Storage: ${data.storage}`, quantity: 1, price: data.storagePrice, total: data.storagePrice },
-            { description: `PSU: ${data.psu}`, quantity: 1, price: data.psuPrice, total: data.psuPrice },
-            { description: `Casing: ${data.casing}`, quantity: 1, price: data.casingPrice, total: data.casingPrice },
-          ],
+          items,
           total: data.totalPrice.toLocaleString(),
         };
-
+      
         setInvoiceData(formattedData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
+      
     };
 
     fetchBuildData();
