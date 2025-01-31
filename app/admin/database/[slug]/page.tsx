@@ -24,6 +24,8 @@ export default function Page({ params }: PageProps) {
   const slug = params.slug;
 
   const getData = (slug: string) => {
+    // clear data
+    setData([]);
     axios
       .get(`/api/${slug}`)
       .then((response) =>
@@ -44,7 +46,7 @@ export default function Page({ params }: PageProps) {
     }
   }, [slug]);
 
-  const excludeKeys = ["memory", "memory_type", "createdAt", "updatedAt", "id"];
+  const excludeKeys = [ "createdAt", "updatedAt", "id"];
   const tableHeaders = Object.keys(data[0] || {}).filter((key) => !excludeKeys.includes(key));
 
   const handleEdit = (id: number) => {
@@ -164,7 +166,11 @@ export default function Page({ params }: PageProps) {
 
       <DynamicModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false)
+          // refresh page
+          getData(slug);
+        }}
         onSubmit={handleUpdate}
         columns={tableHeaders}
         initialData={currentItem || {}} // Pass an empty object for creation
@@ -173,7 +179,10 @@ export default function Page({ params }: PageProps) {
 
       <EditPurchaseDialog
         isOpen={openModal !== 0}
-        onClose={() => setOpenModal(0)}
+        onClose={() => {
+          setOpenModal(0)
+          getData(slug);
+        }}
         id = {openModal}  
         slug = {slug}
       />
