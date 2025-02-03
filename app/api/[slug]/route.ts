@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { put } from '@vercel/blob';
 
 const prisma = new PrismaClient();
-type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage' | 'fan' | 'accessories'| 'cooler';
+type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage' | 'fan' | 'accessories'| 'cooler' | 'socket_types';
 
 
 const modelMap: Record<Slug, any> = {
@@ -17,6 +17,7 @@ const modelMap: Record<Slug, any> = {
   fan: prisma.fan,
   accessories: prisma.accessories,
   cooler: prisma.cooler,
+  socket_types: prisma.socket_type,
 };
 export async function POST(req: Request, { params }: { params: { slug: Slug } }) {
   const { slug } = params;

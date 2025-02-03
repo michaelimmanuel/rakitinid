@@ -141,12 +141,14 @@ export default function Page({ params }: PageProps) {
                 <TableCell key={key}>
                   {key === "image" ? (
                     <img src={item[key]} alt="Image" className="w-16 h-16 object-cover" />
+                  ) : key === "socket_type_id" ? (
+                    item["socket_type"] // Show the socket type name instead of ID
                   ) : (
                     item[key]
                   )}
                 </TableCell>
-              ))}
-              <TableCell>
+                ))}
+                          <TableCell>
                 <Button variant="outline" className="mr-2" onClick={() => handleEdit(item.id)}>
                   Edit
                 </Button>
