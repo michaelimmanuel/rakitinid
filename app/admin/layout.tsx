@@ -1,7 +1,7 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { Toaster } from "@/components/ui/toaster"
-
+import { Analytics } from '@vercel/analytics/next';
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
@@ -9,7 +9,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="w-full p-10">
         <SidebarTrigger />
         {children}
-        <Toaster />
+        
+        <Analytics/>
       </main>
     </SidebarProvider>
   )
