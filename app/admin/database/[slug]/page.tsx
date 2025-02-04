@@ -79,7 +79,7 @@ export default function Page({ params }: PageProps) {
           },
         })
         .then((response) => {
-          setData((prev) => [...prev, response.data]); // Add new data to the table
+          getData(slug); // Refresh the data
           setIsModalOpen(false); // Close modal
         })
         .catch((error) => console.error("Error creating data:", error));
