@@ -83,7 +83,12 @@ export async function GET(req: Request , { params }: { params: { slug: Slug } })
   }
 
   try {
-    const casings = await db.findMany();
+    const casings = await db.findMany({
+      orderBy: [
+        { brand: "asc" }, 
+        { name: "asc" } 
+    ],
+    });
     return NextResponse.json(casings, { status: 200 });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });

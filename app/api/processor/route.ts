@@ -7,9 +7,15 @@ export async function GET(req: Request ) {
 
   try {
     const processors = await prisma.processor.findMany({
+      
         include : {
             socket_type: true,
-        }
+        },
+        // sort by name
+        orderBy: [{
+            name: 'asc',
+          }
+        ],
     });
     const processedData = processors.map((processor) => ({
         ...processor,

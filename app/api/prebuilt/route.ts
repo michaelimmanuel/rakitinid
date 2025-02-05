@@ -67,13 +67,15 @@ export async function POST(req: Request, res: NextResponse) {
   }
 }
 
-export async function GET(req: NextRequest, res: NextResponse) {
+
+export async function GET(req: NextRequest) {
   try {
     const prebuilts = await prisma.prebuilt.findMany({
       orderBy: {
-        price: 'asc',
+        price: 'asc', // Sorting by price in ascending order
       },
     });
+
     return NextResponse.json(prebuilts, { status: 200 });
   } catch (error) {
     console.error("Error fetching prebuilts:", error);
