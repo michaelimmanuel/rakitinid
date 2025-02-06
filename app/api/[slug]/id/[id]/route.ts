@@ -71,9 +71,15 @@ export async function PUT(req: Request, { params }: { params: { slug: Slug; id: 
       fields.price = parseFloat(fields.price);
     }
 
+    if (fields.quantity && typeof fields.quantity === 'string') {
+      fields.quantity = parseFloat(fields.quantity);
+    }
+
     if (fields.socket_type_id && typeof fields.socket_type_id === 'string') {
       fields.socket_type_id = parseInt(fields.socket_type_id, 10);
     }
+
+    
 
     // Remove id to avoid overwriting it
     delete fields.id;
