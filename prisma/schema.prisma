@@ -131,13 +131,14 @@ model casing {
 model build {
   id            Int      @id @default(autoincrement())
   status        String   @default("Not Approved")
-  motherboard   String
-  processor     String
-  ram           String
-  gpu           String
-  storage       String
-  psu           String
-  casing        String
+  motherboard   String?
+  processor     String?
+  ram           String?
+  gpu           String?
+  storage1       String?
+  storage2       String?
+  psu           String?
+  casing        String?
   fan1          String?
   fan2          String?
   fan3          String?
@@ -146,24 +147,27 @@ model build {
   accessories2  String?
   accessories3  String?
   accessories4  String?
-  cooler        String
-  motherboardPrice Float
-  processorPrice Float
-  ramPrice       Float
-  gpuPrice       Float
-  storagePrice   Float
-  psuPrice       Float
-  casingPrice    Float
-  fan1Price      Float        
-  fan2Price      Float        
-  fan3Price      Float        
-  fan4Price      Float        
-  accessories1Price Float     
-  accessories2Price Float     
-  accessories3Price Float     
-  accessories4Price Float     
-  coolerPrice    Float
-  totalPrice     Float
+  accessories5  String?
+  cooler        String?
+  motherboardPrice Float?
+  processorPrice Float?
+  ramPrice       Float?
+  gpuPrice       Float?
+  storage1Price   Float?
+  storage2Price   Float?
+  psuPrice       Float?
+  casingPrice    Float?
+  fan1Price      Float?        
+  fan2Price      Float?        
+  fan3Price      Float?        
+  fan4Price      Float?        
+  accessories1Price Float?     
+  accessories2Price Float?     
+  accessories3Price Float?     
+  accessories4Price Float?     
+  accessories5Price Float? 
+  coolerPrice    Float?
+  totalPrice     Float?
   quantity       Int      @default(0)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
@@ -187,6 +191,7 @@ model prebuilt {
   price        Float
   coverImage   String?
   image        String?
+  category     String   @default("Gaming")
   quantity     Int      @default(0)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())

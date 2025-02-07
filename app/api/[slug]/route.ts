@@ -73,23 +73,45 @@ export async function POST(req: Request, { params }: { params: { slug: Slug } })
   }
 }
 
-export async function GET(req: Request , { params }: { params: { slug: Slug } }) {
+export async function GET(req: Request, { params }: { params: { slug: Slug } }) {
   const { slug } = params;
-
   const db = modelMap[slug];
 
   if (!db) {
-    return NextResponse.json({ error: 'Invalid slug' }, { status: 400 });
+    return NextResponse.json({ error: "Invalid slug" }, { status: 400 });
+  }
+
+  let orderBy;
+
+  switch (slug) {
+    case "processor":
+      orderBy = { name: "asc" };
+      break;
+    case "psu":
+      orderBy = { wattage: "asc" };
+      break;
+    
+    case "storage":
+      // Use MySQL's SIGNED cast to sort string as numbers
+      try {
+        const data = await prisma.$queryRawUnsafe(`
+          SELECT * FROM ${slug} 
+          ORDER BY CAST(capacity AS SIGNED) ASC
+        `);
+        return NextResponse.json(data, { status: 200 });
+      } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      } finally {
+        await prisma.$disconnect();
+      }
+    default:
+      orderBy = { price: "asc" };
+      break;
   }
 
   try {
-    const casings = await db.findMany({
-      orderBy: [
-        { brand: "asc" }, 
-        { name: "asc" } 
-    ],
-    });
-    return NextResponse.json(casings, { status: 200 });
+    const data = await db.findMany({ orderBy });
+    return NextResponse.json(data, { status: 200 });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   } finally {

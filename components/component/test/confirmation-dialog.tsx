@@ -24,12 +24,16 @@ export function ConfirmationDialog({ isOpen, onClose, items }: ItemDialogProps) 
     }
 
     const handleSubmit = async () => {
+
+      
+
         const payload = {
           motherboard: items.Motherboard?.name || "",
           processor: items.Processor?.name || "",
           ram: items.RAM?.name || "",
           gpu: items.GPU?.name || "",
-          storage: items.Storage?.name || "",
+          storage1: items["Storage 1"]?.name || "",
+          storage2: items["Storage 2"]?.name || "",
           psu: items.PSU?.name || "",
           casing: items.Casing?.name || "",
           fan1 : items["Fan 1"]?.name || "",
@@ -40,11 +44,13 @@ export function ConfirmationDialog({ isOpen, onClose, items }: ItemDialogProps) 
           accessories2 : items["Accessories 2"]?.name || "",
           accessories3 : items["Accessories 3"]?.name || "",
           accessories4 : items["Accessories 4"]?.name || "",
+          accessories5 : items["Accessories 5"]?.name || "",
           motherboardPrice: items.Motherboard?.price || 0,
           processorPrice: items.Processor?.price || 0,
           ramPrice: items.RAM?.price || 0,
           gpuPrice: items.GPU?.price || 0,
-          storagePrice: items.Storage?.price || 0,
+          storage1Price: items["Storage 1"]?.price || 0,
+          storage2Price: items["Storage 2"]?.price || 0,
           psuPrice: items.PSU?.price || 0,
           casingPrice: items.Casing?.price || 0,
           fan1Price : items["Fan 1"]?.price || 0,
@@ -55,10 +61,13 @@ export function ConfirmationDialog({ isOpen, onClose, items }: ItemDialogProps) 
           accessories2Price : items["Accessories 2"]?.price || 0,
           accessories3Price : items["Accessories 3"]?.price || 0,
           accessories4Price : items["Accessories 4"]?.price || 0,
+          accessories5Price : items["Accessories 5"]?.price || 0,
           cooler : items.Cooler?.name || "",
           coolerPrice : items.Cooler?.price || 0,
           totalPrice: getTotalPrice(),
         };
+
+    
 
          
         try {

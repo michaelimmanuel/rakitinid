@@ -46,7 +46,7 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
     }
 
     const calculateTotalPrice = () => {
-        const allItems = [...data, ...fans, ...accessories]; // Combine all items, fans, and accessories
+        const allItems = [...data, ...fans, ...storage,...accessories]; // Combine all items, fans, and accessories
         const itemsTotal = allItems.reduce((total, item) => {
             return total + (initialData[`${item.toLowerCase().replace(/\s/g, '')}Price`] || 0);
         }, 0);
@@ -61,7 +61,8 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
         return itemsTotal + servicesTotal;
     };
 
-    const data = ["Processor", "Motherboard", "GPU", "RAM", "Storage", "PSU", "Casing", "Cooler"];
+    const data = ["Processor", "Motherboard", "GPU", "RAM", "PSU", "Casing", "Cooler"];
+    const storage = ["Storage 1", "Storage 2"];
     const fans = ['Fan 1', 'Fan 2', 'Fan 3', 'Fan 4']
     const accessories = ["Accessories 1", "Accessories 2", "Accessories 3", "Accessories 4"];
 
@@ -81,14 +82,16 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                     "Motherboard": response.data.motherboard,
                     "GPU": response.data.gpu,
                     "RAM": response.data.ram,
-                    "Storage": response.data.storage,
+                    "Storage 1": response.data.storage1,
+                    "Storage 2": response.data.storage2,
                     "PSU": response.data.psu,
                     "Casing": response.data.casing,
                     "processorPrice": response.data.processorPrice,
                     "motherboardPrice": response.data.motherboardPrice,
                     "gpuPrice": response.data.gpuPrice,
                     "ramPrice": response.data.ramPrice,
-                    "storagePrice": response.data.storagePrice,
+                    "storage1Price": response.data.storage1Price,
+                    "storage2Price": response.data.storage2Price,
                     "psuPrice": response.data.psuPrice,
                     "casingPrice": response.data.casingPrice,
                     "Fan 1": response.data.fan1,
@@ -103,10 +106,12 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                     "Accessories 2": response.data.accessories2,
                     "Accessories 3": response.data.accessories3,
                     "Accessories 4": response.data.accessories4,
+                    "Accessories 5": response.data.accessories5,
                     "accessories1Price": response.data.accessories1Price,
                     "accessories2Price": response.data.accessories2Price,
                     "accessories3Price": response.data.accessories3Price,
                     "accessories4Price": response.data.accessories4Price,
+                    "accessories5Price": response.data.accessories5Price,
                     "Cooler": response.data.cooler,
                     "coolerPrice": response.data.coolerPrice,
                 });
@@ -217,6 +222,22 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                                         <p className="text-gray w-full text-sm">
                                             Rp {getItemPrice(item).toLocaleString()}
                                         </p>
+                                    </div>
+                                </div>
+                            ))}
+
+                            {storage.map((item, index) => (
+                                <div key={index}>
+                                    <h1 className="text-xl font-bold mb-3">{item}</h1>
+                                    <div className="flex flex-row h-auto rounded-lg text-black items-start p-3 border">
+                                        <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
+                                            <p className="text-gray w-full font-semibold">
+                                                {initialData[item] || `Select ${item}`}
+                                            </p>
+                                            <p className="text-gray w-full text-sm">
+                                                Rp {initialData[`${item.toLowerCase().replace(/\s/g, '')}Price`]}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             ))}

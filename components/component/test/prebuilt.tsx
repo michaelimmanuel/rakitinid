@@ -144,7 +144,7 @@ export default function PeekCarousel() {
 
       {/* Product Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="max-w-4xl w-[90vw] max-h-[90vh] overflow-auto bg-[#1e2124]">
+      <DialogContent className="max-w-7xl w-[90vw] max-h-[90vh] overflow-auto bg-[#1e2124]">
             {selectedData && (
             <div className="grid gap-6 sm:grid-cols-2 mt-5">
               <div className="relative aspect-square overflow-hidden bg-muted">

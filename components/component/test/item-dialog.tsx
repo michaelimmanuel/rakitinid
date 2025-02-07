@@ -41,6 +41,9 @@ export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent, socket
       } else if(/^accessories/i.test(name)){
         const response = await axios.get(`/api/accessories`);
         setItems(response.data);
+      } else if(/^storage/i.test(name)){
+        const response = await axios.get(`/api/storage`);
+        setItems(response.data);
         
       }else {
         const response = await axios.get(`/api/${name.toLowerCase()}`); // Assuming endpoint matches item name
@@ -60,7 +63,7 @@ export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent, socket
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white text-black">
+      <DialogContent className="bg-white text-black w-7xl">
         <DialogHeader>
           <DialogTitle>Pick Your {itemName}</DialogTitle>
         </DialogHeader>
@@ -71,14 +74,19 @@ export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent, socket
         ) : items.length > 0 ? (
           <ul className="space-y-4 overflow-y-auto max-h-96">
             {items.map((item, index) => (
-              <li
-                key={index}
-                className="p-2 border rounded-lg cursor-pointer hover:bg-gray-100"
-                onClick={() => handleSelect(item)}
-              >
-                <p className="font-bold">{item.name}</p>
-                <p className="text-gray-500">Price: Rp {item.price.toLocaleString()}</p>
-              </li>
+                  <li
+                    key={index}
+                    className="p-2 border rounded-lg cursor-pointer hover:bg-gray-100 flex justify-between items-center"
+                    onClick={() => handleSelect(item)}
+                  >
+                    <div>
+                      <p className="font-bold">{item.name}</p>
+                      <p className="text-gray-500">Price: Rp {item.price.toLocaleString()}</p>
+                    </div>
+                    <div>
+                      <img src={item.image} alt={item.name} className="max-w-[50px] max-h-[50px]" />
+                    </div>
+                  </li>
             ))}
           </ul>
         ) : (
