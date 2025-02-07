@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from "@/components/ui/card"
+import Autoplay from "embla-carousel-autoplay"
+
 
 import {
     Carousel,
@@ -37,7 +38,16 @@ export default function HeroPage() {
                 <div className="hidden lg:block relative z-0">
                     <div className="relative z-0 h-screen overflow-hidden">
                     {/* Hero Image */}
-                    <Carousel className="absolute inset-0 w-full h-full">
+                    <Carousel className="absolute inset-0 w-full h-full"
+                      plugins={[
+                        Autoplay({
+                          delay: 3000,
+                        }),
+                      ]}
+                      opts={{
+                        loop: true,
+                      }}
+                        >
                         <CarouselContent className='w-dvh h-dvh'>
                         {images.map((image, index) => (
                         <CarouselItem key={index} className='w-dvh h-dvh relative'>

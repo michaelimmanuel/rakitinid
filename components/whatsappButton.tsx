@@ -17,7 +17,7 @@ export default function AuthenticWhatsAppButton({ phoneNumber, message = 'Hello!
   return (
     <button
       onClick={handleClick}
-      className="fixed bottom-24 right-24 z-50 flex h-20 w-20 items-center justify-center rounded-full bg-[#25D366] shadow-lg transition-all hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
+      className="fixed lg:bottom-24 lg:right-24 bottom-5 right-5 z-50 flex h-20 w-20 items-center justify-center rounded-full bg-[#25D366] shadow-lg transition-all hover:bg-[#128C7E] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
       aria-label="Chat on WhatsApp"
     >
       <div className="relative h-20 w-20 overflow-hidden rounded-full">
