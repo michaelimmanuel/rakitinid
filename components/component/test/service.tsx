@@ -57,12 +57,29 @@ export default function Service(){
                                 </div>
                             </AccordionTrigger>
                             <AccordionContent className="text-white/90 capitalize">
-                                cuci detailing casing, bongkar total, detailing component, thermal paste premium, rakit ulang
+                                <div>
+                                    cuci detailing casing, bongkar total, detailing component, thermal paste premium, rakit ulang
+                                </div>
+                                <div className="flex flex-row justify-around gap-4 mt-4">
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                </div>
                             </AccordionContent>
                         </AccordionItem>
 
                         <AccordionItem value="accordion2" className="border-white/20">
                             <AccordionTrigger className="text-xl font-semibold [&[data-state=open]>svg]:rotate-180 [&>svg]:text-white">
+                            
                                 <div className="flex justify-between w-full">
                                     <div className=" pr-4">
                                         Gold Package Cleaning ATX - MATX
@@ -70,10 +87,26 @@ export default function Service(){
                                     <div className=" pl-4 mr-4 font-extralight">
                                         300K
                                     </div>
-                                </div>
+                            </div>
                             </AccordionTrigger>
                             <AccordionContent className="text-white/90 capitalize">
-                                cuci casing, bongkar total, cleaning component, thermal paste premium, rakit ulang
+                                <div>
+                                    cuci casing, bongkar total, cleaning component, thermal paste premium, rakit ulang
+                                </div>
+                                <div className="flex flex-row justify-around gap-4 mt-4">
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                </div>
                             </AccordionContent>
                         </AccordionItem>
 
@@ -89,7 +122,23 @@ export default function Service(){
                                 </div>
                             </AccordionTrigger>
                             <AccordionContent className="text-white/90 capitalize">
-                                cleaning component, repasta CPU dan rakit ulang
+                                <div>
+                                    cleaning component, repasta CPU dan rakit ulang
+                                </div>
+                                <div className="flex flex-row justify-around gap-4 mt-4">
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                </div>
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="accordion4" className="border-white/20">
@@ -104,7 +153,23 @@ export default function Service(){
                                 </div>
                             </AccordionTrigger>
                             <AccordionContent className="text-white/90 capitalize">
-                                Repasta CPU & Cleaning component (dusting)
+                                <div>
+                                    Repasta CPU & Cleaning component (dusting)
+                                </div>
+                                <div className="flex flex-row justify-around gap-4 mt-4">
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <img src="https://placehold.co/200" alt="" />
+                                        <img src="https://placehold.co/200" alt="" />
+                                    </div>
+                                </div>
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
