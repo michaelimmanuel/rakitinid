@@ -100,3 +100,12 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
 
   return NextResponse.json({ success: true }, { status: 200 });
 }
+
+export async function GET(req: NextRequest, { params }: { params: { id: string } }){
+  const { id } = params;
+  
+  const prebuilt = await prisma.prebuilt.findUnique({
+    where: { id: parseInt(id) },
+  });
+  return NextResponse.json( prebuilt , { status: 200 });
+}

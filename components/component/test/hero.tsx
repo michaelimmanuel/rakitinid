@@ -35,7 +35,7 @@ export default function HeroPage() {
 
     return (
         <div>        
-                <div className="hidden lg:block relative z-0">
+            <div className="hidden lg:block relative z-0">
                     <div className="relative z-0 h-screen overflow-hidden">
                     {/* Hero Image */}
                     <Carousel className="absolute inset-0 w-full h-full"
@@ -95,8 +95,16 @@ export default function HeroPage() {
             </div>
 
             <div className="lg:hidden  bg-black block  ">
-                 <Carousel className="">
-                        <CarouselContent className=' h-[30dvh] mt-[65px]'>
+            <Carousel className=""
+             plugins={[
+                Autoplay({
+                  delay: 3000,
+                }),
+              ]}
+              opts={{
+                loop: true,
+              }}>
+                    <CarouselContent className=' h-[30dvh] mt-[65px]'>
                         {images.map((image, index) => (
                         <CarouselItem key={index} className=' h-full relative'>
                             <div className="relative w-screen h-full">
@@ -112,8 +120,34 @@ export default function HeroPage() {
                             </div>
                         </CarouselItem>
                         ))}
-                        </CarouselContent>
-                        </Carousel>
+                    </CarouselContent>
+                </Carousel>
+            <div className="flex items-center justify-center h-full">
+                    <div className="mt-[50px] mb-10 text-white sm:m-auto p-5 lg:p-20 max-w-3xl text-center lg:text-left  rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-[8%] lg:ml-10">
+                        <h1 className="text-2xl lg:text-5xl font-semibold"> 
+                            BUILD YOUR DREAM  PC TODAY.
+                        </h1>
+                        <p className="text-md lg:text-2xl mt-10 lg:mt-20 lg:tracking-wide font-normal text-justify sm:text-left">
+                            From gaming rigs to high-performance workstations, Rakitinlah.id offers custom PC solutions tailored to your needs. Experience power, precision, and personalized design.
+                        </p>
+                        <div className="lg:flex justify-between sm:h-3xl lg:h-full mt-5 lg:mt-10">
+                            <a href="#pcBuilder">
+                            <Button className="bg-rakitin-orange text-white h-lg text-md lg:text-lg lg:h-12">
+                                Start Building Now
+                            </Button>
+                            </a>
+                            <a href="#prebuild" className="text-md lg:text-lg">
+                            <h1 className="self-center mt-5 mb-5 text-sm tracking-tight lg:text-lg underline underline-offset-8 decoration-orange">
+                                Explore Ready-to-Ship PCs
+                            </h1>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                
             </div>
         </div>
 

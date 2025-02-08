@@ -6,6 +6,8 @@ import Service from "@/components/component/test/service";
 import WhatSetsUsApart from "@/components/component/test/whatSetsUs";
 import NavBar from "@/components/Navbar";
 import Contact from "@/components/component/test/contact";
+import Maintenence from "@/components/component/test/maintenence";
+import PrebuiltCategory from "@/components/component/test/prebuilt-category";
 export default function Page() {
     return (
         <div className="relative">
@@ -18,10 +20,13 @@ export default function Page() {
                     <Service />
                 </section>
                 <section id="prebuild">
-                    <Prebuild />
+                    <PrebuiltCategory />
                 </section>
                 <section id="whatSetsUsApart">
                     <WhatSetsUsApart />
+                </section>
+                <section>
+                    <Maintenence />
                 </section>
                 <section id="pcBuilder">
                     <PcBuilder />

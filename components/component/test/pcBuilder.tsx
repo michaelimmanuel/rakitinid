@@ -12,7 +12,8 @@ export default function PcBuilder() {
   const [selectedData, setSelectedData] = useState<{ [key: string]: { name: string; price: number; socket_type_id?: string } }>({});
   const [openDialog, setOpenDialog] = useState(false);
   const [openCasingDialog, setOpenCasingDialog] = useState(false); // State to handle CasingDialog
-  const data = ["Processor", "Motherboard", "GPU", "RAM", "PSU", "Casing", "Cooler"];
+  const data = ["Processor", "Motherboard", "GPU", "RAM", "PSU", "Casing"];
+  const cooler =["Cooler"]
   const storage = ["Storage 1", "Storage 2"];
   const fans = ['Fan 1', 'Fan 2', 'Fan 3', 'Fan 4']
   const accessories = ["Accessories 1", "Accessories 2", "Accessories 3", "Accessories 4", "Accessories 5"];
@@ -105,6 +106,24 @@ export default function PcBuilder() {
         </div>
         ))}
 
+        {cooler.map((item, index) => (
+          <div key={index}>
+          <h1 className="text-xl font-bold mb-3">{item}</h1>
+          <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
+            <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
+              <p className="text-gray w-full font-semibold">
+                {selectedData[item]?.name || `Select ${item}`}
+              </p>
+              {selectedData[item]?.price && (
+                <p className="text-gray w-full text-sm">
+                  Price: Rp {selectedData[item].price.toLocaleString()}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+        ))}
+
         {fans.map((item, index) => (
             <div key={index}>
               <h1 className="text-xl font-bold mb-3">{item}</h1>
@@ -143,8 +162,11 @@ export default function PcBuilder() {
         </div>
 
         <div className="flex flex-col items-center mt-10 mb-28  ">
-          <h1 className="text-xl font-bold mb-3">
+          <h1 className="text-xl font-bold mb-1">
             Total : Rp {Object.values(selectedData).reduce((acc, curr) => acc + curr.price, 0).toLocaleString()}
+          </h1>
+          <h1 className="text-sm font-light mb-3">
+            - Include Windows 11 Pro Pre-Installed -
           </h1>
           <button
             className="bg-rakitin-orange text-white p-2 rounded-md w-content"
