@@ -32,6 +32,9 @@ const config: Config = {
   		'gray': '#111111'
   	},
   	extend: {
+		fontFamily: {
+			ttSquares: ["TTSquares", "sans-serif"],
+		  },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
