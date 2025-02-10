@@ -8,11 +8,14 @@ interface PrebuiltItem {
     coverImage: string;
     createdAt: string;
     description: string;
+    subtitle: string;
     id: number;
     image: string;
     name: string;
     price: number;
+    items: string[];
     updatedAt: string;
+    discountPrice: number;
 }
 
 const page = () => {
@@ -40,15 +43,18 @@ const page = () => {
 
   return (
     <div>
-    <div className="bg-[#36343A] pt-10">
+    <div className="bg-black pt-10 items-center justify-center">
       
-      <div className="w-full mx-auto dark text-foreground py-8 rounded-xl grid grid-cols-2 gap-5">
+      <div className="text-foreground py- rounded-xl grid grid-cols-3 gap-5 items-center justify-items-center">
         {prebuilts.map((prebuilt, index) => (
             <PrebuildCard
                 src={prebuilt.coverImage}
+                subtitle={prebuilt.subtitle}
                 alt={prebuilt.name}
                 title={prebuilt.name}
                 price={prebuilt.price}
+                items={prebuilt.items}
+                discountPrice={prebuilt.discountPrice}
             />))}
         </div>
     </div>

@@ -187,12 +187,15 @@ model admin {
 model prebuilt {
   id           Int      @id @default(autoincrement())
   name         String
+  subtitle     String?
   description  String   @db.Text
   price        Float
   coverImage   String?
   image        String?
   category     String   @default("Gaming")
   quantity     Int      @default(0)
+  items        Json?
+  discountPrice Float   @default(0)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
 }

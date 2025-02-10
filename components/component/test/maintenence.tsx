@@ -6,6 +6,7 @@ import {
     AccordionTrigger,
   } from "@/components/ui/accordion"
 
+  import Image from 'next/image'
 const Maintenence = () => {
   return (
     <div className="my-28 px-6 lg:px-20">
@@ -31,16 +32,16 @@ const Maintenence = () => {
                             </div>
                             <div className="flex lg:flex-row flex-col justify-around gap-4 mt-4 ">
                                 <div className="flex gap-4 justify-around">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                                    <Image src="/ultimate/1-before.jpg" width={150} height={150} alt='paket ultimate'/>
+                                    <Image src="/ultimate/1-after.jpg"  width={150} height={150} alt='paket ultimate'/>
                                 </div>
                                 <div className="flex gap-4 justify-around">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                                    <Image src="/ultimate/2-before.jpg" width={150} height={150} alt='paket ultimate'/>
+                                    <Image src="/ultimate/2-after.jpg"  width={150} height={150} alt='paket ultimate'/>
                                 </div>
                                 <div className="flex gap-4 justify-around">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                                    <Image src="/ultimate/3-before.jpg" width={150} height={150} alt='paket ultimate'/>
+                                    <Image src="/ultimate/3-after.jpg"  width={150} height={150} alt='paket ultimate'/>
                                 </div>
                             </div>
                         </AccordionContent>
@@ -53,7 +54,7 @@ const Maintenence = () => {
                                 <div className=" pr-4">
                                     Gold Package Cleaning ATX - MATX
                                 </div>
-                                <div className=" pl-4 mr-4 font-extralight">
+                                <div className=" pl-4 mr-4 font-extrabold underline text-rakitin-orange">
                                     300K
                                 </div>
                         </div>
@@ -63,18 +64,18 @@ const Maintenence = () => {
                                 cleaning casing, bongkar total, cleaning component, thermal paste premium, rakit ulang
 
                             </div>
-                            <div className="flex flex-row justify-around gap-4 mt-4">
-                                <div className="flex gap-4">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                            <div className="flex lg:flex-row flex-col justify-around gap-4 mt-4 ">
+                                <div className="flex gap-4 justify-around">
+                                    <Image src="/gold/1-before.jpg" width={150} height={150} alt='paket gold'/>
+                                    <Image src="/gold/1-after.jpg"  width={150} height={150} alt='paket gold'/>
                                 </div>
-                                <div className="flex gap-4">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                                <div className="flex gap-4 justify-around">
+                                    <Image src="/gold/2-before.jpg" width={150} height={150} alt='paket gold'/>
+                                    <Image src="/gold/2-after.jpg"  width={150} height={150} alt='paket gold'/>
                                 </div>
-                                <div className="flex gap-4">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                                <div className="flex gap-4 justify-around">
+                                    <Image src="/gold/3-before.jpg" width={150} height={150} alt='paket gold'/>
+                                    <Image src="/gold/3-after.jpg"  width={150} height={150} alt='paket gold'/>
                                 </div>
                             </div>
                         </AccordionContent>
@@ -86,7 +87,7 @@ const Maintenence = () => {
                                 <div className=" pr-4">
                                     Silver Package Cleaning ATX - MATX
                                 </div>
-                                <div className=" pl-4 mr-4 font-extralight">
+                                <div className=" pl-4 mr-4 font-extrabold underline text-rakitin-orange">
                                     175K
                                 </div>
                             </div>
@@ -97,17 +98,17 @@ const Maintenence = () => {
 
                             </div>
                             <div className="flex flex-row justify-around gap-4 mt-4">
-                                <div className="flex gap-4">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                                <div className="flex gap-4 justify-around">
+                                        <Image src="/silver/1-before.jpg" width={150} height={150} alt='paket silver'/>
+                                        <Image src="/silver/1-after.jpg"  width={150} height={150} alt='paket silver'/>
                                 </div>
-                                <div className="flex gap-4">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                                <div className="flex gap-4 justify-around">
+                                    <Image src="/silver/2-before.jpg" width={150} height={150} alt='paket silver'/>
+                                    <Image src="/silver/2-after.jpg"  width={150} height={150} alt='paket silver'/>
                                 </div>
-                                <div className="flex gap-4">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                                <div className="flex gap-4 justify-around">
+                                    <Image src="/silver/3-before.jpg" width={150} height={150} alt='paket silver'/>
+                                    <Image src="/silver/3-after.jpg"  width={150} height={150} alt='paket silver'/>
                                 </div>
                             </div>
                         </AccordionContent>
@@ -118,7 +119,7 @@ const Maintenence = () => {
                                 <div className=" pr-4">
                                     Bronze Package Cleaning
                                 </div>
-                                <div className=" pl-4 mr-4 font-extralight">
+                                <div className="pl-4 mr-4 font-extrabold underline text-rakitin-orange">
                                     125K
                                 </div>
                             </div>
@@ -129,17 +130,17 @@ const Maintenence = () => {
 
                             </div>
                             <div className="flex flex-row justify-around gap-4 mt-4">
-                                <div className="flex gap-4">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                                <div className="flex gap-4 justify-around">
+                                        <Image src="/bronze/1-before.jpg" width={150} height={150} alt='paket bronze'/>
+                                        <Image src="/bronze/1-after.jpg"  width={150} height={150} alt='paket bronze'/>
                                 </div>
-                                <div className="flex gap-4">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                                <div className="flex gap-4 justify-around">
+                                    <Image src="/bronze/2-before.jpg" width={150} height={150} alt='paket bronze'/>
+                                    <Image src="/bronze/2-after.jpg"  width={150} height={150} alt='paket bronze'/>
                                 </div>
-                                <div className="flex gap-4">
-                                    <img src="https://placehold.co/150" alt="" />
-                                    <img src="https://placehold.co/150" alt="" />
+                                <div className="flex gap-4 justify-around">
+                                    <Image src="/bronze/3-before.jpg" width={150} height={150} alt='paket bronze'/>
+                                    <Image src="/bronze/3-after.jpg"  width={150} height={150} alt='paket bronze'/>
                                 </div>
                             </div>
                         </AccordionContent>

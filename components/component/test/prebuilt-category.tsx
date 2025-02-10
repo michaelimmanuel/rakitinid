@@ -27,7 +27,7 @@ const PrebuiltCategory = () => {
               }
             }>Shop Our Gaming PC</Button>
           </div>
-          <div className='flex flex-col bg-[#807b8a] p-10 w-full'>
+          <div className='flex flex-col p-10 w-full'>
             <Image src={"https://images.prismic.io/aftershock-singapore/ZsMs80aF0TcGJDTM_Group54.png?auto=format,compress"} 
               alt={"gaming pc"} width={350} height={350} className='mx-auto rounded-xl'/>
             <h1 className="text-center font-bold text-3xl mt-10">Workstation PC</h1>
