@@ -110,9 +110,12 @@ export default function PrebuiltPage() {
                   <div className="p-1 mx-2">
                     <PrebuildCard
                       src={prebuilt.coverImage}
+                      subtitle={prebuilt.subtitle}
                       alt={prebuilt.name}
                       title={prebuilt.name}
                       price={prebuilt.price}
+                      items={prebuilt.items}
+                      discountPrice={prebuilt.discountPrice}
                     />
                   </div>
                 </CarouselItem>
