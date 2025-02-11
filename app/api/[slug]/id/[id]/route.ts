@@ -1,10 +1,15 @@
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
-import { put } from '@vercel/blob';
+import { S3Client, PutObjectCommand, DeleteObjectCommand} from '@aws-sdk/client-s3';
+import { Upload } from '@aws-sdk/lib-storage'; // Import Upload utility from AWS SDK
+import fs from 'fs'; // for file handling
+import path from 'path';
 
-type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage' | 'fan' | 'accessories'| 'cooler';
+import s3 from '@/lib/s3';
+type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage' | 'fan' | 'accessories' | 'cooler';
 
 const prisma = new PrismaClient();
+
 
 const modelMap: Record<Slug, any> = {
   casing: prisma.casing,
@@ -17,6 +22,99 @@ const modelMap: Record<Slug, any> = {
   fan: prisma.fan,
   accessories: prisma.accessories,
   cooler: prisma.cooler,
+};
+
+// PUT handler: Update data and handle file upload with S3
+// PUT handler: Update data and handle file upload with S3
+export async function PUT(req: Request, { params }: { params: { slug: Slug; id: string } }) {
+  const { slug, id } = params;
+
+  if (!slug || !id) {
+    return NextResponse.json({ error: 'Missing slug or id in the request' }, { status: 400 });
+  }
+
+  const db = modelMap[slug];
+  try {
+    // Parse the form data (body and file)
+    const formData = await req.formData();
+    const fields: Record<string, any> = {};
+    let imageUrl: string | undefined;
+
+    for (const [key, value] of formData.entries()) {
+      if (key === 'image' && value instanceof File) {
+        const ext = value.name.split('.').pop();
+        const fileName = `${slug}-${id}.${ext}`;
+        
+        // Upload image to S3
+        try {
+          const upload = new Upload({
+            client: s3,
+            params: {
+              Bucket: 'rakitin-space',
+              Key: fileName,
+              Body: value.stream(),
+              ContentType: value.type,
+              ACL: 'public-read',
+            },
+          });
+
+          const result = await upload.done();
+          imageUrl = result.Location; // This will give you the correct URL
+          fields.image = imageUrl; // Save the URL in the database field
+        } catch (uploadError) {
+          console.error('Error during file upload:', uploadError);
+          return NextResponse.json({ error: 'Error uploading file to S3' }, { status: 500 });
+        }
+      } else {
+        fields[key] = value;
+      }
+    }
+
+    // Convert price if it's a string
+    if (fields.price && typeof fields.price === 'string') {
+      fields.price = parseFloat(fields.price);
+    }
+
+    if (fields.quantity && typeof fields.quantity === 'string') {
+      fields.quantity = parseFloat(fields.quantity);
+    }
+
+    if (fields.socket_type_id && typeof fields.socket_type_id === 'string') {
+      fields.socket_type_id = parseInt(fields.socket_type_id, 10);
+    }
+
+    // Remove id to avoid overwriting it
+    delete fields.id;
+
+    // Update the database record
+    const updatedData = await db.update({
+      where: { id: parseInt(id) },
+      data: fields,
+    });
+
+    return NextResponse.json({ message: 'Updated successfully', updated: updatedData }, { status: 200 });
+  } catch (error: any) {
+    console.error('Error in PUT handler:', error);
+    return NextResponse.json({ error: error.message || 'An error occurred' }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+
+// Helper function to delete a file from S3
+const deleteFromS3 = async (bucket: string, fileName: string) => {
+  const command = new DeleteObjectCommand({
+    Bucket: bucket,
+    Key: fileName,
+  });
+
+  try {
+    await s3.send(command);
+    console.log(`File ${fileName} deleted successfully`);
+  } catch (error : any) {
+    throw new Error('Error deleting from S3: ' + error.message);
+  }
 };
 
 // GET handler: Fetch data by slug and ID
@@ -37,69 +135,8 @@ export async function GET(req: Request, { params }: { params: { slug: Slug; id: 
   }
 }
 
-// PUT handler: Update data and handle file upload with Vercel Blob
-export async function PUT(req: Request, { params }: { params: { slug: Slug; id: string } }) {
-  const { slug, id } = params;
 
-  if (!slug || !id) {
-    return NextResponse.json({ error: 'Missing slug or id in the request' }, { status: 400 });
-  }
-
-  const db = modelMap[slug];
-  try {
-    // Parse the form data (body and file)
-    const formData = await req.formData();
-    const fields: Record<string, any> = {};
-    for (const [key, value] of formData.entries()) {
-      if (key === 'image' && value instanceof File) {
-        const ext = value.name.split('.').pop();
-        const fileName = `${slug}-${id}.${ext}`;
-        
-        // Upload file to Vercel Blob
-        const blobResult = await put(fileName, await value.arrayBuffer(), {
-          contentType: value.type,
-          access: 'public', 
-        });
-        fields.image = blobResult.url; // Save Blob URL in database
-      } else {
-        fields[key] = value;
-      }
-    }
-
-    // Convert price if it's a string
-    if (fields.price && typeof fields.price === 'string') {
-      fields.price = parseFloat(fields.price);
-    }
-
-    if (fields.quantity && typeof fields.quantity === 'string') {
-      fields.quantity = parseFloat(fields.quantity);
-    }
-
-    if (fields.socket_type_id && typeof fields.socket_type_id === 'string') {
-      fields.socket_type_id = parseInt(fields.socket_type_id, 10);
-    }
-
-    
-
-    // Remove id to avoid overwriting it
-    delete fields.id;
-
-    // Update the database record
-    const updatedData = await db.update({
-      where: { id: parseInt(id) },
-      data: fields,
-    });
-
-    return NextResponse.json({ message: 'Updated successfully', updated: updatedData }, { status: 200 });
-  } catch (error: any) {
-    console.error('Error in PUT handler:', error);
-    return NextResponse.json({ error: error.message || 'An error occurred' }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
-  }
-}
-
-// DELETE handler: Delete data and associated Blob
+// DELETE handler: Delete data and associated file from S3
 export async function DELETE(req: Request, { params }: { params: { slug: Slug; id: string } }) {
   const { slug, id } = params;
 
@@ -115,8 +152,11 @@ export async function DELETE(req: Request, { params }: { params: { slug: Slug; i
     }
 
     if (record.image) {
-      // Delete the file on Vercel Blob (optional, requires setup for delete endpoint)
-      console.log(`File to delete: ${record.image}`);
+      // Delete the file from S3
+      const fileName = record.image.split('/').pop();
+      if (fileName) {
+        await deleteFromS3('your-bucket-name', fileName); // Adjust with your bucket name
+      }
     }
 
     const deletedRecord = await db.delete({
