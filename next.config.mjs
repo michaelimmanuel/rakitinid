@@ -14,8 +14,12 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: "images.prismic.io",
+                hostname: "rakitin-space.sgp1.digitaloceanspaces.com",
                 port: ''
+            },
+            {
+                protocol: 'https',
+                hostname: "images.prismic.io",
             }
         ],
     },

@@ -3,14 +3,14 @@ import HeroPage from "@/components/component/test/hero";
 import PcBuilder from "@/components/component/test/pcBuilder";
 import Service from "@/components/component/test/service";
 import WhatSetsUsApart from "@/components/component/test/whatSetsUs";
-import NavBar from "@/components/Navbar";
+
 import Contact from "@/components/component/test/contact";
 import Maintenence from "@/components/component/test/maintenence";
 import PrebuiltCategory from "@/components/component/test/prebuilt-category";
 export default function Page() {
     return (
         <div className="relative">
-            <NavBar />
+            
             <main className="">
                 <section id="hero">
                     <HeroPage />

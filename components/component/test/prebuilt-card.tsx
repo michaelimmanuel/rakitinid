@@ -32,14 +32,14 @@ export default function PrebuildCard({
         quality={100}
       />
       <div className="bg-[#242424] py-2 px-5">
-        <ul className="list-none list-inside text-sm">
-          {items.map((item, index) => (
-            <li>{item}</li>
+      <ul className="list-none list-inside text-sm">
+          {(Array.isArray(items) ? items : JSON.parse(items || "[]")).map((item: string, index: number) => (
+            <li key={index}>{item}</li>
           ))}
         </ul>
       </div>
       <div className="bg-[#C62300] min-h-[80px] py-4 px-6 text-center align-center place-content-center">
-        {discountPrice ? (
+        {(discountPrice && discountPrice !== 0) ? (
           <div className="flex flex-col items-center">
             <span className="text-xl font-bold text-red-500">
               Rp. {discountPrice.toLocaleString()}

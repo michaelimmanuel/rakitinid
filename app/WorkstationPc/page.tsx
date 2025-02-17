@@ -2,7 +2,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import PrebuildCard from "@/components/component/test/prebuilt-card";
-import PrebuiltDetails from "@/components/component/test/prebuilt-detail";
 
 interface PrebuiltItem {
     coverImage: string;
@@ -28,15 +27,14 @@ const PRICE_RANGES = [
 const Page = () => {
     const [loading, setLoading] = useState(false);
     const [prebuilts, setPrebuilts] = useState<PrebuiltItem[]>([]);
-    const [selectedItem, setSelectedItem] = useState<PrebuiltItem | null>(null); // Modal state
-    const [isModalOpen, setIsModalOpen] = useState(false); // Track modal open state
 
+    // Refs for dynamic scrolling
     const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
     const fetchData = async () => {
         setLoading(true);
         try {
-            const response = await axios.get("/api/prebuilt/gaming");
+            const response = await axios.get("/api/prebuilt/workstation");
             console.log(response.data);
             setPrebuilts(response.data);
         } catch (error) {
@@ -57,16 +55,10 @@ const Page = () => {
         }
     };
 
-    // Open modal when clicking a prebuilt item
-    const openModal = (item: PrebuiltItem) => {
-        setSelectedItem(item);
-        setIsModalOpen(true);
-    };
-
     return (
-        <div className="bg-black text-white flex flex-col md:flex-row min-h-screen">
+        <div className="bg-black text-white flex h-screen">
             {/* Sidebar for dynamic filters */}
-            <div className="w-full md:w-1/4 p-6 bg-gray-900 flex flex-col gap-4 md:h-full md:sticky top-0">
+            <div className="w-1/4 p-6 bg-gray-900 flex flex-col gap-4">
                 <h2 className="text-xl font-bold mb-4">Filter By Price</h2>
                 {PRICE_RANGES.map((range) => (
                     <button
@@ -80,7 +72,7 @@ const Page = () => {
             </div>
 
             {/* Main Content */}
-            <div className="w-full md:w-3/4 p-6 overflow-y-auto">
+            <div className="w-3/4 p-6 overflow-y-auto">
                 {PRICE_RANGES.map((range) => {
                     const filteredItems = prebuilts.filter(
                         (p) => p.price >= range.min && p.price <= range.max
@@ -88,25 +80,20 @@ const Page = () => {
 
                     return (
                         <div key={range.label} ref={(el) => { sectionRefs.current[range.label] = el; }} className="mb-16 pt-20">
-                            <h2 className="text-2xl font-bold mb-10">{range.label}</h2>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                            <h2 className="text-2xl font-bold mb-10 ">{range.label}</h2>
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                                 {filteredItems.length > 0 ? (
                                     filteredItems.map((prebuilt) => (
-                                        <div
+                                        <PrebuildCard
                                             key={prebuilt.id}
-                                            onClick={() => openModal(prebuilt)}
-                                            className="cursor-pointer"
-                                        >
-                                            <PrebuildCard
-                                                src={prebuilt.coverImage}
-                                                subtitle={prebuilt.subtitle}
-                                                alt={prebuilt.name}
-                                                title={prebuilt.name}
-                                                price={prebuilt.price}
-                                                items={prebuilt.items}
-                                                discountPrice={prebuilt.discountPrice}
-                                            />
-                                        </div>
+                                            src={prebuilt.coverImage}
+                                            subtitle={prebuilt.subtitle}
+                                            alt={prebuilt.name}
+                                            title={prebuilt.name}
+                                            price={prebuilt.price}
+                                            items={prebuilt.items}
+                                            discountPrice={prebuilt.discountPrice}
+                                        />
                                     ))
                                 ) : (
                                     <p className="text-gray-400">No items in this range.</p>
@@ -116,9 +103,6 @@ const Page = () => {
                     );
                 })}
             </div>
-
-            {/* Floating Modal Component */}
-            <PrebuiltDetails isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} item={selectedItem} />
         </div>
     );
 };

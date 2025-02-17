@@ -26,8 +26,13 @@ interface CreateDialogProps {
 
 export default function CreateDialog({ isOpen, onClose, onSave, data }: CreateDialogProps) {
   const [name, setName] = useState("");
+  const [subtitle, setSubtitle] = useState(""); // Added subtitle
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState<number | "">("");
+  const [discountPrice, setDiscountPrice] = useState<number | "">(""); // Added discountPrice
+  const [category, setCategory] = useState(""); // Added category
+  const [quantity, setQuantity] = useState<number | "">(""); // Added quantity
+  const [items, setItems] = useState(""); // Added items
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -38,34 +43,43 @@ export default function CreateDialog({ isOpen, onClose, onSave, data }: CreateDi
       setName(data.name || "");
       setDescription(data.description || "");
       setPrice(data.price || "");
+      setDiscountPrice(data.price || 0); // Default to price if discountPrice is not provided
     }
   }, [data]);
 
-  const handleSubmit = async (data : number) => {
+  const handleSubmit = async () => {
     if (!name || !description || !price || isNaN(Number(price))) {
       alert("Please fill out all required fields.");
       return;
     }
+
+
+    const finalDiscountPrice = discountPrice || 0;
 
     setLoading(true);
 
     try {
       const formData = new FormData();
       formData.append("name", name);
+      formData.append("subtitle", subtitle);
       formData.append("description", description);
       formData.append("price", price.toString());
+      formData.append("discountPrice", finalDiscountPrice.toString());
+      formData.append("category", category);
+      formData.append("quantity", quantity.toString());
+      formData.append("items", items); // Will be stored as JSON string
       if (coverImage) formData.append("coverImage", coverImage);
       if (image) formData.append("image", image);
 
-      const response = await axios.put(`/api/prebuilt/${data}`, formData, {
+      const response = await axios.put(`/api/prebuilt/id/${data?.id || ""}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
       onSave(response.data); // Pass data back to parent
       onClose();
     } catch (error) {
-      console.error("Error creating prebuilt:", error);
-      alert("Failed to create prebuilt item.");
+      console.error("Error saving prebuilt:", error);
+      alert("Failed to save prebuilt item.");
     } finally {
       setLoading(false);
     }
@@ -80,7 +94,7 @@ export default function CreateDialog({ isOpen, onClose, onSave, data }: CreateDi
     setLoading(true);
 
     try {
-      await axios.delete(`/api/prebuilt/${data.id}`);
+      await axios.delete(`/api/prebuilt/id/${data.id}`);
       onSave(null); // Pass data back to parent
       onClose();
     } catch (error) {
@@ -98,82 +112,71 @@ export default function CreateDialog({ isOpen, onClose, onSave, data }: CreateDi
           <DialogTitle>{data ? "Edit Prebuilt Item" : "Create New Prebuilt Item"}</DialogTitle>
         </DialogHeader>
 
-        <div className="overflow-y-auto max-h-[80vh] px-4 space-y-4">
-          <p>Cover Image</p>
-          <Image
-            src={data?.coverImage || "/default-cover.jpg"}
-            alt={data?.name || "Default Name"}
-            width={150}
-            height={150}
-            className="aspect-[3/3] w-full max-w-[300px] object-cover transition-all"
-            quality={100}
-          />
-          <p>Image</p>
-          <Image
-            src={data?.image || "/default-cover.jpg"}
-            alt={data?.name || "Default Name"}
-            width={300}
-            height={300}
-            className="aspect-[3/3] w-full max-w-[300px] object-cover transition-all"
-            quality={100}
-          />
-
-          <form className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Name</label>
-              <Input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Enter item name"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Description</label>
-              <Textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Enter item description"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Price</label>
-              <Input
-                type="number"
-                value={price}
-                onChange={(e) => setPrice(Number(e.target.value))}
-                placeholder="Enter price"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Cover Image</label>
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setCoverImage(e.target.files?.[0] || null)}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Image</label>
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setImage(e.target.files?.[0] || null)}
-              />
-            </div>
-            <Button type="button" onClick={() => data && handleSubmit(data.id)} disabled={loading} className="w-full">
-              {loading ? "Saving..." : "Save"}
+        <form className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <Input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Subtitle</label>
+            <Input type="text" value={subtitle} onChange={(e) => setSubtitle(e.target.value)} />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Description</label>
+            <Textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Price</label>
+            <Input type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} required />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Discount Price</label>
+            <Input
+              type="number"
+              value={discountPrice}
+              onChange={(e) => setDiscountPrice(Number(e.target.value) || 0)} // Default to 0 if input is invalid
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Category</label>
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="w-full p-2 border border-gray-300 rounded-lg"
+            >
+              <option value="Gaming">Gaming</option>
+              <option value="Workstation">Workstation</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Quantity</label>
+            <Input type="number" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Items (JSON)</label>
+            <Textarea
+              value={items}
+              onChange={(e) => setItems(e.target.value)}
+              placeholder='e.g., ["item1", "item2"]'
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Cover Image</label>
+            <Input type="file" accept="image/*" onChange={(e) => setCoverImage(e.target.files?.[0] || null)} />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Image</label>
+            <Input type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] || null)} />
+          </div>
+          <Button type="button" onClick={handleSubmit} disabled={loading} className="w-full">
+            {loading ? "Saving..." : "Save"}
+          </Button>
+          {data && (
+            <Button type="button" onClick={handleDelete} disabled={loading} className="w-full">
+              Delete
             </Button>
-            {data && (
-              <Button type="button" onClick={handleDelete} disabled={loading} className="w-full">
-                Delete
-              </Button>
-            )}
-          </form>
-        </div>
+          )}
+        </form>
       </DialogContent>
     </Dialog>
   );
