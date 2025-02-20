@@ -17,6 +17,7 @@ export default function PcBuilder() {
   const storage = ["Storage 1", "Storage 2"];
   const fans = ['Fan 1', 'Fan 2', 'Fan 3', 'Fan 4']
   const accessories = ["Accessories 1", "Accessories 2", "Accessories 3", "Accessories 4", "Accessories 5"];
+  const monitor = ["Monitor 1", "Monitor 2"];
 
   const handleItemClick = (item: string) => {
     if (item === "Casing") {
@@ -44,6 +45,11 @@ export default function PcBuilder() {
     } else {
       setSelectedItem(item); // Open ItemDialog for other items
     }
+  }
+
+  const handleMonitorClick = (item: string) => {
+    setSelectedItem("monitor");
+
   }
 
   const handleChildData = (item: { name: string; price: number; socket_type_id?: string }) => {
@@ -147,6 +153,24 @@ export default function PcBuilder() {
               <h1 className="text-xl font-bold mb-3">{item}</h1>
               <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
                 <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
+                  <p className="text-gray w-full font-semibold">
+                    {selectedData[item]?.name || `Select ${item}`}
+                  </p>
+                  {selectedData[item]?.price && (
+                    <p className="text-gray w-full text-sm">
+                      Price: Rp {selectedData[item].price.toLocaleString()}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {monitor.map((item, index) => (
+            <div key={index}>
+              <h1 className="text-xl font-bold mb-3">{item}</h1>
+              <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
+                <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleMonitorClick(item)}>
                   <p className="text-gray w-full font-semibold">
                     {selectedData[item]?.name || `Select ${item}`}
                   </p>

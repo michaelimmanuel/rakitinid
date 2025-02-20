@@ -33,6 +33,7 @@ const sidebarData = {
     { title: "Fan", url: "/admin/database/fan", icon: Fan },
     { title: "Accessories", url: "/admin/database/accessories", icon: Mouse },
     { title: "Cooler", url: "/admin/database/cooler", icon: Fan },
+    { title: "Monitor", url: "/admin/database/monitor", icon: Monitor },
   ],
   Builds: [
     { title: "View Builds", url: "/admin/builds", icon: Box },
@@ -65,7 +66,7 @@ export function AppSidebar() {
               </SidebarGroupLabel>
               <CollapsibleContent>
                 <SidebarGroupContent>
-                  <SidebarMenu>
+                  <SidebarMenu className="mt-10">
                     {items.map((item) => (
                       <SidebarMenuItem key={item.title}>
                         <SidebarMenuButton asChild>

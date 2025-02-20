@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { set } from "react-hook-form";
 
 interface PrebuiltItem {
   coverImage: string;
@@ -15,6 +16,10 @@ interface PrebuiltItem {
   name: string;
   price: number;
   updatedAt: string;
+  subtitle: string;
+  discountPrice: number;
+  category: string;
+  items: string[];
 }
 
 interface CreateDialogProps {
@@ -32,7 +37,7 @@ export default function CreateDialog({ isOpen, onClose, onSave, data }: CreateDi
   const [discountPrice, setDiscountPrice] = useState<number | "">(""); // Added discountPrice
   const [category, setCategory] = useState(""); // Added category
   const [quantity, setQuantity] = useState<number | "">(""); // Added quantity
-  const [items, setItems] = useState(""); // Added items
+  const [items, setItems] = useState<string>("[]");
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -44,6 +49,9 @@ export default function CreateDialog({ isOpen, onClose, onSave, data }: CreateDi
       setDescription(data.description || "");
       setPrice(data.price || "");
       setDiscountPrice(data.price || 0); // Default to price if discountPrice is not provided
+      setCategory(data.category || ""); // Default to empty string if category is not provided
+      setItems(JSON.stringify(data.items || []));
+      setSubtitle(data.subtitle || ""); // Added subtitle
     }
   }, [data]);
 
@@ -67,7 +75,7 @@ export default function CreateDialog({ isOpen, onClose, onSave, data }: CreateDi
       formData.append("discountPrice", finalDiscountPrice.toString());
       formData.append("category", category);
       formData.append("quantity", quantity.toString());
-      formData.append("items", items); // Will be stored as JSON string
+      formData.append("items", JSON.stringify(JSON.parse(items)));
       if (coverImage) formData.append("coverImage", coverImage);
       if (image) formData.append("image", image);
 
@@ -107,7 +115,7 @@ export default function CreateDialog({ isOpen, onClose, onSave, data }: CreateDi
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-white text-black max-w-dvh w-dvh">
+      <DialogContent className="bg-white text-black max-w-dvh w-dvh max-h-[80%] overflow-scroll">
         <DialogHeader>
           <DialogTitle>{data ? "Edit Prebuilt Item" : "Create New Prebuilt Item"}</DialogTitle>
         </DialogHeader>
@@ -152,14 +160,55 @@ export default function CreateDialog({ isOpen, onClose, onSave, data }: CreateDi
             <label className="block text-sm font-medium text-gray-700">Quantity</label>
             <Input type="number" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Items (JSON)</label>
-            <Textarea
-              value={items}
-              onChange={(e) => setItems(e.target.value)}
-              placeholder='e.g., ["item1", "item2"]'
+            <div>
+            <label className="block text-sm font-medium text-gray-700">Item 1</label>
+            <Input
+              type="text"
+              value={JSON.parse(items)[0] || ""}
+              onChange={(e) => {
+              const newItems = JSON.parse(items);
+              newItems[0] = e.target.value;
+              setItems(JSON.stringify(newItems));
+              }}
             />
-          </div>
+            </div>
+            <div>
+            <label className="block text-sm font-medium text-gray-700">Item 2</label>
+            <Input
+              type="text"
+              value={JSON.parse(items)[1] || ""}
+              onChange={(e) => {
+              const newItems = JSON.parse(items);
+              newItems[1] = e.target.value;
+              setItems(JSON.stringify(newItems));
+              }}
+            />
+            </div>
+            <div>
+            <label className="block text-sm font-medium text-gray-700">Item 3</label>
+            <Input
+              type="text"
+              value={JSON.parse(items)[2] || ""}
+              onChange={(e) => {
+              const newItems = JSON.parse(items);
+              newItems[2] = e.target.value;
+              setItems(JSON.stringify(newItems));
+              }}
+            />
+            </div>
+            <div>
+            <label className="block text-sm font-medium text-gray-700">Item 4</label>
+            <Input
+              type="text"
+              value={JSON.parse(items)[3] || ""}
+              onChange={(e) => {
+              const newItems = JSON.parse(items);
+              newItems[3] = e.target.value;
+              setItems(JSON.stringify(newItems));
+              }}
+            />
+            </div>
+           
           <div>
             <label className="block text-sm font-medium text-gray-700">Cover Image</label>
             <Input type="file" accept="image/*" onChange={(e) => setCoverImage(e.target.files?.[0] || null)} />

@@ -18,14 +18,18 @@ import { cn } from "@/lib/utils";
 import PrebuildCard from "@/components/component/test/prebuilt-card";
 
 interface PrebuiltItem {
-    coverImage : string;
-    createdAt : string; 
-    description : string;
-    id : number;
-    image : string;
-    name : string;
-    price : number;
-    updatedAt : string;
+    coverImage: string;
+    createdAt: string;
+    description: string;
+    id: number;
+    image: string;
+    name: string;
+    price: number;
+    updatedAt: string;
+    subtitle: string;
+    discountPrice: number;
+    category: string;
+    items: string[];
 }
 
 export default function PrebuiltPage() {
@@ -117,6 +121,19 @@ export default function PrebuiltPage() {
                       items={prebuilt.items}
                       discountPrice={prebuilt.discountPrice}
                     />
+
+{/* coverImage: string;
+    createdAt: string;
+    description: string;
+    id: number;
+    image: string;
+    name: string;
+    price: number;
+    updatedAt: string;
+    subtitle: string;
+    discountPrice: number;
+    category: string;
+    items: string[]; */}
                   </div>
                 </CarouselItem>
                 </div>

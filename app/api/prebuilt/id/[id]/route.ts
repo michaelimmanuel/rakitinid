@@ -71,20 +71,9 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     fields.discountPrice = fields.discountPrice === "" ? 0 : parseInt(fields.discountPrice);
     fields.quantity = fields.quantity === "" ? 0 : parseInt(fields.quantity);
 
-    // delete the old image
-    const oldPrebuilt = await prisma.prebuilt.findUnique({
-        where: {id : parseInt(id)},
-    });
-
-    if (oldPrebuilt?.image) {
-        const image = oldPrebuilt.image.split('/').pop();
-        await del(image!); // Delete old image from S3
-    }
-
-    if (oldPrebuilt?.coverImage) {
-        const coverImage = oldPrebuilt.coverImage.split('/').pop();
-        await del(coverImage!); // Delete old cover image from S3
-    }
+    fields.items = JSON.parse(fields.items);
+    
+    console.log(fields);
 
     // Update the record in the database
     const prebuilt = await prisma.prebuilt.update({
