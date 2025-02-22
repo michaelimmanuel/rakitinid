@@ -6,7 +6,7 @@ import { randomUUID } from 'crypto';
 
 const prisma = new PrismaClient();
 
-type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage' | 'fan' | 'accessories' | 'cooler' | 'socket_types';
+type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage' | 'fan' | 'accessories' | 'cooler' | 'socket_types' | 'monitor';
 
 const modelMap: Record<Slug, any> = {
   casing: prisma.casing,
@@ -20,6 +20,7 @@ const modelMap: Record<Slug, any> = {
   accessories: prisma.accessories,
   cooler: prisma.cooler,
   socket_types: prisma.socket_type,
+  monitor: prisma.monitor,
 };
 
 export async function POST(req: Request, { params }: { params: { slug: Slug } }) {
