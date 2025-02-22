@@ -42,7 +42,8 @@ export async function POST(req: NextRequest) {
             data: {
                 src: url,
                 order: 0,
-                alt: alt
+                alt: alt,
+                src_mobile: url,
             },
         });
 
