@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { DynamicModal } from "./dynamicModal"; // Import dynamic modal component
 import EditPurchaseDialog from "./editPurchase";
 
-
+export const dynamic = 'force-dynamic'
+export const fetchCache = 'auto'
 interface PageProps {
   params: {
     slug: string;
