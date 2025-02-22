@@ -10,7 +10,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <SidebarTrigger />
         {children}
         
-        <Analytics mode="production"/>
       </main>
     </SidebarProvider>
   )

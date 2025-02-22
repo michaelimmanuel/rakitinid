@@ -54,7 +54,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarContent>
+      <SidebarContent className="mt-20">
         {Object.entries(sidebarData).map(([groupName, items]) => (
           <Collapsible key={groupName} defaultOpen className="group/collapsible">
             <SidebarGroup>
