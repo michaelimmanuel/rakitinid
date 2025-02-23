@@ -1,3 +1,4 @@
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 
@@ -16,6 +17,10 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: "rakitin-space.sgp1.digitaloceanspaces.com",
                 port: ''
+            },
+            {
+                protocol: 'https',
+                hostname: "rakitin-space.https"
             },
             {
                 protocol: 'https',

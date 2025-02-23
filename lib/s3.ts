@@ -1,10 +1,11 @@
 import { S3Client } from '@aws-sdk/client-s3';
 
 const s3 = new S3Client({
-    region: process.env.S3_REGION, // Ensure the region is set
+    region: process.env.DO_SPACES_REGION!,
+    endpoint: `https://${process.env.DO_SPACES_ENDPOINT}`,  // ✅ Ensure full URL
     credentials: {
-        accessKeyId: process.env.S3_ACCESS_KEY_ID!,
-        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
+        accessKeyId: process.env.DO_SPACES_KEY!,
+        secretAccessKey: process.env.DO_SPACES_SECRET!,
     },
 });
 

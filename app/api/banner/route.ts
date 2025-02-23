@@ -12,48 +12,58 @@ export async function GET(req: NextRequest) {
     try {
         const banners = await prisma.banner.findMany({
             orderBy: {
-            order: 'asc',
+                order: 'asc',
             },
         });
 
         return NextResponse.json(banners, { status: 200 });
-      } catch (error) {
+    } catch (error) {
         return NextResponse.json({ error: 'Failed to fetch banners.' }, { status: 500 });
-      }
+    }
 }
 
 export async function POST(req: NextRequest) {
     const formData = await req.formData();
-    const imageFile = formData.get('image') as File;
+    const desktopImage = formData.get('src') as File;
+    const mobileImage = formData.get('src_mobile') as File;
     const alt = formData.get('alt') as string;
 
-    if (!imageFile) {
-        return NextResponse.json({ error: 'No image file provided.' }, { status: 400 });
+    if (!desktopImage || !mobileImage) {
+        return NextResponse.json({ error: 'Both desktop and mobile images are required.' }, { status: 400 });
     }
 
     try {
-        const ext = imageFile.name.split('.').pop();
-        const fileName = `banner-${randomUUID()}.${ext}`;
-        // upload to DigitalOcean Spaces (S3)
-        const uploadParams = {
-            Bucket: process.env.S3_BUCKET_NAME!,
-            Key: fileName,
-            Body: imageFile,
-            ContentType: imageFile.type,
-            ACL: 'public-read' as ObjectCannedACL,
+        const uploadImage = async (imageFile: File, prefix: string) => {
+            const ext = imageFile.name.split('.').pop();
+            const fileName = `${prefix}-${randomUUID()}.${ext}`;
+            const arrayBuffer = await imageFile.arrayBuffer();
+            const buffer = Buffer.from(arrayBuffer);
+
+            const uploadParams = {
+                Bucket: process.env.DO_SPACES_BUCKET!,
+                Key: fileName,
+                Body: buffer,
+                ContentType: imageFile.type || "application/octet-stream",
+                ACL: 'public-read' as ObjectCannedACL,
+            };
+
+            const command = new PutObjectCommand(uploadParams);
+            await s3.send(command);
+
+            return `https://${process.env.DO_SPACES_BUCKET}.${process.env.DO_SPACES_ENDPOINT}/${fileName}`;
         };
 
-        const command = new PutObjectCommand(uploadParams);
-        await s3.send(command);
+        const desktopUrl = await uploadImage(desktopImage, 'banner-desktop');
+        const mobileUrl = await uploadImage(mobileImage, 'banner-mobile');
 
-        const url = `https://${process.env.S3_BUCKET_NAME}.${process.env.S3_ENDPOINT}/${fileName}`;
+        console.log('Uploaded to:', desktopUrl, mobileUrl);
 
         const newBanner = await prisma.banner.create({
             data: {
-                src: url,
+                src: desktopUrl,
                 order: 0,
                 alt: alt,
-                src_mobile: url,
+                src_mobile: mobileUrl,
             },
         });
 
@@ -61,12 +71,10 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json(newBanner, { status: 201 });
     } catch (error) {
-        console.log(error);
-        return NextResponse.json({ error: 'Failed to upload image and create banner.' }, { status: 500 });
+        console.error("Upload Error:", error);
+        return NextResponse.json({ error: 'Failed to upload images and create banner.' }, { status: 500 });
     }
 }
-
-// batch update banners
 
 export async function PUT(req: NextRequest) {
     const newBanners = await req.json();
