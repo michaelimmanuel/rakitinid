@@ -56,7 +56,7 @@ export async function POST(req: Request, { params }: { params: { slug: Slug } })
         await s3.send(new PutObjectCommand(uploadParams));
 
         // Store the file URL in the database
-        fields.image = `https://${process.env.S3_BUCKET_NAME}.${process.env.S3_ENDPOINT}/${fileName}`;
+        fields.image = `https://${process.env.DO_SPACES_BUCKET}.${process.env.DO_SPACES_ENDPOINT}/${fileName}`;
       } else {
         fields[key] = value;
       }
