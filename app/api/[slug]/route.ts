@@ -46,7 +46,7 @@ export async function POST(req: Request, { params }: { params: { slug: Slug } })
 
         // Upload to DigitalOcean Spaces (S3)
         const uploadParams = {
-          Bucket: process.env.S3_BUCKET_NAME!,
+          Bucket: process.env.DO_SPACES_BUCKET!,
           Key: fileName,
           Body: buffer, // Fix: Using Buffer
           ContentType: value.type,
