@@ -103,7 +103,14 @@ export async function PUT(req: Request, { params }: { params: { slug: Slug; id: 
 
 
 // Helper function to delete a file from S3
-const deleteFromS3 = async (bucket: string, fileName: string) => {
+const deleteFromS3 = async (fileName: string) => {
+  const bucket = process.env.DO_SPACES_BUCKET;
+
+  if (!bucket) {
+    console.error("❌ Error: DO_SPACES_BUCKET is not defined");
+    return;
+  }
+
   const command = new DeleteObjectCommand({
     Bucket: bucket,
     Key: fileName,
@@ -111,11 +118,12 @@ const deleteFromS3 = async (bucket: string, fileName: string) => {
 
   try {
     await s3.send(command);
-    console.log(`File ${fileName} deleted successfully`);
-  } catch (error : any) {
-    throw new Error('Error deleting from S3: ' + error.message);
+    console.log(`✅ File deleted from S3: ${fileName}`);
+  } catch (error: any) {
+    console.error("❌ Error deleting from S3:", error.message);
   }
 };
+
 
 // GET handler: Fetch data by slug and ID
 export async function GET(req: Request, { params }: { params: { slug: Slug; id: number } }) {
@@ -155,7 +163,7 @@ export async function DELETE(req: Request, { params }: { params: { slug: Slug; i
       // Delete the file from S3
       const fileName = record.image.split('/').pop();
       if (fileName) {
-        await deleteFromS3('your-bucket-name', fileName); // Adjust with your bucket name
+        await deleteFromS3( fileName); // Adjust with your bucket name
       }
     }
 
