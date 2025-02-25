@@ -9,7 +9,7 @@ import {
   import Image from 'next/image'
 const Maintenence = () => {
   return (
-    <div className="my-28 px-6 lg:px-20">
+    <div className="my-28 px-6 lg:px-20" id='maintenance'>
             <div className="text-center text-white">
                 <h1 className="text-white text-xl lg:text-3xl text-center font-bold mt-10">PC Maintenance Package</h1>
             </div>

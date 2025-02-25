@@ -5,7 +5,7 @@ import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import { useParams } from "next/navigation";
 
 const InvoicePage = () => {
-  const {id} = useParams();
+  const { id } = useParams() as { id: string };
   const [invoiceData, setInvoiceData] = useState<any>(null);
 
   useEffect(() => {
@@ -26,7 +26,8 @@ const InvoicePage = () => {
           formatItem(`Processor: ${data.processor}`, 1, data.processorPrice),
           formatItem(`RAM: ${data.ram}`, 1, data.ramPrice),
           formatItem(`GPU: ${data.gpu}`, 1, data.gpuPrice),
-          formatItem(`Storage: ${data.storage}`, 1, data.storagePrice),
+          formatItem(`Storage 1: ${data.storage1}`, 1, data.storage1Price),
+          formatItem(`Storage 2: ${data.storage2}`, 1, data.storage2Price),
           formatItem(`PSU: ${data.psu}`, 1, data.psuPrice),
           formatItem(`Casing: ${data.casing}`, 1, data.casingPrice),
           formatItem(`Fan 1: ${data.fan1}`, 1, data.fan1Price),
@@ -37,6 +38,9 @@ const InvoicePage = () => {
           formatItem(`Accessories 2: ${data.accessories2}`, 1, data.accessories2Price),
           formatItem(`Accessories 3: ${data.accessories3}`, 1, data.accessories3Price),
           formatItem(`Accessories 4: ${data.accessories4}`, 1, data.accessories4Price),
+          formatItem(`Accessories 5: ${data.accessories5}`, 1, data.accessories5Price),
+          formatItem(`Monitor 1: ${data.monitor1}`, 1, data.monitor1Price),
+          formatItem(`Monitor 2: ${data.monitor2}`, 1, data.monitor2Price),
           formatItem(`Cooler: ${data.cooler}`, 1, data.coolerPrice),
           ...(data.service || []).map((service: { name: string; price: string }) => 
             formatItem(`Service: ${service.name}`, 1, parseInt(service.price))
@@ -61,20 +65,20 @@ const InvoicePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="p-20">
       <h1>Invoice</h1>
 
       {invoiceData ? (
-        <>
+        <div className="h-screen flex flex-col">
           {/* PDF Preview */}
-          <PDFViewer style={{ width: "100%", height: "500px" }}>
-            <InvoicePDF invoiceData={invoiceData} />
+          <PDFViewer style={{ width: "100%", height: "100%" }}>
+            <InvoicePDF invoiceData={invoiceData} id={id} />
           </PDFViewer>
 
           {/* PDF Download */}
-          <PDFDownloadLink document={<InvoicePDF invoiceData={invoiceData} />} fileName="invoice.pdf">
+          <PDFDownloadLink document={<InvoicePDF invoiceData={invoiceData} id={id} />} fileName="invoice.pdf">
           </PDFDownloadLink>
-        </>
+        </div>
       ) : (
         <p>Loading invoice...</p>
       )}

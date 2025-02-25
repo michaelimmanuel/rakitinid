@@ -168,7 +168,7 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
 
     const openInvoice = () => {
         // open /admin/invoice/approval?id=${id}
-        window.open(`/admin/invoice/approval?id=${id}`, '_blank');
+        window.open(`/test/test/${id}`, '_blank');
     }
 
 
