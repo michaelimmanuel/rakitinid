@@ -24,8 +24,6 @@ const modelMap: Record<Slug, any> = {
   cooler: prisma.cooler,
 };
 
-// PUT handler: Update data and handle file upload with S3
-// PUT handler: Update data and handle file upload with S3
 export async function PUT(req: Request, { params }: { params: { slug: Slug; id: string } }) {
   const { slug, id } = params;
 
