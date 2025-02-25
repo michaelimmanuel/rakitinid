@@ -104,12 +104,12 @@ export default function HeroPage() {
               opts={{
                 loop: true,
               }}>
-                    <CarouselContent className=' h-[30dvh] mt-[65px]'>
+                    <CarouselContent className=' w-full mt-[65px] aspect-square'>
                         {images.map((image, index) => (
                         <CarouselItem key={index} className=' h-full relative'>
                             <div className="relative w-screen h-full">
                             <Image
-                            src={image.src}
+                            src={image.src_mobile}
                             alt={image.alt}
                             layout="fill"
                             objectFit="cover"

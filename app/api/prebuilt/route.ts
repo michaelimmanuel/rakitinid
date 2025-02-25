@@ -46,6 +46,11 @@ export async function POST(req: Request) {
       fields.price = parseFloat(fields.price);
     }
 
+    // parse items as JSON
+    if (fields.items && typeof fields.items === "string") {
+      fields.items = JSON.parse(fields.items);
+    }
+
     const newPrebuilt = await prisma.prebuilt.create({
       data: {
         name: fields.name,

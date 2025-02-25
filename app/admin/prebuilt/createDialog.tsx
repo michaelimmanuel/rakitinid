@@ -19,7 +19,7 @@ export default function CreateDialog({ isOpen, onClose, onSave }: CreateDialogPr
   const [discountPrice, setDiscountPrice] = useState<number | "">("");
   const [category, setCategory] = useState("Gaming"); // Default to Gaming
   const [quantity, setQuantity] = useState<number | "">(0);
-  const [items, setItems] = useState<string>(""); // JSON data as string
+  const [items, setItems] = useState<string>("[]");
   const [coverImage, setCoverImage] = useState<File | null>(null);
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -31,17 +31,18 @@ export default function CreateDialog({ isOpen, onClose, onSave }: CreateDialogPr
     }
 
     setLoading(true);
-
+    const finalDiscountPrice = discountPrice || 0;
+    
     try {
       const formData = new FormData();
       formData.append("name", name);
       formData.append("subtitle", subtitle);
       formData.append("description", description);
       formData.append("price", price.toString());
-      formData.append("discountPrice", discountPrice.toString());
+      formData.append("discountPrice", finalDiscountPrice.toString());
       formData.append("category", category);
       formData.append("quantity", quantity.toString());
-      formData.append("items", items);
+      formData.append("items", JSON.stringify(JSON.parse(items)));
       if (coverImage) formData.append("coverImage", coverImage);
       if (image) formData.append("image", image);
 
@@ -102,9 +103,53 @@ export default function CreateDialog({ isOpen, onClose, onSave }: CreateDialogPr
             <Input type="number" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Items (JSON)</label>
-            <Textarea value={items} onChange={(e) => setItems(e.target.value)} placeholder='e.g., ["item1", "item2"]' />
-          </div>
+            <label className="block text-sm font-medium text-gray-700">Item 1</label>
+            <Input
+              type="text"
+              value={JSON.parse(items)[0] || ""}
+              onChange={(e) => {
+              const newItems = JSON.parse(items);
+              newItems[0] = e.target.value;
+              setItems(JSON.stringify(newItems));
+              }}
+            />
+            </div>
+            <div>
+            <label className="block text-sm font-medium text-gray-700">Item 2</label>
+            <Input
+              type="text"
+              value={JSON.parse(items)[1] || ""}
+              onChange={(e) => {
+              const newItems = JSON.parse(items);
+              newItems[1] = e.target.value;
+              setItems(JSON.stringify(newItems));
+              }}
+            />
+            </div>
+            <div>
+            <label className="block text-sm font-medium text-gray-700">Item 3</label>
+            <Input
+              type="text"
+              value={JSON.parse(items)[2] || ""}
+              onChange={(e) => {
+              const newItems = JSON.parse(items);
+              newItems[2] = e.target.value;
+              setItems(JSON.stringify(newItems));
+              }}
+            />
+            </div>
+            <div>
+            <label className="block text-sm font-medium text-gray-700">Item 4</label>
+            <Input
+              type="text"
+              value={JSON.parse(items)[3] || ""}
+              onChange={(e) => {
+              const newItems = JSON.parse(items);
+              newItems[3] = e.target.value;
+              setItems(JSON.stringify(newItems));
+              }}
+            />
+            </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Cover Image</label>
             <Input type="file" accept="image/*" onChange={(e) => setCoverImage(e.target.files?.[0] || null)} />

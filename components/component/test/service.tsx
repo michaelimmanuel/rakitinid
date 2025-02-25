@@ -3,7 +3,7 @@
 
 export default function Service(){
     return (
-        <div className="bg-black p-10 lg:p-28 pb-28">
+        <div className=" p-10 lg:p-28 pb-28  bg-gradient-to-b from-black to-rakitin-bg ">
             <div className="flex justify-around text-white">
                 <div className="place-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 lg:size-16">
@@ -32,8 +32,6 @@ export default function Service(){
                     <h1 className="text-sm lg:text-3xl text-center font-light mt-2 text-center">Maintenance</h1>
                 </div>
             </div>
-
-            
         </div>
     );
 }

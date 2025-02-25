@@ -42,10 +42,10 @@ export default function PrebuildCard({
         {(discountPrice && discountPrice !== 0) ? (
           <div className="flex flex-col items-center">
             <span className="text-xl font-bold text-red-500">
-              Rp. {discountPrice.toLocaleString()}
+              Rp. {price.toLocaleString()}
             </span>
             <span className="text-sm font-medium text-gray-500 line-through">
-              Rp. {price.toLocaleString()}
+              Rp. {discountPrice.toLocaleString()}
             </span>
           </div>
         ) : (

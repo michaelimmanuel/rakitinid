@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 
 const PrebuiltCategory = () => {
   return (
-    <div className='flex flex-col w-screen bg-rakitin-bg text-[#f1f0e6] pb-10 px-10 pt-10'>
+    <div className='flex flex-col w-screen bg-gradient-to-b from-rakitin-bg from-90% pb-36 to-[#8E8E93] text-[#f1f0e6] pb-10 px-10 pt-10 '>
 
         <div className="flex flex-col mb-20 ml-10">
           <h1 className="text-3xl font-semibold text-left">Explore Our Prebuilt PC Collection</h1>
@@ -15,7 +15,7 @@ const PrebuiltCategory = () => {
 
         <div className='w-full flex flex-col lg:flex-row justify-around gap-10'>
           <div className='flex flex-col  p-10 w-full'>
-            <Image src={"https://images.prismic.io/aftershock-singapore/ZsMstUaF0TcGJDTF_Maskgroup-3-.png?auto=format,compress"} 
+            <Image src={"/images/gaming.jpeg"} 
               alt={"gaming pc"} width={350} height={350} className='mx-auto rounded-xl'/>
             <h1 className="text-center font-bold text-3xl mt-10">Gaming/Editing PC</h1>
             <p className='w-full text-justify overflow-hidden mt-6'>
@@ -28,7 +28,8 @@ const PrebuiltCategory = () => {
             }>Shop Our Gaming PC</Button>
           </div>
           <div className='flex flex-col p-10 w-full'>
-            <Image src={"https://images.prismic.io/aftershock-singapore/ZsMs80aF0TcGJDTM_Group54.png?auto=format,compress"} 
+            <Image src={"/images/office.jpeg"} 
+
               alt={"gaming pc"} width={350} height={350} className='mx-auto rounded-xl'/>
             <h1 className="text-center font-bold text-3xl mt-10">Workstation PC</h1>
             <p className='w-full text-justify overflow-hidden mt-6'>
