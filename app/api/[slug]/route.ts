@@ -97,31 +97,32 @@ export async function GET(req: Request, { params }: { params: { slug: Slug } }) 
   }
 
   let orderBy;
-
-  switch (slug) {
-    case "processor":
-      orderBy = { name: "asc" };
-      break;
-    case "psu":
-      orderBy = { wattage: "asc" };
-      break;
-    
-    case "storage":
-      // Use MySQL's SIGNED cast to sort string as numbers
-      try {
-        const data = await prisma.$queryRawUnsafe(`
-          SELECT * FROM ${slug} 
-          ORDER BY CAST(capacity AS SIGNED) ASC
-        `);
-        return NextResponse.json(data, { status: 200 });
-      } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
-      } finally {
-        await prisma.$disconnect();
-      }
-    default:
-      orderBy = { price: "asc" };
-      break;
+  if(slug !== "socket_types"){
+    switch (slug) {
+      case "processor":
+        orderBy = { name: "asc" };
+        break;
+      case "psu":
+        orderBy = { wattage: "asc" };
+        break;
+      
+      case "storage":
+        // Use MySQL's SIGNED cast to sort string as numbers
+        try {
+          const data = await prisma.$queryRawUnsafe(`
+            SELECT * FROM ${slug} 
+            ORDER BY CAST(capacity AS SIGNED) ASC
+          `);
+          return NextResponse.json(data, { status: 200 });
+        } catch (error: any) {
+          return NextResponse.json({ error: error.message }, { status: 500 });
+        } finally {
+          await prisma.$disconnect();
+        }
+      default:
+        orderBy = { price: "asc" };
+        break;
+    }
   }
 
   try {

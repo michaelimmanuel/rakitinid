@@ -83,3 +83,22 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     await prisma.$disconnect();
   }
 }
+
+
+export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+  const prisma = new PrismaClient();
+  const { id } = params;
+
+  try {
+    const processor = await prisma.processor.delete({
+      where: { id: parseInt(id) },
+    });
+
+    return NextResponse.json(processor); // Respond with the deleted processor
+  } catch (error: any) {
+    console.error('Error:', error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
+  }
+}
