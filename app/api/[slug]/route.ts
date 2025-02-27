@@ -57,6 +57,8 @@ export async function POST(req: Request, { params }: { params: { slug: Slug } })
 
         // Store the file URL in the database
         fields.image = `https://${process.env.DO_SPACES_BUCKET}.${process.env.DO_SPACES_ENDPOINT}/${fileName}`;
+
+
       } else {
         fields[key] = value;
       }

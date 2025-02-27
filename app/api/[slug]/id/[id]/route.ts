@@ -48,17 +48,19 @@ export async function PUT(req: Request, { params }: { params: { slug: Slug; id: 
           const upload = new Upload({
             client: s3,
             params: {
-              Bucket: 'rakitin-space',
+              Bucket: process.env.DO_SPACES_BUCKET!,
               Key: fileName,
               Body: value.stream(),
               ContentType: value.type,
               ACL: 'public-read',
             },
           });
-
-          const result = await upload.done();
-          imageUrl = result.Location; // This will give you the correct URL
-          fields.image = imageUrl; // Save the URL in the database field
+        
+          await upload.done(); // DigitalOcean Spaces doesn't return `Location`
+        
+ 
+          imageUrl = `https://${process.env.DO_SPACES_BUCKET}.${process.env.DO_SPACES_ENDPOINT}/${fileName}`;
+          fields.image = imageUrl; // Save this URL in the database
         } catch (uploadError) {
           console.error('Error during file upload:', uploadError);
           return NextResponse.json({ error: 'Error uploading file to S3' }, { status: 500 });
@@ -67,6 +69,8 @@ export async function PUT(req: Request, { params }: { params: { slug: Slug; id: 
         fields[key] = value;
       }
     }
+
+
 
     // Convert price if it's a string
     if (fields.price && typeof fields.price === 'string') {
@@ -80,15 +84,26 @@ export async function PUT(req: Request, { params }: { params: { slug: Slug; id: 
     if (fields.socket_type_id && typeof fields.socket_type_id === 'string') {
       fields.socket_type_id = parseInt(fields.socket_type_id, 10);
     }
+    
+    // Handle foreign key properly
+    if (fields.socket_type_id) {
+      fields.socket_type = { connect: { id: fields.socket_type_id } };
+      delete fields.socket_type_id; // Prisma does not accept direct foreign key updates
+    }
+    
 
-    // Remove id to avoid overwriting it
-    delete fields.id;
-
-    // Update the database record
+    
     const updatedData = await db.update({
       where: { id: parseInt(id) },
       data: fields,
     });
+    
+    
+
+    // Remove id to avoid overwriting it
+    delete fields.id;
+
+
 
     return NextResponse.json({ message: 'Updated successfully', updated: updatedData }, { status: 200 });
   } catch (error: any) {
