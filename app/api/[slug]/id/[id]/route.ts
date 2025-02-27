@@ -6,7 +6,7 @@ import fs from 'fs'; // for file handling
 import path from 'path';
 
 import s3 from '@/lib/s3';
-type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage' | 'fan' | 'accessories' | 'cooler';
+type Slug = 'casing' | 'processor' | 'gpu' | 'motherboard' | 'psu' | 'ram' | 'storage' | 'fan' | 'accessories' | 'cooler' | 'monitor';
 
 const prisma = new PrismaClient();
 
@@ -22,6 +22,7 @@ const modelMap: Record<Slug, any> = {
   fan: prisma.fan,
   accessories: prisma.accessories,
   cooler: prisma.cooler,
+  monitor: prisma.monitor,
 };
 
 export async function PUT(req: Request, { params }: { params: { slug: Slug; id: string } }) {
