@@ -46,11 +46,11 @@ const InvoicePage = () => {
         <>
           {/* PDF Preview */}
           <PDFViewer style={{ width: "100%", height: "500px" }}>
-            <InvoicePDF invoiceData={invoiceData} />
+            <InvoicePDF invoiceData={invoiceData} id="service"/>
           </PDFViewer>
 
           {/* PDF Download */}
-          <PDFDownloadLink document={<InvoicePDF invoiceData={invoiceData} />} fileName="invoice.pdf">
+          <PDFDownloadLink document={<InvoicePDF invoiceData={invoiceData} id="service"  />} fileName="invoice.pdf">
           </PDFDownloadLink>
         </>
       ) : (
