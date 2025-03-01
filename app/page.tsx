@@ -7,11 +7,14 @@ import WhatSetsUsApart from "@/components/component/test/whatSetsUs";
 import Contact from "@/components/component/test/contact";
 import Maintenence from "@/components/component/test/maintenence";
 import PrebuiltCategory from "@/components/component/test/prebuilt-category";
+import NavBar from "@/components/Navbar";
 export default function Page() {
     return (
         <div className="relative">
             
+            
             <main className="">
+                <NavBar />
                 <section id="hero">
                     <HeroPage />
                 </section>

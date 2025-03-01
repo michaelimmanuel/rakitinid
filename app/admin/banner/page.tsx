@@ -57,6 +57,21 @@ export default function Banner() {
     return (
         <div>
             <div className="mt-4 p-5">
+            <style jsx>{`
+                    @keyframes rainbow {
+                        0% { background-color: red; }
+                        14% { background-color: orange; }
+                        28% { background-color: yellow; }
+                        42% { background-color: green; }
+                        57% { background-color: blue; }
+                        71% { background-color: indigo; }
+                        85% { background-color: violet; }
+                        100% { background-color: red; }
+                    }
+                    .rainbow {
+                        animation: rainbow 5s linear infinite;
+                    }
+                `}</style>
                 <Label htmlFor="desktop-picture">Desktop Picture</Label>
                 <Input
                     id="desktop-picture"
@@ -68,10 +83,13 @@ export default function Banner() {
                 />
                 
                 <Label htmlFor="mobile-picture">Mobile Picture</Label>
+                 
+           
+               
                 <Input
                     id="mobile-picture"
                     type="file"
-                    className="text-black mt-2 mb-5 w-1/5"
+                    className="mt-2 mb-5 w-1/5 text-black"
                     onChange={(e) =>
                         setNewBanner({ ...newBanner, mobileImage: e.target.files ? e.target.files[0] : null })
                     }
@@ -80,10 +98,11 @@ export default function Banner() {
                 <Input
                     type="text"
                     placeholder="Alt Text"
-                    className="text-black mt-2 mb-5"
+                    className="mt-2 mb-5"
                     onChange={(e) => setNewBanner({ ...newBanner, alt: e.target.value })}
                 />
-                
+               
+                <div className="">Add Banner</div>
                 <Button variant="success" onClick={handleUpload}>
                     Add Banner
                 </Button>

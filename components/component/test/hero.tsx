@@ -36,7 +36,7 @@ export default function HeroPage() {
     return (
         <div>        
             <div className="hidden lg:block relative z-0">
-                    <div className="relative z-0 h-screen overflow-hidden">
+                    <div className="relative z-0 h-screen">
                     {/* Hero Image */}
                     <Carousel className="absolute inset-0 w-full h-full"
                       plugins={[
@@ -50,13 +50,15 @@ export default function HeroPage() {
                         >
                         <CarouselContent className='w-dvh h-dvh'>
                         {images.map((image, index) => (
-                        <CarouselItem key={index} className='w-dvh h-dvh relative'>
+                        <CarouselItem key={index} className='relative'>
                             <div className="relative w-full h-full">
                             <Image
                             src={image.src}
                             alt={image.alt}
-                            fill
-                            style={{ objectFit: "cover" }}
+                            width={1920}
+                            height={1080}
+                    
+                            objectFit='scale-down'
                             className="object-cover rounded-md"
                             loading='eager'
                             quality={100}
