@@ -35,7 +35,7 @@ export default function HeroPage() {
 
     return (
         <div>        
-            <div className="hidden lg:block relative z-0">
+            <div className="hidden lg:block relative z-0 overflow-hidden">
                     <div className="relative z-0 h-screen">
                     {/* Hero Image */}
                     <Carousel className="absolute inset-0 w-full h-full"
@@ -48,20 +48,18 @@ export default function HeroPage() {
                         loop: true,
                       }}
                         >
-                        <CarouselContent className='w-dvh h-dvh'>
+                        <CarouselContent className='w-full '>
                         {images.map((image, index) => (
-                        <CarouselItem key={index} className='relative'>
-                            <div className="relative w-full h-full">
+                        <CarouselItem key={index} className='relative w-full'>
+                            <div className="relative w-full">
                             <Image
-                            src={image.src}
-                            alt={image.alt}
-                            width={1920}
-                            height={1080}
-                    
-                            objectFit='scale-down'
-                            className="object-cover rounded-md"
-                            loading='eager'
-                            quality={100}
+                                src={image.src}
+                                alt={image.alt}
+                                width={1920}
+                                height={1080}
+                                className="w-full object-cover rounded-md"
+                                loading='eager'
+                                quality={100}
                             />
                             </div>
                         </CarouselItem>
@@ -126,10 +124,10 @@ export default function HeroPage() {
                 </Carousel>
             <div className="flex items-center justify-center h-full">
                     <div className="mt-[50px] mb-10 text-white sm:m-auto p-5 lg:p-20 max-w-3xl text-center lg:text-left  rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-[8%] lg:ml-10">
-                        <h1 className="text-2xl lg:text-5xl font-semibold"> 
+                        <h1 className="text-xl lg:text-5xl font-semibold"> 
                             BUILD YOUR DREAM  PC TODAY.
                         </h1>
-                        <p className="text-md lg:text-2xl mt-10 lg:mt-20 lg:tracking-wide font-normal text-justify sm:text-left">
+                        <p className="text-md lg:text-xl mt-10 lg:mt-20 lg:tracking-wide font-normal text-justify sm:text-left">
                             From gaming rigs to high-performance workstations, Rakitinlah.id offers custom PC solutions tailored to your needs. Experience power, precision, and personalized design.
                         </p>
                         <div className="lg:flex justify-between sm:h-3xl lg:h-full mt-5 lg:mt-10">
