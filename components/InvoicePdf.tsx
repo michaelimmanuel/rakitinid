@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   goodsSection: {
     marginTop: 10,
-    padding: 5,
+    padding: 10,
   },
   tableHeader: {
     flexDirection: "row",
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   tableCell: {
-    textAlign: "center",
+    textAlign: "left",
     flex: 1,
   },
   totalSection: {
