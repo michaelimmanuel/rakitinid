@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 
 const PrebuiltCategory = () => {
   return (
-    <div className='flex flex-col w-screen bg-gradient-to-b from-rakitin-bg from-90% pb-36 to-[#8E8E93] text-[#f1f0e6] pb-10 px-10 pt-10 '>
+    <div className='flex flex-col w-full bg-gradient-to-b from-rakitin-bg from-90% pb-36 to-[#8E8E93] text-[#f1f0e6] pb-10 px-10 pt-10 '>
 
         <div className="flex flex-col mb-20 ml-10">
           <h1 className="text-3xl font-semibold text-left">Explore Our Prebuilt PC Collection</h1>

@@ -24,15 +24,19 @@ export default function NavBar() {
   return (
     <nav className="sticky w-full z-[9999] bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
+        <div className="flex items-center justify-around items-center h-16">
+          <div className="flex items-center justify-between">
             <Link href="/">
                 <Image src="/rakitin-logo.png" alt="Rakitin Logo" width={180} height={180} />
             </Link>
-
+            
           </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="flex flex-col">
+              <h1 className='text-xs'>Kamis - Selasa</h1>
+              <h1 className='text-xs'>11:00 - 20:00</h1>
+          </div>
+          <div className="hidden md:block w-5/4 ">
+            <div className="ml-10 flex items-baseline space-x-4 justify-end">
               {menuItems.map((item) => (
                 <Link
                   key={item.href}

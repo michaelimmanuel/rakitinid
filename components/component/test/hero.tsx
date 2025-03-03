@@ -70,7 +70,7 @@ export default function HeroPage() {
                         </Carousel>
                     {/* Text Container */}
                     <div className="flex items-center justify-center h-full">
-                        <div className="mt-[50px] mb-10 text-white sm:m-auto p-5 lg:p-20 max-w-3xl text-center lg:text-left bg-[#4E5F7E] rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-[8%] lg:ml-10">
+                        <div className="mt-[50px] mb-10 text-white sm:m-auto p-5 lg:p-20 max-w-3xl text-center lg:text-left bg-[#4E5F7E] rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-[10%] lg:ml-10">
                         <h1 className="text-3xl lg:text-5xl font-semibold font-ttSquares"> 
                             BUILD YOUR DREAM <br/> PC TODAY.
                         </h1>

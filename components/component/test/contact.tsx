@@ -32,6 +32,14 @@ export default function Contact() {
                         
                     </div>
                     <div className="flex items-center">
+                        <FaPhone className="text-xl mr-3" />
+      
+                        <a href="https://wa.me/6287862585962" className="hover:underline text-sm md:text-base">
+                            <span className="text-sm md:text-base"  >0878-62-5859-62</span>
+                        </a>
+                        
+                    </div>
+                    <div className="flex items-center">
                         <FaInstagram className="text-xl mr-3" />
                         <a
                             href="https://instagram.com/rakitinlah.id"

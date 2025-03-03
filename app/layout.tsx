@@ -27,7 +27,7 @@ export default function RootLayout({
     <html lang="en" className="scrollbar-hide dark">
       <link rel="icon" href="/favicon.png" sizes="any" />
       <body
-        className={`${inter.className} antialiased`}
+        className={`${inter.className} antialiased max-w-[1920px] mx-auto`}
       >
     
         {/* <StickyNavbar/> */}
