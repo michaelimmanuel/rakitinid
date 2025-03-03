@@ -35,7 +35,7 @@ export default function HeroPage() {
 
     return (
         <div>        
-            <div className="hidden lg:block relative z-0 overflow-hidden">
+            <div className="hidden lg:block relative z-0 mb-20">
                     <div className="relative z-0 h-screen">
                     {/* Hero Image */}
                     <Carousel className="absolute inset-0 w-full h-full"
