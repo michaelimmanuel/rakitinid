@@ -60,18 +60,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderBottom: "1 solid #000",
     paddingBottom: 3,
-    textAlign: "center",
+    justifyContent: "center", 
+    alignItems: "center", 
     fontFamily: "Helvetica-Bold",
-    padding:20
+    padding: 20,
   },
   tableRow: {
     flexDirection: "row",
     borderBottom: "1 solid #EEE",
     paddingVertical: 5,
     paddingHorizontal: 20,
+    justifyContent: "center", 
+    alignItems: "center",
   },
   tableCell: {
-    textAlign: "left",
+    textAlign: "center",
     flex: 1,
   },
   totalSection: {
@@ -108,9 +111,22 @@ const InvoicePDF = ({ invoiceData, id }: { invoiceData: any; id: string }) => {
   const itemsPerPage = 9; // Adjust based on page layout
   const pages = [];
 
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0, // Adjust if you want decimal places
+    }).format(value);
+  };
+
+
+
   for (let i = 0; i < invoiceData.items.length; i += itemsPerPage) {
     pages.push(invoiceData.items.slice(i, i + itemsPerPage));
+    console.log("Pages:", pages);
   }
+
+  
 
   return (
     <Document>
@@ -159,7 +175,9 @@ const InvoicePDF = ({ invoiceData, id }: { invoiceData: any; id: string }) => {
               <View style={styles.tableRow} key={index}>
                 {Object.keys(item).map((key: string, subIndex: number) => (
                   <Text style={styles.tableCell} key={subIndex}>
-                    {item[key]}
+                    {key.toLowerCase() === "price" || key.toLowerCase() === "total"
+                      ? formatCurrency(item[key]) // Format price and total price
+                      : item[key]}
                   </Text>
                 ))}
               </View>
