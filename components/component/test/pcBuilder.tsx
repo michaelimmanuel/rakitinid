@@ -6,6 +6,7 @@ import { ConfirmationDialog } from "./confirmation-dialog";
 import CasingDialog from "./casing-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { set } from "react-hook-form";
 
 export default function PcBuilder() {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
@@ -48,7 +49,12 @@ export default function PcBuilder() {
   }
 
   const handleMonitorClick = (item: string) => {
-    setSelectedItem("monitor");
+    if (item === "Casing") {
+      setSelectedItem("monitor");
+      setOpenCasingDialog(true); // Open CasingDialog when Casing is clicked
+    } else {
+      setSelectedItem(item); // Open ItemDialog for other items
+    }
 
   }
 
@@ -82,13 +88,13 @@ export default function PcBuilder() {
               <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
                 <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
                   <p className="text-gray w-full font-semibold">
-                    {selectedData[item]?.name || `Select ${item}`}
+                    {selectedData[item]?.name && selectedData[item]?.name !== "" ? selectedData[item].name : `Select ${item}`}
                   </p>
-                  {selectedData[item]?.price && (
-                    <p className="text-gray w-full text-sm">
-                      Price: Rp {selectedData[item].price.toLocaleString()}
-                    </p>
-                  )}
+                      {selectedData[item]?.price && selectedData[item].price !== 0 && (
+                      <p className="text-gray w-full text-sm">
+                        Price: Rp {selectedData[item].price.toLocaleString()}
+                      </p>
+                      )}
                 </div>
               </div>
             </div>
@@ -100,9 +106,9 @@ export default function PcBuilder() {
           <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
             <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleStorageClick(item)}>
               <p className="text-gray w-full font-semibold">
-                {selectedData[item]?.name || `Select ${item}`}
+              {selectedData[item]?.name && selectedData[item]?.name !== "" ? selectedData[item].name : `Select ${item}`}
               </p>
-              {selectedData[item]?.price && (
+              {selectedData[item]?.price && selectedData[item].price !== 0 && (
                 <p className="text-gray w-full text-sm">
                   Price: Rp {selectedData[item].price.toLocaleString()}
                 </p>
@@ -118,13 +124,13 @@ export default function PcBuilder() {
           <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
             <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
               <p className="text-gray w-full font-semibold">
-                {selectedData[item]?.name || `Select ${item}`}
+              {selectedData[item]?.name && selectedData[item]?.name !== "" ? selectedData[item].name : `Select ${item}`}
               </p>
-              {selectedData[item]?.price && (
+                {selectedData[item]?.price && selectedData[item].price !== 0 && (
                 <p className="text-gray w-full text-sm">
                   Price: Rp {selectedData[item].price.toLocaleString()}
                 </p>
-              )}
+                )}
             </div>
           </div>
         </div>
@@ -136,9 +142,9 @@ export default function PcBuilder() {
               <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
                 <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleFanClick(item)}>
                   <p className="text-gray w-full font-semibold">
-                    {selectedData[item]?.name || `Select ${item}`}
+                  {selectedData[item]?.name && selectedData[item]?.name !== "" ? selectedData[item].name : `Select ${item}`}
                   </p>
-                  {selectedData[item]?.price && (
+                  {selectedData[item]?.price && selectedData[item].price !== 0 && (
                     <p className="text-gray w-full text-sm">
                       Price: Rp {selectedData[item].price.toLocaleString()}
                     </p>
@@ -154,9 +160,9 @@ export default function PcBuilder() {
               <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
                 <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
                   <p className="text-gray w-full font-semibold">
-                    {selectedData[item]?.name || `Select ${item}`}
+                  {selectedData[item]?.name && selectedData[item]?.name !== "" ? selectedData[item].name : `Select ${item}`}
                   </p>
-                  {selectedData[item]?.price && (
+                  {selectedData[item]?.price && selectedData[item].price !== 0 && (
                     <p className="text-gray w-full text-sm">
                       Price: Rp {selectedData[item].price.toLocaleString()}
                     </p>
@@ -172,9 +178,9 @@ export default function PcBuilder() {
               <div className="flex flex-row  h-auto rounded-lg text-black items-start p-3 border" >
                 <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleMonitorClick(item)}>
                   <p className="text-gray w-full font-semibold">
-                    {selectedData[item]?.name || `Select ${item}`}
+                  {selectedData[item]?.name && selectedData[item]?.name !== "" ? selectedData[item].name : `Select ${item}`}
                   </p>
-                  {selectedData[item]?.price && (
+                  {selectedData[item]?.price && selectedData[item].price !== 0 && (
                     <p className="text-gray w-full text-sm">
                       Price: Rp {selectedData[item].price.toLocaleString()}
                     </p>

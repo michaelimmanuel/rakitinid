@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
 
 interface ItemDialogProps {
   isOpen: boolean;
@@ -44,7 +45,12 @@ export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent, socket
       } else if(/^storage/i.test(name)){
         const response = await axios.get(`/api/storage`);
         setItems(response.data);
+
+      }else if(/^monitor/i.test(name)){
+        const response = await axios.get(`/api/monitor`);
+        setItems(response.data);
         
+
       }else {
         const response = await axios.get(`/api/${name.toLowerCase()}`); // Assuming endpoint matches item name
         setItems(response.data);
@@ -61,17 +67,26 @@ export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent, socket
     onClose(); // Close the dialog
   };
 
+  const clearData = () => {
+    sendDataToParent({ name: "", price: 0 });
+    onClose();
+  }
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-white text-black w-7xl">
         <DialogHeader>
           <DialogTitle>Pick Your {itemName}</DialogTitle>
         </DialogHeader>
+
+        
         {errorMessage ? (
           <p>{errorMessage}</p>
         ) : loading ? (
           <p>Loading {itemName}...</p>
         ) : items.length > 0 ? (
+          <div>
+          <Button onClick={clearData} className="text-white bg-rakitin-orange bordered mt-3"> Clear </Button>
           <ul className="space-y-4 overflow-y-auto max-h-96">
             {items.map((item, index) => (
                   <li
@@ -89,6 +104,7 @@ export function ItemDialog({ isOpen, onClose, itemName, sendDataToParent, socket
                   </li>
             ))}
           </ul>
+          </div>
         ) : (
           <p>No items found for {itemName}.</p>
         )}
