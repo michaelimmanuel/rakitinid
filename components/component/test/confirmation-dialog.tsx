@@ -64,8 +64,14 @@ export function ConfirmationDialog({ isOpen, onClose, items }: ItemDialogProps) 
           accessories5Price : items["Accessories 5"]?.price || 0,
           cooler : items.Cooler?.name || "",
           coolerPrice : items.Cooler?.price || 0,
+          monitor1 : items["Monitor 1"]?.name || "",
+          monitor2 : items["Monitor 2"]?.name || "",
+          monitor1Price : items["Monitor 1"]?.price || 0,
+          monitor2Price : items["Monitor 2"]?.price || 0,
           totalPrice: getTotalPrice(),
         };
+
+        console.log(payload)
 
     
 

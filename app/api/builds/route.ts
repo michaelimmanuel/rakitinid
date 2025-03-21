@@ -52,6 +52,10 @@ export async function POST(req: Request) {
                 accessories5Price: body.accessories5Price || 0,
                 cooler: body.cooler,
                 coolerPrice: body.coolerPrice || 0,
+                monitor1: body.monitor1,
+                monitor2: body.monitor2,
+                monitor1Price: body.monitor1Price || 0,
+                monitor2Price: body.monitor2Price || 0,
             }
         });
 

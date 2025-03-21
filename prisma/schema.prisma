@@ -152,6 +152,9 @@ model build {
   accessories4  String?
   accessories5  String?
   cooler        String?
+  monitor1      String?
+  monitor2      String?
+  
   motherboardPrice Float?
   processorPrice Float?
   ramPrice       Float?
@@ -170,6 +173,9 @@ model build {
   accessories4Price Float?     
   accessories5Price Float? 
   coolerPrice    Float?
+  monitor1Price  Float?
+  monitor2Price  Float?
+
   totalPrice     Float?
   quantity       Int      @default(0)
   createdAt     DateTime @default(now())

@@ -64,8 +64,8 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
     const data = ["Processor", "Motherboard", "GPU", "RAM", "PSU", "Casing", "Cooler"];
     const storage = ["Storage 1", "Storage 2"];
     const fans = ['Fan 1', 'Fan 2', 'Fan 3', 'Fan 4']
-    const accessories = ["Accessories 1", "Accessories 2", "Accessories 3", "Accessories 4"];
-
+    const accessories = ["Accessories 1", "Accessories 2", "Accessories 3", "Accessories 4", "Accessories 5"];
+    const monitor = ["Monitor 1", "Monitor 2"];
     useEffect(() => {
         if (isOpen) {
             console.log(initialData)
@@ -77,13 +77,14 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
         setLoading(true);
         try {
             axios.get(`/api/builds/${id}`).then((response) => {
+                console.log("Response Data:", response.data);
                 setInitialData({
                     "Processor": response.data.processor,
                     "Motherboard": response.data.motherboard,
                     "GPU": response.data.gpu,
                     "RAM": response.data.ram,
-                    "Storage 1": response.data.storage1,
-                    "Storage 2": response.data.storage2,
+                    "storage1": response.data.storage1,
+                    "storage2": response.data.storage2,
                     "PSU": response.data.psu,
                     "Casing": response.data.casing,
                     "processorPrice": response.data.processorPrice,
@@ -94,19 +95,19 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                     "storage2Price": response.data.storage2Price,
                     "psuPrice": response.data.psuPrice,
                     "casingPrice": response.data.casingPrice,
-                    "Fan 1": response.data.fan1,
-                    "Fan 2": response.data.fan2,
-                    "Fan 3": response.data.fan3,
-                    "Fan 4": response.data.fan4,
+                    "fan1": response.data.fan1,
+                    "fan2": response.data.fan2,
+                    "fan3": response.data.fan3,
+                    "fan4": response.data.fan4,
                     "fan1Price": response.data.fan1Price,
                     "fan2Price": response.data.fan2Price,
                     "fan3Price": response.data.fan3Price,
                     "fan4Price": response.data.fan4Price,
-                    "Accessories 1": response.data.accessories1,
-                    "Accessories 2": response.data.accessories2,
-                    "Accessories 3": response.data.accessories3,
-                    "Accessories 4": response.data.accessories4,
-                    "Accessories 5": response.data.accessories5,
+                    "accessories1": response.data.accessories1,
+                    "accessories2": response.data.accessories2,
+                    "accessories3": response.data.accessories3,
+                    "accessories4": response.data.accessories4,
+                    "accessories5": response.data.accessories5,
                     "accessories1Price": response.data.accessories1Price,
                     "accessories2Price": response.data.accessories2Price,
                     "accessories3Price": response.data.accessories3Price,
@@ -114,6 +115,10 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                     "accessories5Price": response.data.accessories5Price,
                     "Cooler": response.data.cooler,
                     "coolerPrice": response.data.coolerPrice,
+                    "monitor1": response.data.monitor1,
+                    "monitor2": response.data.monitor2,
+                    "monitor1Price": response.data.monitor1Price,
+                    "monitor2Price": response.data.monitor2Price,
                 });
                 console.log("Initial Data:", initialData);
 
@@ -232,7 +237,7 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                                     <div className="flex flex-row h-auto rounded-lg text-black items-start p-3 border">
                                         <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
                                             <p className="text-gray w-full font-semibold">
-                                                {initialData[item] || `Select ${item}`}
+                                            {initialData[`${item.toLowerCase().replace(/\s/g, '')}`] || `Select ${item}`}
                                             </p>
                                             <p className="text-gray w-full text-sm">
                                                 Rp {initialData[`${item.toLowerCase().replace(/\s/g, '')}Price`]}
@@ -248,7 +253,7 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                                     <div className="flex flex-row h-auto rounded-lg text-black items-start p-3 border">
                                         <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
                                             <p className="text-gray w-full font-semibold">
-                                                {initialData[item] || `Select ${item}`}
+                                            {initialData[`${item.toLowerCase().replace(/\s/g, '')}`] || `Select ${item}`}
                                             </p>
                                             {/* {selectedData[item]?.price && ( */}
                                                 <p className="text-gray w-full text-sm">
@@ -266,7 +271,25 @@ export function BuildDialog({ isOpen, onClose, id }: ItemDialogProps) {
                                     <div className="flex flex-row h-auto rounded-lg text-black items-start p-3 border">
                                         <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
                                             <p className="text-gray w-full font-semibold">
-                                                {initialData[item] || `Select ${item}`}
+                                                {initialData[`${item.toLowerCase().replace(/\s/g, '')}`] || `Select ${item}`}
+                                            </p>
+                                            {/* {selectedData[item]?.price && ( */}
+                                                <p className="text-gray w-full text-sm">
+                                                    Rp {initialData[`${item.toLowerCase().replace(/\s/g, '')}Price`]}
+                                                </p>
+                                            {/* )} */}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+
+                            {monitor.map((item, index) => (
+                                <div key={index}>
+                                    <h1 className="text-xl font-bold mb-3">{item}</h1>
+                                    <div className="flex flex-row h-auto rounded-lg text-black items-start p-3 border">
+                                        <div className="bg-white flex w-full flex-col h-auto rounded-lg text-black items-start p-3" onClick={() => handleItemClick(item)}>
+                                            <p className="text-gray w-full font-semibold">
+                                                {initialData[`${item.toLowerCase().replace(/\s/g, '')}`] || `Select ${item}`}
                                             </p>
                                             {/* {selectedData[item]?.price && ( */}
                                                 <p className="text-gray w-full text-sm">
