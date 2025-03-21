@@ -71,28 +71,21 @@ export function ConfirmationDialog({ isOpen, onClose, items }: ItemDialogProps) 
 
          
         try {
-          // console.log(payload);
-          // return
           await axios.post("/api/builds", payload).then((res) => {
             // get id from data
             const id = res.data.id;
             const number = 6281381024919
-            const message = `Hello, Saya ingin konsultasi untuk pembuatan pc. Ini adalah spek yang akan saya gunakan:
-                Processor: ${items.Processor?.name}
-                Motherboard: ${items.Motherboard?.name}
-                RAM: ${items.RAM?.name}
-                GPU: ${items.GPU?.name}
-                Storage: ${items.Storage?.name}
-                PSU: ${items.PSU?.name}
-                Casing: ${items.Casing?.name}
-                Total: Rp ${Object.values(items).reduce((acc, curr) => acc + curr.price, 0).toLocaleString()}
-                
-                Build ID: ${id}
-                `; 
-                window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`, '_blank');
-            });
+            
 
-
+            const item_msg = Object.entries(payload)
+            .filter(([key, value]) => value !== undefined && value !== "" && value !== 0 && !/Price$/.test(key))
+            .map(([key, value]) => `${key}: ${value}`)
+            .join("\n");
+           console.log(item_msg)
+                  
+          const message = `Hello, Saya ingin konsultasi untuk pembuatan PC. Ini adalah spek yang akan saya gunakan: \nbuild_id: ${id} \n${item_msg} \nTotal: Rp ${payload.totalPrice.toLocaleString()}`;
+          window.open(`https://wa.me/${number}?text=${encodeURIComponent(message)}`);
+          });
 
 
           onClose();

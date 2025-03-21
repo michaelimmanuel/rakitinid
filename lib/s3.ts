@@ -1,4 +1,6 @@
 import { S3Client } from "@aws-sdk/client-s3";
+import { NodeHttpHandler } from "@aws-sdk/node-http-handler";
+import https from "https";
 
 const s3 = new S3Client({
   region: process.env.DO_SPACES_REGION as string, // e.g., 'sgp1'
